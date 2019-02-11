@@ -1,16 +1,74 @@
 @import "variables";
+@import "animations";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box;
+}
 
 html {
   font-size: 62.5%;
 }
 
 body {
-  font-family: "Marvel", sans-serif;
+  font-family: $mainFont;
   font-weight: 400;
 
   /* font-size: 16px; */
 
   line-height: 1.7;
-  color: $colorLightest;
+  color: $colorDarkest;
   padding: 3rem;
 }
+
+.header {
+  height: 95vh;
+  background: linear-gradient(
+    to right bottom,
+    rgba($colorDarkblue, 0.8),
+    rgba($colorBlue, 0.8)
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  &__text-box {
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+  }
+}
+ .spin {
+  background-image: url(cityPano.jpg);
+  position: relative;
+  top: 30%;
+  left: 2%;
+  clip-path: circle(40%);
+  z-index: 20;
+ }
+
+ #spinning {
+  -webkit-animation: rotation 20s infinite linear;
+}
+
+.testimonials {
+  background-color: $colorLightest;
+  padding: 30rem 0;
+  margin-top: -5vh;
+}
+
+
+
+
+
+
+
+
+
