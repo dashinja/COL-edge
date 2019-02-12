@@ -1,6 +1,8 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+const passport = require("passport");
+const session = require("express-session");
 
 var db = require("./models");
 
@@ -11,6 +13,29 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(session({ secret: "Bootcamp for life" }));
+
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+passport.use(
+  new GoogleStrategy({
+    clientID: "",
+    clientSecret: "",
+    callbackURL: "",
+  },
+  (req, accessToken, refreshToken, profile, done) => {
+    done(null, profile);
+  })
+)
+
+// Serialize and Unserialize
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 // Handlebars
 app.engine(
