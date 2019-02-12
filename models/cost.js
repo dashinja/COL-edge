@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Cost = sequelize.define("Cost", {
+  var Cost = sequelize.define('Cost', {
     city: {
       type: DataTypes.STRING,
       allowNull: false
@@ -13,11 +13,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     cli_including_rent: {
-      type: DECIMAL,
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
     cli: {
-      type: DECIMAL,
+      type: DataTypes.DECIMAL,
       allowNull: false
     }
   });
