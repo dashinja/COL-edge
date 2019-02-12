@@ -20,6 +20,13 @@ major VARCHAR(255) NOT NULL,
 starting_salary DECIMAL(10,2) NOT NULL,
 mid_career_salary DECIMAL(10,2) NOT NULL,
 
+CREATE TABLE user (
+  id INTEGER(11) NOT NULL AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
+  picture VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id) 
+)
+
 PRIMARY KEY (id)
 );
 

@@ -1,6 +1,8 @@
 var db = require('../models');
 
 module.exports = function(app) {
+  // api/questions deals with question getting
+  // and maybe question saving only
   // Route to display all the colleges
   app.get('/api/questions', (req, res) => {
     db.college.findAll({}).then(results => {
@@ -17,12 +19,12 @@ module.exports = function(app) {
     });
   });
 
-  // Route to create user 
-  app.post("/api/questions", (req, res) => {
-    db.user.create({
-
-    })
-  })
+  // // Route to create user
+  // app.post('/users', (req, res) => {
+  //   db.user.create({
+  //     user: req.user
+  //   });
+  // });
 
   // Get all examples
   app.get('/api/examples', function(req, res) {
