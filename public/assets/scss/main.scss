@@ -1,5 +1,6 @@
 @import "variables";
 @import "animations";
+@import "mediaQueries";
 
 *,
 *::after,
@@ -23,6 +24,13 @@ body {
   line-height: 1.7;
   color: $colorDarkest;
   padding: 3rem;
+  position: relative;
+}
+
+.login {
+  position: relative;
+  margin-left: 95%;
+  margin-bottom: 2rem;
 }
 
 .header {
@@ -43,15 +51,32 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
   }
-
 }
+
+.mission--heading{
+  position: relative;
+  margin-left: 93%;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.company-statement {
+  position: relative;
+  margin-left: 80%;
+  margin-bottom: 2rem;
+}
+.heading-btn {
+  position: relative;
+  margin-left: 75%;
+}
+
 .heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
-  margin-top: 1rem;
-  margin-bottom: 8rem;
+  margin-top: 5rem;
+  margin-bottom: 7rem;
 }
  .spin {
   background-image: url(cityPano.jpg);
@@ -77,11 +102,11 @@ body {
   &:hover {
   background-color: $colorDarkest;
   color: $colorLightest;
-  box-shadow: 0 1rem 2rem rgba($colorBlack, 0.15);
+  box-shadow: 0 1rem 2rem rgba($colorDarkest, 0.15);
   transform: translateY(-2px);
 }
   &:active {
-  box-shadow: 0 .5rem 1rem rgba($colorBlack, 0.15);
+  box-shadow: 0 .5rem 1rem rgba($colorDarkest, 0.15);
   transform: translateY(0);
 }  
 
@@ -109,9 +134,9 @@ body {
 
 .heading-secondary{
   text-align: center;
-  margin-bottom: 8rem;
   font-size: 3.5rem;
-  top: -10rem;
+  position: relative;
+  top: -20rem;
   font-weight: 700;
   background-image: linear-gradient(to right, $colorLightBlue, $colorDarkblue);
   background-clip: text;
@@ -119,6 +144,19 @@ body {
   color: transparent;
   letter-spacing: .2rem;
 }
+
+// -------------second page ---------------
+
+.submit-btn {
+  position: relative;
+  margin-top: 2rem;
+}
+.form-container {
+  font-size: $mainFontSize;
+  padding: 2rem;
+}
+
+
 
 
 

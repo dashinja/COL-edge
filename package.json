@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
+    "sass": "node-sass -w public/assets/scss/ -o public/assets/css/",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
@@ -18,6 +19,7 @@
     "mysql2": "^1.6.4",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
+    "sass": "^1.17.0",
     "sequelize": "^4.41.2"
   },
   "devDependencies": {
@@ -26,5 +28,18 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "prettier": "^1.13.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashinja/project2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/dashinja/project2/issues"
+  },
+  "homepage": "https://github.com/dashinja/project2#readme"
 }
