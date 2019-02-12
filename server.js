@@ -1,6 +1,11 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+const passport = require("passport");
+const session = require("express-session");
+const authRouter = require("./routes/authRoutes");
+const userRouter = require("./routes/userRoutes");
+const path = require("path");
 
 var db = require("./models");
 
@@ -10,7 +15,10 @@ var PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(session({ secret: "Bootcamp for life" }));
+
+require("./config/passport")(app);
 
 // Handlebars
 app.engine(
@@ -22,6 +30,8 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
