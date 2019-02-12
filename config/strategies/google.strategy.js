@@ -8,7 +8,8 @@ module.exports = () => {
       {
         clientID: CONSTANTS.clientID,
         clientSecret: CONSTANTS.clientSecret,
-        callbackURL: CONSTANTS.redirectURI
+        callbackURL: CONSTANTS.redirectURI,
+        passReqToCallback: true
       },
       (req, accessToken, refreshToken, profile, done) => {
         done(null, profile);
