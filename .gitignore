@@ -62,3 +62,6 @@ typings/
 
 # .yaml ignore
 .yaml
+
+
+.DS_Store
