@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-shadow: border-box;
+  text-transform: $uppercase;
 }
 
 html {
@@ -103,6 +104,20 @@ body {
   padding: 30rem 0;
   margin-top: -5vh;
 }
+
+.heading-secondary{
+  text-align: center;
+  margin-bottom: 8rem;
+  font-size: 3.5rem;
+  top: -10rem;
+  font-weight: 700;
+  background-image: linear-gradient(to right, $colorLightBlue, $colorDarkblue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+}
+
 
 
 
