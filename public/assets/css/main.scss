@@ -1,16 +1,114 @@
 @import "variables";
+@import "animations";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box;
+}
 
 html {
   font-size: 62.5%;
 }
 
 body {
-  font-family: "Marvel", sans-serif;
+  font-family: $mainFontStyle;
   font-weight: 400;
 
   /* font-size: 16px; */
 
   line-height: 1.7;
-  color: $colorLightest;
+  color: $colorDarkest;
   padding: 3rem;
 }
+
+.header {
+  height: 95vh;
+  background: linear-gradient(
+    to right bottom,
+    $colorDarkblue, $colorBlue
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  &__text-box {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+}
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+}
+ .spin {
+  background-image: url(cityPano.jpg);
+  position: relative;
+  top: 30%;
+  left: 2%;
+  clip-path: circle(40%);
+  z-index: -1;
+ }
+
+ #spinning {
+  -webkit-animation: rotation 20s infinite linear;
+}
+.btn-text, .btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: $colorDarkest;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid $colorDarkest;
+  padding: 3px;
+  transition: all .2s;
+
+  &:hover {
+  background-color: $colorDarkest;
+  color: $colorLightest;
+  box-shadow: 0 1rem 2rem rgba($colorBlack, 0.15);
+  transform: translateY(-2px);
+}
+  &:active {
+  box-shadow: 0 .5rem 1rem rgba($colorBlack, 0.15);
+  transform: translateY(0);
+}  
+
+}
+
+
+
+
+
+
+.footer {
+  font-size: $mainFontSize;
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-bottom: .5rem;
+  color: $colorgrey;
+  
+}
+
+.testimonials {
+  background-color: $colorLightest;
+  padding: 30rem 0;
+  margin-top: -5vh;
+}
+
+
+
+
+
+
+
+
+
