@@ -1,6 +1,0 @@
-## Google Strategy
-GOOGLE_CLIENT_ID=450924948070-mrk7r4253168aroi1rnd18egu5p6ci8c.apps.googleusercontent.com
-
-GOOGLE_CLIENT_SECRET=LTYn_v5xcHPavozXWgTJMOKQ
-
-GOOGLE_REDIRECT_URI=http://localhost:3000/auth/google/callback
