@@ -3,8 +3,8 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 const passport = require("passport");
 const session = require("express-session");
-const CONSTANTS = require("./constants");
 const authRouter = require("./routes/authRoutes");
+const userRouter = require("./routes/userRoutes");
 
 var db = require("./models");
 
@@ -15,31 +15,9 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({ secret: "Bootcamp for life" }));
 
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: CONSTANTS.clientID,
-      clientSecret: CONSTANTS.clientSecret,
-      callbackURL: CONSTANTS.redirectURI
-    },
-    (req, accessToken, refreshToken, profile, done) => {
-      done(null, profile);
-    }
-  )
-);
-
-// Serialize and Unserialize
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+require("./config/passport")(app);
 
 // Handlebars
 app.engine(
@@ -51,9 +29,10 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
+app.use("/auth", authRouter);
+app.use("/users", userRouter);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-app.use("/auth", authRouter);
 
 var syncOptions = { force: false };
 
