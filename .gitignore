@@ -61,4 +61,4 @@ typings/
 .next
 
 # .yaml ignore
-.yaml
+shrinkwrap.yaml
