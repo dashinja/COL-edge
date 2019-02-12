@@ -4,6 +4,7 @@ var exphbs = require("express-handlebars");
 const passport = require("passport");
 const session = require("express-session");
 const CONSTANTS = require("./constants");
+const authRouter = require("./routes/authRoutes");
 
 var db = require("./models");
 
@@ -52,6 +53,7 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+app.use("/auth", authRouter);
 
 var syncOptions = { force: false };
 
