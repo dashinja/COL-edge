@@ -31,8 +31,8 @@ body {
 
 .header {
   height: 95vh;
-  background: -webkit-gradient(linear, left top, right bottom, from(rgba(104, 160, 176, 0.8)), to(rgba(167, 216, 222, 0.8)));
-  background: linear-gradient(to right bottom, rgba(104, 160, 176, 0.8), rgba(167, 216, 222, 0.8));
+  background: -webkit-gradient(linear, left top, right bottom, from(#68a0b0), to(#a7d8de));
+  background: linear-gradient(to right bottom, #68a0b0, #a7d8de);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
           clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
   background-size: cover;
@@ -41,13 +41,19 @@ body {
 }
 
 .header__text-box {
-  position: fixed;
-  top: 35%;
+  position: absolute;
+  top: 20%;
   left: 35%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 10;
+}
+
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
 }
 
 .spin {
@@ -57,11 +63,46 @@ body {
   left: 2%;
   -webkit-clip-path: circle(40%);
           clip-path: circle(40%);
-  z-index: 20;
+  z-index: -1;
 }
 
 #spinning {
   -webkit-animation: rotation 20s infinite linear;
+}
+
+.btn-text, .btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #121f1f;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #121f1f;
+  padding: 3px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.btn-text:hover, .btn-text:link:hover, .btn-text:visited:hover {
+  background-color: #121f1f;
+  color: #eaebe6;
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.btn-text:active, .btn-text:link:active, .btn-text:visited:active {
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.footer {
+  font-size: 1.6rem;
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-bottom: .5rem;
+  color: #82919a;
 }
 
 .testimonials {
