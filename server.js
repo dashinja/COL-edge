@@ -3,6 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 const passport = require("passport");
 const session = require("express-session");
+const CONSTANTS = require("./constants");
 
 var db = require("./models");
 
@@ -19,15 +20,17 @@ app.use(session({ secret: "Bootcamp for life" }));
 
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 passport.use(
-  new GoogleStrategy({
-    clientID: "",
-    clientSecret: "",
-    callbackURL: "",
-  },
-  (req, accessToken, refreshToken, profile, done) => {
-    done(null, profile);
-  })
-)
+  new GoogleStrategy(
+    {
+      clientID: CONSTANTS.clientID,
+      clientSecret: CONSTANTS.clientSecret,
+      callbackURL: CONSTANTS.redirectURI
+    },
+    (req, accessToken, refreshToken, profile, done) => {
+      done(null, profile);
+    }
+  )
+);
 
 // Serialize and Unserialize
 passport.serializeUser((user, done) => {

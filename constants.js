@@ -1,5 +1,5 @@
 module.exports = {
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  redirectURI: process.env.REDIRECT_URI
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  redirectURI: process.env.GOOGLE_REDIRECT_URI
 };
