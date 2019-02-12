@@ -26,7 +26,7 @@ body {
 
 .login {
   position: relative;
-  margin-left: 104rem;
+  margin-left: 95%;
   margin-bottom: 2rem; }
 
 .header {
@@ -43,13 +43,27 @@ body {
     transform: translate(-50%, -50%);
     text-align: center; }
 
+.mission--heading {
+  position: relative;
+  margin-left: 93%;
+  margin-bottom: 1rem; }
+
+.company-statement {
+  position: relative;
+  margin-left: 80%;
+  margin-bottom: 2rem; }
+
+.heading-btn {
+  position: relative;
+  margin-left: 75%; }
+
 .heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
-  margin-top: 1rem;
-  margin-bottom: 8rem; }
+  margin-top: 5rem;
+  margin-bottom: 7rem; }
 
 .spin {
   background-image: url(cityPano.jpg);
@@ -73,10 +87,10 @@ body {
   .btn-text:hover, .btn-text:link:hover, .btn-text:visited:hover {
     background-color: #121f1f;
     color: #eaebe6;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1rem 2rem rgba(18, 31, 31, 0.15);
     transform: translateY(-2px); }
   .btn-text:active, .btn-text:link:active, .btn-text:visited:active {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(18, 31, 31, 0.15);
     transform: translateY(0); }
 
 .footer {
@@ -96,7 +110,7 @@ body {
   margin-bottom: 8rem;
   font-size: 3.5rem;
   position: relative;
-  top: -10rem;
+  top: -20rem;
   font-weight: 700;
   background-image: linear-gradient(to right, #c3d6dd, #68a0b0);
   background-clip: text;
