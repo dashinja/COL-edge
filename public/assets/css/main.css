@@ -1,25 +1,19 @@
 @-webkit-keyframes rotation {
   from {
-    -webkit-transform: rotate(0deg);
-  }
+    -webkit-transform: rotate(0deg); }
   to {
-    -webkit-transform: rotate(359deg);
-  }
-}
+    -webkit-transform: rotate(359deg); } }
 
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  -webkit-box-shadow: border-box;
-          box-shadow: border-box;
-  text-transform: uppercase;
-}
+  box-shadow: border-box;
+  text-transform: uppercase; }
 
 html {
-  font-size: 62.5%;
-}
+  font-size: 62.5%; }
 
 body {
   font-family: "Marvel", sans-serif;
@@ -28,27 +22,26 @@ body {
   line-height: 1.7;
   color: #121f1f;
   padding: 3rem;
-}
+  position: relative; }
+
+.login {
+  position: relative;
+  margin-left: 104rem;
+  margin-bottom: 2rem; }
 
 .header {
   height: 95vh;
-  background: -webkit-gradient(linear, left top, right bottom, from(#68a0b0), to(#a7d8de));
   background: linear-gradient(to right bottom, #68a0b0, #a7d8de);
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
-          clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
   background-size: cover;
   background-position: top;
-  position: relative;
-}
-
-.header__text-box {
-  position: absolute;
-  top: 20%;
-  left: 35%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  text-align: center;
-}
+  position: relative; }
+  .header__text-box {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
 
 .heading-primary--main {
   display: block;
@@ -56,22 +49,18 @@ body {
   font-weight: 400;
   letter-spacing: 3.5rem;
   margin-top: 1rem;
-  margin-bottom: 8rem;
-}
+  margin-bottom: 8rem; }
 
 .spin {
   background-image: url(cityPano.jpg);
   position: relative;
   top: 30%;
   left: 2%;
-  -webkit-clip-path: circle(40%);
-          clip-path: circle(40%);
-  z-index: -1;
-}
+  clip-path: circle(40%);
+  z-index: -1; }
 
 #spinning {
-  -webkit-animation: rotation 20s infinite linear;
-}
+  -webkit-animation: rotation 20s infinite linear; }
 
 .btn-text, .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
@@ -80,39 +69,27 @@ body {
   text-decoration: none;
   border-bottom: 1px solid #121f1f;
   padding: 3px;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-}
-
-.btn-text:hover, .btn-text:link:hover, .btn-text:visited:hover {
-  background-color: #121f1f;
-  color: #eaebe6;
-  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-  -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
-}
-
-.btn-text:active, .btn-text:link:active, .btn-text:visited:active {
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
+  transition: all .2s; }
+  .btn-text:hover, .btn-text:link:hover, .btn-text:visited:hover {
+    background-color: #121f1f;
+    color: #eaebe6;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); }
+  .btn-text:active, .btn-text:link:active, .btn-text:visited:active {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(0); }
 
 .footer {
   font-size: 1.6rem;
   margin-top: 5rem;
   margin-right: 5rem;
   margin-bottom: .5rem;
-  color: #82919a;
-}
+  color: #82919a; }
 
 .testimonials {
   background-color: #eaebe6;
   padding: 30rem 0;
-  margin-top: -5vh;
-}
+  margin-top: -5vh; }
 
 .heading-secondary {
   text-align: center;
@@ -121,11 +98,8 @@ body {
   position: relative;
   top: -10rem;
   font-weight: 700;
-  background-image: -webkit-gradient(linear, left top, right top, from(#c3d6dd), to(#68a0b0));
   background-image: linear-gradient(to right, #c3d6dd, #68a0b0);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  letter-spacing: .2rem;
-}
-/*# sourceMappingURL=main.css.map */
+  letter-spacing: .2rem; }

@@ -1,5 +1,6 @@
 @import "variables";
 @import "animations";
+@import "mediaQueries";
 
 *,
 *::after,
@@ -23,6 +24,13 @@ body {
   line-height: 1.7;
   color: $colorDarkest;
   padding: 3rem;
+  position: relative;
+}
+
+.login {
+  position: relative;
+  margin-left: 104rem;
+  margin-bottom: 2rem;
 }
 
 .header {
@@ -120,6 +128,8 @@ body {
   color: transparent;
   letter-spacing: .2rem;
 }
+
+
 
 
 
