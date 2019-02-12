@@ -117,3 +117,10 @@ body {
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: .2rem; }
+
+.submit-btn {
+  position: relative;
+  margin-top: 2rem; }
+
+.form-container {
+  font-size: 1.6rem; }
