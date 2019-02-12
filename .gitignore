@@ -60,8 +60,8 @@ typings/
 # next.js build output
 .next
 
-## Random Mac Files
-.DS_Store
+# .yaml ignore
+.yaml
 
-## Remove shrinkwrap
-shrinkwrap.yaml
+
+.DS_Store
