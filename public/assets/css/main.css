@@ -4,6 +4,31 @@
   to {
     -webkit-transform: rotate(359deg); } }
 
+.submit-btn {
+  position: relative;
+  margin-top: 2rem; }
+
+.form-container {
+  font-size: 1.6rem;
+  padding: 2rem;
+  margin-left: 25rem;
+  margin-right: 25rem; }
+
+.2ndlogin {
+  margin: 0; }
+
+.questionsPage {
+  height: 90vh;
+  background: linear-gradient(to right bottom, #68a0b0, #a7d8de);
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  background-size: cover;
+  background-position: top;
+  position: relative; }
+
+.questions {
+  position: relative;
+  margin-top: 5rem; }
+
 *,
 *::after,
 *::before {
@@ -117,11 +142,3 @@ body {
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: .2rem; }
-
-.submit-btn {
-  position: relative;
-  margin-top: 2rem; }
-
-.form-container {
-  font-size: 1.6rem;
-  padding: 2rem; }
