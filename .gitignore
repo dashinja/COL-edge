@@ -63,5 +63,6 @@ typings/
 # .yaml ignore
 shrinkwrap.yaml
 
-
+# Unwanted Local Files
 .DS_Store
+.vscode/settings.json

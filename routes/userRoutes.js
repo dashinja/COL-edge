@@ -11,21 +11,20 @@ userRouter.use('/', (req, res, next) => {
 
 userRouter.get('/', (req, res, next) => {
   // console.log("I'm req.user:", req.user);
-  console.log('DisplayName: ', req.user.displayName);
+  // console.log('DisplayName: ', req.user.displayName);
   // email optional, probably not to be used
-  console.log("I'm email: ", req.user.emails[0].value);
-  db.user
-    .create({
-      username: req.user.displayName,
-      picture: req.user._json.image.url
-    })
-    .then(newUser => {
-      if (!newUser) {
-        console.log('Error creating user!');
-      } else {
-        console.log(newUser);
-      }
-    });
+  // console.log("I'm email: ", req.user.emails[0].value);
+  db.User.create({
+    username: req.user.displayName,
+    picture: req.user._json.image.url
+  }).then(newUser => {
+    if (!newUser) {
+      console.log('Error creating user!');
+    } else {
+      console.log("I'm new user: ", newUser.dataValues);
+      console.log('Hi instead');
+    }
+  });
   res.render('users', {
     user: {
       name: req.user.displayName,
@@ -33,7 +32,7 @@ userRouter.get('/', (req, res, next) => {
       // email: req.user.emails[0].value
     }
   });
-  console.log(req);
+  // console.log(req);
 });
 
 module.exports = userRouter;
