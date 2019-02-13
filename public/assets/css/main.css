@@ -80,6 +80,10 @@
   margin-left: 20rem;
   margin-right: 20rem; }
 
+.profile {
+  position: relative;
+  margin-left: 5rem; }
+
 *,
 *::after,
 *::before {
