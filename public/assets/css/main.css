@@ -4,6 +4,24 @@
   to {
     -webkit-transform: rotate(359deg); } }
 
+@media (max-width: 1024px) {
+  .header__text-box {
+    margin-left: 3rem; } }
+
+@media (max-width: 980px) {
+  .header__text-box {
+    margin-left: 3rem; }
+  .heading-btn {
+    margin-right: 3rem; } }
+
+@media (max-width: 900px) {
+  .form-container {
+    margin-left: 10rem;
+    margin-right: 10rem; }
+  .header__text-box {
+    margin-left: 6rem;
+    margin-top: 4rem; } }
+
 .submit-btn {
   position: relative;
   margin-top: 2rem; }
@@ -13,9 +31,6 @@
   padding: 2rem;
   margin-left: 25rem;
   margin-right: 25rem; }
-
-.2ndlogin {
-  margin: 0; }
 
 .questionsPage {
   height: 90vh;
@@ -28,6 +43,24 @@
 .questions {
   position: relative;
   margin-top: 5rem; }
+
+@media (max-width: 1024px) {
+  .header__text-box {
+    margin-left: 3rem; } }
+
+@media (max-width: 980px) {
+  .header__text-box {
+    margin-left: 3rem; }
+  .heading-btn {
+    margin-right: 3rem; } }
+
+@media (max-width: 900px) {
+  .form-container {
+    margin-left: 10rem;
+    margin-right: 10rem; }
+  .header__text-box {
+    margin-left: 6rem;
+    margin-top: 4rem; } }
 
 *,
 *::after,
