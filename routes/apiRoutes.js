@@ -3,17 +3,17 @@ var db = require('../models');
 module.exports = function(app) {
   // api/questions deals with question getting
   // and maybe question saving only
-  // Route to display all the colleges
+  // Route to display all the majors
   app.get('/api/questions', (req, res) => {
-    db.college.findAll({}).then(results => {
+    db.Major.findAll({}).then(results => {
       console.log(results);
       res.json(results);
     });
   });
 
-  // Route to display All the majors table
+  // Route to display All from livng places
   app.get('/api/questions', (req, res) => {
-    db.cost.findAll({}).then(results => {
+    db.Cost.findAll({}).then(results => {
       console.log(results);
       res.json(results);
     });
@@ -27,25 +27,25 @@ module.exports = function(app) {
   // });
 
   // Get all examples
-  app.get('/api/examples', function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
+  // app.get('/api/examples', function(req, res) {
+  //   db.Example.findAll({}).then(function(dbExamples) {
+  //     res.json(dbExamples);
+  //   });
+  // });
 
-  // Create a new example
-  app.post('/api/examples', function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  // // Create a new example
+  // app.post('/api/examples', function(req, res) {
+  //   db.Example.create(req.body).then(function(dbExample) {
+  //     res.json(dbExample);
+  //   });
+  // });
 
-  // Delete an example by id
-  app.delete('/api/examples/:id', function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
+  // // Delete an example by id
+  // app.delete('/api/examples/:id', function(req, res) {
+  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(
+  //     dbExample
+  //   ) {
+  //     res.json(dbExample);
+  //   });
+  // });
 };
