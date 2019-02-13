@@ -1,0 +1,27 @@
+// -------------second page ---------------
+
+.submit-btn {
+    position: relative;
+    margin-top: 2rem;
+  }
+.form-container {
+    font-size: $mainFontSize;
+    padding: 2rem;
+    margin-left: 25rem;
+    margin-right: 25rem;
+  }
+.2ndlogin {
+    margin: 0;
+  }
+.questionsPage {
+    height: 90vh;
+    background: $mainBackground;
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+  }
+  .questions {
+      position: relative;
+      margin-top: 5rem;
+  }
