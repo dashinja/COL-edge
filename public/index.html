@@ -4,13 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--bootstrap-->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
       crossorigin="anonymous"
     />
+    <!----wow such animate-->
+    <link rel="stylesheet" href="css/animate.css">
+    <!--our style sheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <!--google fonts-->
     <link
       href="https://fonts.googleapis.com/css?family=Marvel"
       rel="stylesheet"
@@ -84,14 +89,20 @@
           <!-- dont use this one -->
           <div class="col-md-2"></div>
           <!-- populate these with testimonials -->
-          <div class="col-md-5 testimonialText">
+          <div class="col-md-5 testimonialText wow fadeInUp data-wow-offset='60'">
            <p>test test test test test test test test test test test test</p>
           </div>
-          <div class="col-md-5 testimonialText">
+          <div class="col-md-5 testimonialText wow fadeInUp data-wow-offset='60'">
             <p>test test test test test test test test test test test test</p>
           </div>
-        
+        </div>
+        <br>
+        <div class="row">
+          <div class="col md 12">
+              <a href="bootstrap.html" class="btn-text heading-btn"
+              >Get Started &rarr;</a>
 
+          </div>
         </div>
 
       </section>
@@ -107,5 +118,10 @@
         </div>
       </footer>
     </main>
+
+    <script src="js/wow.min.js"></script>
+    <script>
+    new WOW().init();
+    </script>
   </body>
 </html>

@@ -3,13 +3,13 @@
 @import "mediaQueries";
 @import "secondPage";
 @import "mediaQueries";
+@import "thirdpage";
 
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-shadow: border-box;
   text-transform: $uppercase;
 }
 
@@ -148,8 +148,8 @@ body {
   position: relative;
   top: -6rem;
   margin-left: -2rem;
+  margin-bottom: 6rem;
 
--webkit-animation: fadein 5s;
 }
 
 

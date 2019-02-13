@@ -4,12 +4,6 @@
   to {
     -webkit-transform: rotate(359deg); } }
 
-@-webkit-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
 @media (max-width: 1025px) {
   .header__text-box {
     margin-left: 3rem; }
@@ -41,9 +35,9 @@
   margin-right: 25rem; }
 
 .questionsPage {
-  height: 90vh;
+  height: 80vh;
   background: linear-gradient(to right bottom, #68a0b0, #a7d8de);
-  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   background-size: cover;
   background-position: top;
   position: relative; }
@@ -72,12 +66,25 @@
     margin-left: 6rem;
     margin-top: 4rem; } }
 
+.theWholecontainer {
+  height: 95vh;
+  background: linear-gradient(to right bottom, #68a0b0, #a7d8de);
+  clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  background-size: cover;
+  background-position: top;
+  position: relative; }
+
+.profile-container {
+  font-size: 1.6rem;
+  padding: 2rem;
+  margin-left: 20rem;
+  margin-right: 20rem; }
+
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-shadow: border-box;
   text-transform: uppercase; }
 
 html {
@@ -191,4 +198,4 @@ body {
   position: relative;
   top: -6rem;
   margin-left: -2rem;
-  -webkit-animation: fadein 5s; }
+  margin-bottom: 6rem; }
