@@ -1,12 +1,12 @@
-var db = require("../models");
+var db = require('../models');
 
 module.exports = function(app) {
   // api/questions deals with question getting
   // and maybe question saving only
   // Route to display all the majors
-  app.get("/api/questions/majors", (req, res) => {
+  app.get('/api/questions/majors', (req, res) => {
     db.major
-      .findAll({ attributes: ["major"] })
+      .findAll({ attributes: ['major'] })
       .then(results => {
         res.json(results);
       })
@@ -16,13 +16,13 @@ module.exports = function(app) {
   });
 
   // Route to display All from livng places
-  app.get("/api/questions/livingPlace", (req, res) => {
+  app.get('/api/questions/livingPlace', (req, res) => {
     db.cost
       .findAll({
         where: {
-          country: "United States"
+          country: 'United States'
         },
-        attributes: ["city", "state"]
+        attributes: ['city', 'state']
       })
 
       .then(results => {
@@ -35,10 +35,16 @@ module.exports = function(app) {
   });
 
   // Liing Place info for Profile
-  app.get("api/profile/livingPlaces", (req, res) => {
-    db.Cost.findAll({})
+  app.get('/api/profile/livingPlaces', (req, res) => {
+    db.cost
+      .findAll({})
       .then(results => {
         // CLI_including_rent to USD
+        let arryCliRentModify = results.map((entry) => {
+          entry.cli_plus_rent = ((parseInt(entry.cli_plus_rent) / 100) * 57173).toFixed(2)
+        })
+
+        console.log("I'm array modified cli_rent: ", arryCliRentModify)
         results.cli_including_rent = results.cli_including_rent * 57173;
 
         //CLI to USD
@@ -53,8 +59,9 @@ module.exports = function(app) {
   });
 
   // Major info for Profile
-  app.get("api/profile/majors", (req, res) => {
-    db.Major.findall({})
+  app.get('/api/profile/majors', (req, res) => {
+    db.major
+      .findAll({})
       .then(results => {
         console.log("I'm api/profile/majors");
         res.json(results);
