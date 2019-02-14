@@ -1,12 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define(
-    'User',
+  var user = sequelize.define(
+    'user',
     {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           len: [1]
+        },
+        unique: {
+          args: true,
+          msg: 'Username already in use!'
         }
       },
       // For picture we will have them submit a link to a picture so we can save it as a string.
@@ -42,5 +46,5 @@ module.exports = function(sequelize, DataTypes) {
       freezeTableName: true
     }
   );
-  return User;
+  return user;
 };
