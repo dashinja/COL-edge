@@ -18,11 +18,11 @@ module.exports = function(app) {
 
 
   // second page reder
-  app.get('/secondpage', function(req, res) {
+  app.get('/questions', function(req, res) {
     // db.Example.findOne({ where: { id: req.params.id } }).then(function(
     //   dbExample
     // ) {
-      res.render('secondpage') 
+      res.render('questions') 
       // {
     //     example: dbExample
     //   });
@@ -30,9 +30,9 @@ module.exports = function(app) {
   });
 
 
-  app.get('/thirdpage', function(req, res) {
+  app.get('/profile', function(req, res) {
    
-      res.render('thirdpage') 
+      res.render('profile') 
  
   });
 
