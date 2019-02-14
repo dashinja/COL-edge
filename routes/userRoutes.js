@@ -24,7 +24,7 @@ userRouter.get('/', (req, res, next) => {
     .then(duplicateFound => {
       // console.log(duplicateFound);
       if (duplicateFound) {
-        res.redirect('/bootstrappage3.html');
+        res.redirect('/profile');
       } else {
         db.user
           .create({
@@ -46,7 +46,7 @@ userRouter.get('/', (req, res, next) => {
         //     // email: req.user.emails[0].value
         //   }
         // });
-        res.redirect('/bootstrappage3.html');
+        res.redirect('/profile');
       }
     });
 
