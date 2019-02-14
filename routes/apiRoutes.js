@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
 
   // Route to display All from livng places
-  app.get('/api/questions/livingPlace', (req, res) => {
+  app.get('/api/questions/livingPlaces', (req, res) => {
     db.cost
       .findAll({
         where: {
