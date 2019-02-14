@@ -1,25 +1,32 @@
 module.exports = function(sequelize, DataTypes) {
-  var Cost = sequelize.define('Cost', {
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false
+  var cost = sequelize.define(
+    "cost",
+    {
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      cli_plus_rent: {
+        type: DataTypes.DECIMAL,
+        allowNull: false
+      },
+      cli: {
+        type: DataTypes.DECIMAL,
+        allowNull: false
+      }
     },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    cli_including_rent: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
-    },
-    cli: {
-      type: DataTypes.DECIMAL,
-      allowNull: false
+    {
+      freezeTableName: true,
+      timestamps: false
     }
-  });
-  return Cost;
+  );
+  return cost;
 };

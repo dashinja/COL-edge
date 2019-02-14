@@ -8,7 +8,9 @@
     "lint": "eslint **/*.js --quiet",
     "sass": "node-sass -w public/assets/scss/ -o public/assets/css/",
     "fix": "eslint --fix .",
-    "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
+    "import:csv": "node codeTd.js",
+    "import:csv": "node majorTd.js"
   },
   "license": "ISC",
   "dependencies": {
