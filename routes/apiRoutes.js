@@ -26,7 +26,7 @@ module.exports = function(app) {
       })
 
       .then(results => {
-        console.log("I'm api/questions/livingPlace: ", results);
+        // console.log("I'm api/questions/livingPlace: ", results);
         res.json(results);
       })
       .catch(err => {
@@ -34,25 +34,24 @@ module.exports = function(app) {
       });
   });
 
-  // Liing Place info for Profile
-  app.get('/api/profile/livingPlaces', (req, res) => {
+  // Living Place info for Profile
+  app.get('/api/profiles/livingPlaces', (req, res) => {
     db.cost
       .findAll({})
       .then(results => {
         // cli_including_rent to USD
-        let arryCliRentModify = results.map((entry) => {
-          entry.cli_plus_rent = ((parseInt(entry.cli_plus_rent) / 100) * 57173).toFixed(2)
-        })
-
-        // cli to USD
-        let arryCliModify = results.map((entry) => {
-          entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed(2)
+        let arryCliRentModify = results.map(entry => {
+          entry.cli_plus_rent = (
+            (parseInt(entry.cli_plus_rent) / 100) *
+            57173
+          ).toFixed();
         });
 
-        //CLI to USD
-        // results.cli = results.cli * 57173;
+        // cli to USD
+        let arryCliModify = results.map(entry => {
+          entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
+        });
 
-        console.log("I'm api/profile/livingPlaces");
         res.json(results);
       })
       .catch(err => {
@@ -61,11 +60,15 @@ module.exports = function(app) {
   });
 
   // Major info for Profile
-  app.get('/api/profile/majors', (req, res) => {
+  app.get('/api/profiles/majors', (req, res) => {
     db.major
       .findAll({})
       .then(results => {
-        console.log("I'm api/profile/majors");
+        // console.log("I'm api/profile/majors");
+        let majorSalarySigFig = results.map((item) => {
+          item.starting_salary = parseInt(item.starting_salary).toFixed();
+          item.mid_career_salary = parseInt(item.mid_career_salary).toFixed();
+        })
         res.json(results);
       })
       .catch(err => {
