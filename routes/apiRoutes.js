@@ -39,16 +39,18 @@ module.exports = function(app) {
     db.cost
       .findAll({})
       .then(results => {
-        // CLI_including_rent to USD
+        // cli_including_rent to USD
         let arryCliRentModify = results.map((entry) => {
           entry.cli_plus_rent = ((parseInt(entry.cli_plus_rent) / 100) * 57173).toFixed(2)
         })
 
-        console.log("I'm array modified cli_rent: ", arryCliRentModify)
-        results.cli_including_rent = results.cli_including_rent * 57173;
+        // cli to USD
+        let arryCliModify = results.map((entry) => {
+          entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed(2)
+        });
 
         //CLI to USD
-        results.cli = results.cli * 57173;
+        // results.cli = results.cli * 57173;
 
         console.log("I'm api/profile/livingPlaces");
         res.json(results);
