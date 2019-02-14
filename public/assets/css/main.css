@@ -1,12 +1,12 @@
 @keyframes rotation {
   from {
-    transform: rotate(0deg); }
+    -webkit-transform: rotate(0deg); }
   to {
-    transform: rotate(359deg); } }
+    -webkit-transform: rotate(359deg); } }
 
 @media (max-width: 1025px) {
   .header__text-box {
-    margin-left: 3rem; }
+    margin-left: 5rem; }
   .login {
     margin-left: 92%  !important; } }
 
@@ -48,7 +48,7 @@
 
 @media (max-width: 1025px) {
   .header__text-box {
-    margin-left: 3rem; }
+    margin-left: 5rem; }
   .login {
     margin-left: 92%  !important; } }
 
