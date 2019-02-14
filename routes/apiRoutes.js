@@ -10,9 +10,7 @@ module.exports = function(app) {
       .then(results => {
         res.json(results);
       })
-      .catch(err => {
-        if (err) throw err;
-      });
+      .catch(err => console.log(err));
   });
 
   // Route to display All from livng places
@@ -29,9 +27,7 @@ module.exports = function(app) {
         // console.log("I'm api/questions/livingPlace: ", results);
         res.json(results);
       })
-      .catch(err => {
-        if (err) throw err;
-      });
+      .catch(err => console.log(err));
   });
 
   // Living Place info for Profile
@@ -54,9 +50,7 @@ module.exports = function(app) {
 
         res.json(results);
       })
-      .catch(err => {
-        if (err) throw err;
-      });
+      .catch(err => console.log(err));
   });
 
   // Major info for Profile
@@ -65,14 +59,37 @@ module.exports = function(app) {
       .findAll({})
       .then(results => {
         // console.log("I'm api/profile/majors");
-        let majorSalarySigFig = results.map((item) => {
+        let majorSalarySigFig = results.map(item => {
           item.starting_salary = parseInt(item.starting_salary).toFixed();
           item.mid_career_salary = parseInt(item.mid_career_salary).toFixed();
-        })
+        });
         res.json(results);
       })
+      .catch(err => console.log(err));
+  });
+
+  app.post('/api/profiles/:id', (req, res) => {
+    // req body should have selections from user
+    let addUserChoice = {
+      collegeChoice: req.body.collegeChoice,
+      majorChoice: req.body.majorChoice,
+      cityChoice: req.body.cityChoice,
+      stateChoice: req.body.stateChoice
+    };
+
+    db.User.update(addUserChoice, {
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => {
+        res.status(201);
+        res.end(res.status);
+      })
       .catch(err => {
-        if (err) throw err;
+        console.log(err);
+        res.status(500);
+        res.end(res.status);
       });
   });
 
