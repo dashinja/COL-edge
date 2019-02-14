@@ -11,8 +11,6 @@
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
       crossorigin="anonymous"
     />
-    <!----wow such animate-->
-    <link rel="stylesheet" href="css/animate.css">
     <!--our style sheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
     <!--google fonts-->
@@ -22,9 +20,16 @@
     />
     <!-- favicon -->
     <link rel="icon" type="image/ico" href="assets/images/arrows_rotate.png" />
+    <!--jquery-->
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    
     <title>Placeholder</title>
   </head>
   <body>
+    
 
 <a href="auth/google" class="btn-text login"
 >Login &rarr;</a>
@@ -89,10 +94,10 @@
           <!-- dont use this one -->
           <div class="col-md-2"></div>
           <!-- populate these with testimonials -->
-          <div class="col-md-5 testimonialText wow fadeInUp data-wow-offset='60'">
+          <div class="col-md-5 testimonialText1" id="test1">
            <p>test test test test test test test test test test test test</p>
           </div>
-          <div class="col-md-5 testimonialText wow fadeInUp data-wow-offset='60'">
+          <div class="col-md-5 testimonialText2" id="test2">
             <p>test test test test test test test test test test test test</p>
           </div>
         </div>
@@ -119,9 +124,10 @@
       </footer>
     </main>
 
-    <script src="js/wow.min.js"></script>
-    <script>
-    new WOW().init();
-    </script>
+   
+
+
+
+
   </body>
 </html>
