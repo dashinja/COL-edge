@@ -32,6 +32,10 @@ module.exports = function(sequelize, DataTypes) {
       state: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+      Notes: {
+        type: DataTypes.TEXT,
+        allowNull: true
       }
     },
     {
