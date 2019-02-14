@@ -1,16 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define(
-    'user',
+    "user",
     {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [1]
         },
         unique: {
           args: true,
-          msg: 'Username already in use!'
+          msg: "Username already in use!"
         }
       },
       // For picture we will have them submit a link to a picture so we can save it as a string.
@@ -19,10 +20,10 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       },
       // User choice of college: placeholder for icebox
-      collegeChoice: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
+      // collegeChoice: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true
+      // },
       // User choice of major
       majorChoice: {
         type: DataTypes.STRING,
