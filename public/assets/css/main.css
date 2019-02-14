@@ -1,8 +1,8 @@
-@-webkit-keyframes rotation {
+@keyframes rotation {
   from {
-    -webkit-transform: rotate(0deg); }
+    transform: rotate(0deg); }
   to {
-    -webkit-transform: rotate(359deg); } }
+    transform: rotate(359deg); } }
 
 @media (max-width: 1025px) {
   .header__text-box {
@@ -80,10 +80,6 @@
   margin-left: 20rem;
   margin-right: 20rem; }
 
-.profile {
-  position: relative;
-  margin-left: 5rem; }
-
 *,
 *::after,
 *::before {
@@ -154,7 +150,7 @@ body {
   z-index: 1; }
 
 #spinning {
-  -webkit-animation: rotation 20s infinite linear; }
+  animation: rotation 20s infinite linear; }
 
 .btn-text, .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;

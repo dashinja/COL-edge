@@ -88,7 +88,7 @@ body {
  }
 
  #spinning {
-  -webkit-animation: rotation 20s infinite linear;
+  animation: rotation 20s infinite linear;
 }
 .btn-text, .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
