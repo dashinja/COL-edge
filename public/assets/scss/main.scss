@@ -3,13 +3,13 @@
 @import "mediaQueries";
 @import "secondPage";
 @import "mediaQueries";
+@import "thirdpage";
 
 *,
 *::after,
 *::before {
   margin: 0;
   padding: 0;
-  box-shadow: border-box;
   text-transform: $uppercase;
 }
 
@@ -38,14 +38,15 @@ body {
 .header {
   height: 95vh;
   background: $mainBackground;
-  clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
   background-size: cover;
   background-position: top;
   position: relative;
+ 
 
   &__text-box {
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 35%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -83,7 +84,7 @@ body {
   top: 30%;
   left: 2%;
   clip-path: circle(40%);
-  z-index: -1;
+  z-index: 1;
  }
 
  #spinning {
@@ -123,17 +124,17 @@ body {
   
 }
 
-.testimonials {
+.testimonialSection {
   background-color: $colorLightest;
   padding: 30rem 0;
-  margin-top: -5vh;
+  margin-top: -15vh;
 }
 
 .heading-secondary{
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 4rem;
   position: relative;
-  top: -20rem;
+  top: -15rem;
   font-weight: 700;
   background-image: linear-gradient(to right, $colorLightBlue, $colorDarkblue);
   background-clip: text;
@@ -141,6 +142,16 @@ body {
   color: transparent;
   letter-spacing: .2rem;
 }
+
+.testimonialText {
+  font-size: $mainFontSize;
+  position: relative;
+  top: -6rem;
+  margin-left: -2rem;
+  margin-bottom: 6rem;
+
+}
+
 
 
 
