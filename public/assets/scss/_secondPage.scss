@@ -14,9 +14,9 @@
 //     margin: 0;
 //   }
 .questionsPage {
-    height: 90vh;
+    height: 80vh;
     background: $mainBackground;
-    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     background-size: cover;
     background-position: top;
     position: relative;
