@@ -48,7 +48,8 @@ userRouter.get('/', (req, res, next) => {
         // });
         res.redirect('/profile');
       }
-    });
+    })
+    .catch(err => console.log(err));
 
   // db.user.create({
   //   username: req.user.displayName,

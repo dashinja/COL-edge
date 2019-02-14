@@ -70,36 +70,43 @@ module.exports = function(app) {
 
   app.post('/api/profiles/:id', (req, res) => {
     // req body should have selections from user
+    // res.json(req.body);
     let addUserChoice = {
-      collegeChoice: req.body.collegeChoice,
+      // collegeChoice: req.body.collegeChoice,
       majorChoice: req.body.majorChoice,
       cityChoice: req.body.cityChoice,
       stateChoice: req.body.stateChoice
     };
 
-    db.User.update(addUserChoice, {
-      where: {
-        id: req.params.id
-      }
-    })
+    db.user
+      .update(addUserChoice, {
+        where: {
+          id: req.params.id
+        }
+      })
       .then(() => {
         res.status(201);
         res.end(res.status);
       })
-      .catch(err => {
-        console.log(err);
-        res.status(500);
-        res.end(res.status);
-      });
-
-    db.User.findOne({
-      where: {
-        id: req.params.body
-      }
-    }).then(result => {
-      // should return data to client of the updated User object
-      res.json(result);
-    });
+      // .catch(err => {
+      //   console.log(err);
+      //   res.status(500);
+      //   res.end(res.status);
+      // });
+      .then(() => {
+        db.user
+          .findOne({
+            where: {
+              id: req.params.body
+            }
+          })
+          .then(result => {
+            // should return data to client of the updated User object
+            res.json(result);
+          })
+          .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   });
 
   // // Route to create user
