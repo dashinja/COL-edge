@@ -1,67 +1,105 @@
-var db = require("../models");
+var db = require('../models');
 
 module.exports = function(app) {
   // api/questions deals with question getting
   // and maybe question saving only
   // Route to display all the majors
-  app.get("/api/questions/majors", (req, res) => {
+  app.get('/api/questions/majors', (req, res) => {
     db.major
-      .findAll({ attributes: ["major"] })
+      .findAll({ attributes: ['major'] })
       .then(results => {
         res.json(results);
       })
-      .catch(err => {
-        if (err) throw err;
-      });
+      .catch(err => console.log(err));
   });
 
   // Route to display All from livng places
-  app.get("/api/questions/livingPlace", (req, res) => {
+  app.get('/api/questions/livingPlace', (req, res) => {
     db.cost
       .findAll({
         where: {
-          country: "United States"
+          country: 'United States'
         },
-        attributes: ["city", "state"]
+        attributes: ['city', 'state']
       })
 
       .then(results => {
-        console.log("I'm api/questions/livingPlace: ", results);
+        // console.log("I'm api/questions/livingPlace: ", results);
         res.json(results);
       })
-      .catch(err => {
-        if (err) throw err;
-      });
+      .catch(err => console.log(err));
   });
 
-  // Liing Place info for Profile
-  app.get("api/profile/livingPlaces", (req, res) => {
-    db.Cost.findAll({})
+  // Living Place info for Profile
+  app.get('/api/profiles/livingPlaces', (req, res) => {
+    db.cost
+      .findAll({})
       .then(results => {
-        // CLI_including_rent to USD
-        results.cli_including_rent = results.cli_including_rent * 57173;
+        // cli_including_rent to USD
+        let arryCliRentModify = results.map(entry => {
+          entry.cli_plus_rent = (
+            (parseInt(entry.cli_plus_rent) / 100) *
+            57173
+          ).toFixed();
+        });
 
-        //CLI to USD
-        results.cli = results.cli * 57173;
+        // cli to USD
+        let arryCliModify = results.map(entry => {
+          entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
+        });
 
-        console.log("I'm api/profile/livingPlaces");
         res.json(results);
       })
-      .catch(err => {
-        if (err) throw err;
-      });
+      .catch(err => console.log(err));
   });
 
   // Major info for Profile
-  app.get("api/profile/majors", (req, res) => {
-    db.Major.findall({})
+  app.get('/api/profiles/majors', (req, res) => {
+    db.major
+      .findAll({})
       .then(results => {
-        console.log("I'm api/profile/majors");
+        // console.log("I'm api/profile/majors");
+        let majorSalarySigFig = results.map(item => {
+          item.starting_salary = parseInt(item.starting_salary).toFixed();
+          item.mid_career_salary = parseInt(item.mid_career_salary).toFixed();
+        });
         res.json(results);
       })
+      .catch(err => console.log(err));
+  });
+
+  app.post('/api/profiles/:id', (req, res) => {
+    // req body should have selections from user
+    let addUserChoice = {
+      collegeChoice: req.body.collegeChoice,
+      majorChoice: req.body.majorChoice,
+      cityChoice: req.body.cityChoice,
+      stateChoice: req.body.stateChoice
+    };
+
+    db.User.update(addUserChoice, {
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => {
+        res.status(201);
+        res.end(res.status);
+      })
       .catch(err => {
-        if (err) throw err;
+        console.log(err);
+        res.status(500);
+        res.end(res.status);
       });
+
+    db.User.findOne({
+      where: {
+        id: req.params.body
+      }
+    }).then(result => {
+      // should return data to client of the updated User object
+      res.json(result);
+    });
   });
 
   // // Route to create user
