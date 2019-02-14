@@ -14,24 +14,60 @@ userRouter.get('/', (req, res, next) => {
   // console.log('DisplayName: ', req.user.displayName);
   // email optional, probably not to be used
   // console.log("I'm email: ", req.user.emails[0].value);
-  db.User.create({
-    username: req.user.displayName,
-    picture: req.user._json.image.url
-  }).then(newUser => {
-    if (!newUser) {
-      console.log('Error creating user!');
-    } else {
-      console.log("I'm new user: ", newUser.dataValues);
-      console.log('Hi instead');
-    }
-  });
-  res.render('users', {
-    user: {
-      name: req.user.displayName,
-      image: req.user._json.image.url
-      // email: req.user.emails[0].value
-    }
-  });
+
+  db.user
+    .findOne({
+      where: {
+        username: req.user.displayName
+      }
+    })
+    .then(duplicateFound => {
+      // console.log(duplicateFound);
+      if (duplicateFound) {
+        res.redirect('/bootstrappage3.html');
+      } else {
+        db.user
+          .create({
+            username: req.user.displayName,
+            picture: req.user._json.image.url
+          })
+          .then(newUser => {
+            if (!newUser) {
+              console.log('Error creating user!');
+            } else {
+              console.log("I'm new user: ", newUser.dataValues);
+              console.log('Hi instead');
+            }
+          });
+        // res.render('users', {
+        //   user: {
+        //     name: req.user.displayName,
+        //     image: req.user._json.image.url
+        //     // email: req.user.emails[0].value
+        //   }
+        // });
+        res.redirect('/bootstrappage3.html');
+      }
+    });
+
+  // db.user.create({
+  //   username: req.user.displayName,
+  //   picture: req.user._json.image.url
+  // }).then(newUser => {
+  //   if (!newUser) {
+  //     console.log('Error creating user!');
+  //   } else {
+  //     console.log("I'm new user: ", newUser.dataValues);
+  //     console.log('Hi instead');
+  //   }
+  // });
+  // res.render('users', {
+  //   user: {
+  //     name: req.user.displayName,
+  //     image: req.user._json.image.url
+  //     // email: req.user.emails[0].value
+  //   }
+  // });
   // console.log(req);
 });
 
