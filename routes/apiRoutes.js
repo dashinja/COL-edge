@@ -91,6 +91,15 @@ module.exports = function(app) {
         res.status(500);
         res.end(res.status);
       });
+
+    db.User.findOne({
+      where: {
+        id: req.params.body
+      }
+    }).then(result => {
+      // should return data to client of the updated User object
+      res.json(result);
+    });
   });
 
   // // Route to create user
