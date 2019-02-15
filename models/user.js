@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define(
-    "user",
+    'user',
     {
       username: {
         type: DataTypes.STRING,
@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         unique: {
           args: true,
-          msg: "Username already in use!"
+          msg: 'Username already in use!'
         }
       },
       // For picture we will have them submit a link to a picture so we can save it as a string.
@@ -41,6 +41,10 @@ module.exports = function(sequelize, DataTypes) {
       Notes: {
         type: DataTypes.TEXT,
         allowNull: true
+      },
+      loginCount: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       }
     },
     {
