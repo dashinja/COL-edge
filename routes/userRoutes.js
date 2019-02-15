@@ -28,8 +28,8 @@ userRouter.get('/', (req, res, next) => {
         // can read updatedAt column? Find most recent?
         // test.
 
-        // past: createdAt: Fri Feb 15 2019 20:14:34 GMT-0500 (Eastern Standard Time) 
-        // past: updatedAt: Fri Feb 15 2019 20:14:34 GMT-0500 (Eastern Standard Time) 
+        // past: createdAt: Fri Feb 15 2019 20:14:34 GMT-0500 (Eastern Standard Time)
+        // past: updatedAt: Fri Feb 15 2019 20:14:34 GMT-0500 (Eastern Standard Time)
 
         // After new login Results
         // current: createdAt: SHOULD be the same
@@ -38,6 +38,18 @@ userRouter.get('/', (req, res, next) => {
         //// RESEARCH how to update the "updatedAt" time
         // UPDATE user SET updatedAt= date.now()???
         // make a "loginCount" column? Add 1 for each login attempt?
+        // must learn how to "add" to a sequel value...
+        // this is Sequelize "increment"
+        db.user
+          .findOne({
+            where: {
+              username: duplicateFound
+            }
+          })
+          .then(user => {
+            return user.increment('loginCount', { by: 1 });
+          })
+          .catch(err => console.log(err));
         res.redirect('/profile');
       } else {
         db.user

@@ -44,7 +44,8 @@ module.exports = function(sequelize, DataTypes) {
       },
       loginCount: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 1
       }
     },
     {
