@@ -105,14 +105,14 @@ module.exports = function(app) {
       .catch(err => console.log(err));
   });
 
-  app.post('/profile', (req, res) => {
+  app.post('/questions', (req, res) => {
     // req bodyshould have selections from user
     // res.json(req.body);
     let addUserChoice = {
       // collegeChoice: req.body.collegeChoice,
       majorChoice: req.body.majorChoice,
-      cityChoice: req.body.cityChoice,
-      stateChoice: req.body.stateChoice
+      cityChoice: req.body.cityChoice
+      // stateChoice: req.body.stateChoice
     };
 
     //needs to know which user?

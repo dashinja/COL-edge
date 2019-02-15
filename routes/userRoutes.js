@@ -47,11 +47,13 @@ userRouter.get('/', (req, res, next) => {
             }
           })
           .then(user => {
+            // tracks
             return user.increment('loginCount', { by: 1 });
           })
           .catch(err => console.log(err));
         res.redirect('/profile');
       } else {
+        // if user not found
         db.user
           .create({
             username: req.user.displayName,
@@ -72,7 +74,7 @@ userRouter.get('/', (req, res, next) => {
         //     // email: req.user.emails[0].value
         //   }
         // });
-        res.redirect('/profile');
+        res.redirect('/questions');
       }
     })
     .catch(err => console.log(err));
