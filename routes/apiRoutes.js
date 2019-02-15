@@ -4,17 +4,47 @@ module.exports = function(app) {
   // api/questions deals with question getting
   // and maybe question saving only
   // Route to display all the majors
-  app.get('/api/questions/majors', (req, res) => {
+  app.get('/questions', (req, res) => {
+    let allQuestions = {
+      major: '',
+      cost: ''
+    };
     db.major
       .findAll({ attributes: ['major'] })
       .then(results => {
-        res.json(results);
+        // res.json(results);
+        allQuestions.major = results;
+
+        db.cost
+          .findAll({})
+          .then(results => {
+            // cli_including_rent to USD
+            let arryCliRentModify = results.map(entry => {
+              entry.cli_plus_rent = (
+                (parseInt(entry.cli_plus_rent) / 100) *
+                57173
+              ).toFixed();
+            });
+
+            // cli to USD
+            let arryCliModify = results.map(entry => {
+              entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
+            });
+            console.log(results.dataValues);
+            allQuestions.cost = results;
+            res.render('questions', allQuestions);
+            // res.json(results);
+          })
+          .catch(err => console.log(err));
+        // .catch(err => console.log(err))
+
+        // res.render("questions", {})
       })
       .catch(err => console.log(err));
   });
 
   // Route to display All from livng places
-  app.get('/api/questions/livingPlaces', (req, res) => {
+  app.get('/questions', (req, res) => {
     db.cost
       .findAll({
         where: {
