@@ -24,7 +24,7 @@
         <label for="exampleFormControlSelect1">City Choice</label>
         <select class="form-control" id="a2">
           {{#each major}}
-            <option value="{{id}}">{{major}}</option>
+            <option value={{id}}>{{major}}</option>
           {{/each}}
         </select>
       </div>
@@ -67,21 +67,19 @@
 
 <script>
   $(function () {
-    $("#createplan").on("submit", function (event) {
+    $("#submitBTN").on("click", function (event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
 
+      let majorChoice = $("#a2 option:selected").text()
+      let cityChoice = $("#a3 option:selected").text()
+
+      console.log("I'm major Choice:", majorChoice)
+      console.log("I'm city Choice:", cityChoice)
+
 
       // Send the POST request.
-      $.ajax("/api/questions/livingplaces", {
-        type: "GET"
-      }).then(
-        function (response) {
-          console.log("created new plan");
-          // Reload the page to get the updated list
-          ;
-        }
-      );
+
     });
   })
 </script>
