@@ -77,8 +77,11 @@
       console.log("I'm major Choice:", majorChoice)
       console.log("I'm city Choice:", cityChoice)
 
-
-      // Send the POST request.
+      let answers = {
+        major: majorChoice,
+        cost: cityChoice
+      }
+      module.exports = answers;
 
     });
   })
