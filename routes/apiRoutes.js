@@ -31,7 +31,8 @@ module.exports = function(app) {
   });
 
   // Living Place info for Profile
-  app.get('/api/profiles/livingPlaces', (req, res) => {
+  // app.get('/api/profiles/livingPlaces', (req, res) => {
+  app.get('/questions', (req, res) => {
     db.cost
       .findAll({})
       .then(results => {
@@ -47,8 +48,9 @@ module.exports = function(app) {
         let arryCliModify = results.map(entry => {
           entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
         });
-
-        res.json(results);
+        console.log(results.dataValues);
+        res.render('questions', { cost: results });
+        // res.json(results);
       })
       .catch(err => console.log(err));
   });
