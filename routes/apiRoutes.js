@@ -16,7 +16,12 @@ module.exports = function(app) {
         allQuestions.major = results;
 
         db.cost
-          .findAll({})
+          .findAll({
+            where: {
+              country: 'United States'
+            },
+            attributes: ['city', 'state']
+          })
           .then(results => {
             // cli_including_rent to USD
             let arryCliRentModify = results.map(entry => {
@@ -100,8 +105,8 @@ module.exports = function(app) {
       .catch(err => console.log(err));
   });
 
-  app.post('/api/profiles/:id', (req, res) => {
-    // req body should have selections from user
+  app.post('/profile', (req, res) => {
+    // req bodyshould have selections from user
     // res.json(req.body);
     let addUserChoice = {
       // collegeChoice: req.body.collegeChoice,
@@ -110,10 +115,13 @@ module.exports = function(app) {
       stateChoice: req.body.stateChoice
     };
 
+    //needs to know which user?
+    // or simplify, since no perfect auth focus:
+    // last...
     db.user
       .update(addUserChoice, {
         where: {
-          id: req.params.id
+          id: req.params.id // problem, do by name instead?
         }
       })
       .then(() => {

@@ -24,6 +24,20 @@ userRouter.get('/', (req, res, next) => {
     .then(duplicateFound => {
       // console.log(duplicateFound);
       if (duplicateFound) {
+        /////NOTES/////
+        // can read updatedAt column? Find most recent?
+        // test.
+
+        // past: createdAt: Fri Feb 15 2019 20:14:34 GMT-0500 (Eastern Standard Time) 
+        // past: updatedAt: Fri Feb 15 2019 20:14:34 GMT-0500 (Eastern Standard Time) 
+
+        // After new login Results
+        // current: createdAt: SHOULD be the same
+        // current: updatedAt: HOPEFULLY will change - results: same... no update
+
+        //// RESEARCH how to update the "updatedAt" time
+        // UPDATE user SET updatedAt= date.now()???
+        // make a "loginCount" column? Add 1 for each login attempt?
         res.redirect('/profile');
       } else {
         db.user
