@@ -12,7 +12,7 @@
     <img src="{{user.picture}}" alt="User" />
     <br /><br />
 
-    <!-- FIXME: NEED TO ADD HANDLEBARS VALUES REPRESENTING THE MODELS FROM THE DB FOR EACH OF THESE FIELDS-->
+
     <h2>Name: {{user.username}}</h2>
     <br /><br />
     <h2>Major: {{user.majorChoice}}</h2>
@@ -24,11 +24,15 @@
     <p>Cost of Living w/rent: {{cost.cli_plus_rent}}</p>
 
 
+    <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take
+      Questionnaire &rarr;</a>
+
     <br /><br />
     <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
     <h2>Notes/Testimonial:</h2>
     <textarea class="form-control" rows="5" id="testimonal-box"
       placeholder="User Testimonal"></textarea>
+    <br /><br />
 
     <br />
 
