@@ -19,9 +19,9 @@
                   <option></option>
                 </select>
               </div> -->
-
       <div class="form-group">
-        <label for="exampleFormControlSelect1">City Choice</label>
+        <label name="major" for="exampleFormControlSelect1">City
+          Choice</label>
         <select class="form-control" id="a2">
           {{#each major}}
             <option value={{id}}>{{major}}</option>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleFormControlSelect1">Post College living
+        <label name="cost" for="exampleFormControlSelect1">Post College living
           Choice</label>
         <select class="form-control" id="a3">
           {{#each cost}}
@@ -42,7 +42,8 @@
       <br />
 
     </div>
-    <a href="/profile" class="btn-text submit-btn" id="submitBTN">Submit
+    <a href='/api/user/answers' class="btn-text submit-btn"
+      id="submitBTN">Submit
       &rarr;</a>
 
 
@@ -81,7 +82,19 @@
         major: majorChoice,
         cost: cityChoice
       }
-      module.exports = answers;
+
+      // POST to '/api/user/answers'
+      $.ajax({
+        type: "POST",
+        url: '/api/user/answers',
+        data: answers,
+        success: response => {
+          console.log("I posted successfully to the server")
+          console.log(response)
+          return window.location.replace(response);
+        }
+      })
+
 
     });
   })
