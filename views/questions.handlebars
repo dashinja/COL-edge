@@ -2,7 +2,14 @@
   <span class="navbar-brand mb-0 h1"><a href="/"><img
         src="assets/images/basic_home.png" height="32" width="32"
         alt="home"></a></span>
-  <a href="auth/google" class="btn-text 2ndlogin">Login &rarr;</a>
+  <!-- FIXME: we need to remove this button once we have updated the flow of the website -->
+  <span>
+    {{#if user}}
+      <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+    {{else}}
+      <a href="auth/google" class="btn-text login">Login &rarr;</a>
+    {{/if}}
+  </span>
 </nav>
 
 
@@ -30,7 +37,8 @@
       </div>
 
       <div class="form-group">
-        <label name="cost" for="exampleFormControlSelect1">Where to live after college?</label>
+        <label name="cost" for="exampleFormControlSelect1">Where to live after
+          college?</label>
         <select class="form-control" id="a3">
           {{#each cost}}
             <option value="{{this.id}}">{{this.city}}, {{this.state}}</option>
@@ -79,7 +87,7 @@
 
       let answers = {
         major: majorChoice,
-        cost: cityChoice
+        cost: cityChoice.split(',')[0]
       }
 
       // POST to '/api/user/answers'
@@ -88,8 +96,6 @@
         url: '/api/user/answers',
         data: answers,
         success: response => {
-          console.log("I posted successfully to the server")
-          console.log(response)
           return window.location.replace(response);
         }
       })

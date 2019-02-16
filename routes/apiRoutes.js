@@ -22,7 +22,7 @@ module.exports = function(app) {
           })
           .then(results => {
             // cli_including_rent to USD
-            results.forEach(item => console.table(item));
+            // results.forEach(item => console.table(item));
 
             let arryCliRentModify = results.map(entry => {
               entry.cli_plus_rent = (

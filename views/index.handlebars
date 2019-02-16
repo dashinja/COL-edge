@@ -1,95 +1,99 @@
-<a href="auth/google" class="btn-text login"
->Login &rarr;</a>
-    <header class="header">
-      <img
-        src="assets/images/cityPano.jpg"
-        alt="city pano"
-        class="spin"
-        id="spinning"
-      />
-      <div class="header__text-box">
-        <h1 class="heading-primary">
-          <div class="row">
-            <div class="col-md-12">
-              <span class="heading-primary--main">Placeholder</span>
-            </div>
-          </div>
-          <div class="row">
-            <!-- Placeholder -->
-            <div class="col-md-9"></div>
-            <div class="col-md-3 mission--heading">
-              Our Mission
-            </div>
-          </h1>
-          <div class="row">
-          <div class="col-md-6"></div>
-          <div class="col-md-6 company-statement">
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex tempora dolorum sint inventore odit. Non, repellat fugit sint laborum maiores, architecto quos obcaecati ad iure suscipit adipisci quas sed.</h3>
-          
-          <div class="row">
-            <div class="col-md-12">
-                <a href="/questions" class="btn-text heading-btn"
-                >Get Started &rarr;</a>
-
-            </div>
-          </div>
-          </div>
-
+<span>
+  {{#if user}}
+    <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+  {{else}}
+    <a href="auth/google" class="btn-text login">Login &rarr;</a>
+  {{/if}}
+</span>
+<header class="header">
+  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin"
+    id="spinning" />
+  <div class="header__text-box">
+    <h1 class="heading-primary">
+      <div class="row">
+        <div class="col-md-12">
+          <span class="heading-primary--main">Placeholder</span>
         </div>
-          </div>
-            
-
-
-
-
-
-          
-        
       </div>
-    </header>
+      <div class="row">
+        <!-- Placeholder -->
+        <div class="col-md-9"></div>
+        <div class="col-md-3 mission--heading">
+          Our Mission
+        </div>
+    </h1>
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 company-statement">
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex
+          tempora dolorum sint inventore odit. Non, repellat fugit sint laborum
+          maiores, architecto quos obcaecati ad iure suscipit adipisci quas sed.
+        </h3>
 
-    <main>
-      <section class="testimonialSection">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="heading-secondary">Testimonials</h2>
-            
-          </div>
-        </div>
-        <div class="row">
-          <!-- placeholders for testimonials -->
-          <!-- dont use this one -->
-          <div class="col-md-2"></div>
-          <!-- populate these with testimonials -->
-          <div class="col-md-5 testimonialText1" id="test1">
-           <p>test test test test test test test test test test test test</p>
-          </div>
-          <div class="col-md-5 testimonialText2" id="test2">
-            <p>test test test test test test test test test test test test</p>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col md 12">
-              <a href="/questions" class="btn-text heading-btn"
-              >Get Started &rarr;</a>
+            <a href="/questions" class="btn-text heading-btn">Get Started
+              &rarr;</a>
 
           </div>
         </div>
+      </div>
 
-      </section>
+    </div>
+  </div>
 
-      <!-- Footer -->
-       <footer class="footer fixed-bottom text-right">
-        <div class="transparent">
-          <a href="https://github.com/dashinja">Miller</a>
-          <a href="https://github.com/smentzer">Mentzer</a>
-          <a href="https://github.com/mspenski">Spenski</a>
-          <a href="https://github.com/Jamesis1">Uttro</a>
-          <span class="copytext"> &copy; </span>
-        </div>
-      </footer>
-    </main>
 
-   
 
+
+
+
+
+
+  </div>
+</header>
+
+<main>
+  <section class="testimonialSection">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="heading-secondary">Testimonials</h2>
+
+      </div>
+    </div>
+    <div class="row">
+      <!-- placeholders for testimonials -->
+      <!-- dont use this one -->
+      <div class="col-md-2"></div>
+      <!-- populate these with testimonials -->
+      <div class="col-md-5 testimonialText1" id="test1">
+        <p>test test test test test test test test test test test test</p>
+      </div>
+      <div class="col-md-5 testimonialText2" id="test2">
+        <p>test test test test test test test test test test test test</p>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col md 12">
+        <a href="/questions" class="btn-text heading-btn">Get Started &rarr;</a>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer fixed-bottom text-right">
+    <div class="transparent">
+      <a href="https://github.com/dashinja">Miller</a>
+      <a href="https://github.com/smentzer">Mentzer</a>
+      <a href="https://github.com/mspenski">Spenski</a>
+      <a href="https://github.com/Jamesis1">Uttro</a>
+      <span class="copytext"> &copy; </span>
+    </div>
+  </footer>
+</main>
+<script>
+  console.log('user user user');
+  console.log(user)
+</script>
