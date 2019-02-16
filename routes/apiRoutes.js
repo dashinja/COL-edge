@@ -37,7 +37,7 @@ module.exports = function(app) {
             });
             console.log(results.dataValues);
             allQuestions.cost = results;
-            res.render('questions', allQuestions);
+            res.render('questions', { user: req.user, answers: allQuestions});
             // res.json(results);
           })
           .catch(err => console.log(err));

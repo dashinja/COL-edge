@@ -16,9 +16,6 @@ module.exports = function(app) {
     if (!req.user) {
       res.redirect('/');
     } else {
-      res.render('profile', { user: req.user });
-      // console.log('req.user on profile page load');
-      // console.log(req.user);
       let userData = {
         user: req.user,
         major: {},
@@ -26,7 +23,7 @@ module.exports = function(app) {
       };
 
       if (!req.user.majorChoice) {
-        null;
+        res.render('profile', { user: req.user });
       } else {
         // MAGIC
         db.major
@@ -49,19 +46,18 @@ module.exports = function(app) {
                   }
                 })
                 .then(cityRes => {
-                  const leResultsDeCity = cityRes.dataValues;
-                  leResultsDeCity.cli_plus_rent = (
+                  const cityResults = cityRes.dataValues;
+                  cityResults.cli_plus_rent = (
                     (parseInt(cityRes.dataValues.cli_plus_rent) / 100) *
                     57173
                   ).toFixed();
 
-                  leResultsDeCity.cli = (
+                  cityResults.cli = (
                     (parseInt(cityRes.dataValues.cli) / 100) *
                     57173
                   ).toFixed();
-                  userData.cost = leResultsDeCity;
-                  console.log('user data en corso')
-                  console.log(userData)
+                  userData.cost = cityResults;
+                  res.render('profile', { user: req.user, userData });
                 });
             }
           });

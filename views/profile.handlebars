@@ -16,12 +16,12 @@
     <h2>Name: {{user.username}}</h2>
     <br /><br />
     <h2>Major: {{user.majorChoice}}</h2>
-    <p>Starting Salary: ${{major.starting_salary}}</p>
-    <p>Mid-Career Salary: ${{major.mid_career_salary}}</p>
+    <p>Starting Salary: ${{userData.major.starting_salary}}</p>
+    <p>Mid-Career Salary: ${{userData.major.mid_career_salary}}</p>
     <br /><br />
-    <h2>Living Place: {{user.cityChoice}}, {{cost.state}}</h2
-    <p>Cost of Living: ${{cost.cli}}</p>
-    <p>Cost of Living w/rent: ${{cost.cli_plus_rent}}</p>
+    <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2
+    <p>Cost of Living: ${{userData.cost.cli}}</p>
+    <p>Cost of Living w/rent: ${{userData.cost.cli_plus_rent}}</p>
 
 
     <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take

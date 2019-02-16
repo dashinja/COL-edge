@@ -30,8 +30,8 @@
         <label name="major" for="exampleFormControlSelect1">Choose you major
         </label>
         <select class="form-control" id="a2">
-          {{#each major}}
-            <option value={{id}}>{{major}}</option>
+          {{#each answers.major}}
+            <option value={{this.id}}>{{this.major}}</option>
           {{/each}}
         </select>
       </div>
@@ -40,7 +40,7 @@
         <label name="cost" for="exampleFormControlSelect1">Where to live after
           college?</label>
         <select class="form-control" id="a3">
-          {{#each cost}}
+          {{#each answers.cost}}
             <option value="{{this.id}}">{{this.city}}, {{this.state}}</option>
           {{/each}}
         </select>
