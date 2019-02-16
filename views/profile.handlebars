@@ -16,17 +16,18 @@
     <h2>Name: {{user.username}}</h2>
     <br /><br />
     <h2>Major: {{user.majorChoice}}</h2>
-    <p>Starting Salary: {{major.starting_salary}}</p>
-    <p>Mid-Career Salary: {{major.mid_career_salary}}</p>
+    <p>Starting Salary: ${{major.starting_salary}}</p>
+    <p>Mid-Career Salary: ${{major.mid_career_salary}}</p>
     <br /><br />
     <h2>Living Place: {{user.cityChoice}}, {{cost.state}}</h2>
-    <p>Cost of Living: {{cost.cli}}</p>
-    <p>Cost of Living w/rent: {{cost.cli_plus_rent}}</p>
+    <p>Cost of Living: ${{cost.cli}}</p>
+    <p>Cost of Living w/rent: ${{cost.cli_plus_rent}}</p>
 
 
     <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take
       Questionnaire &rarr;</a>
 
+    <a href="#" class="btn-text submit-btn" id="submitBTN">Submit &rarr;</a>
     <br /><br />
     <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
     <h2>Notes/Testimonial:</h2>
@@ -36,7 +37,6 @@
 
     <br />
 
-    <a href="#" class="btn-text submit-btn" id="submitBTN">Submit &rarr;</a>
   </div>
 </div>
 
