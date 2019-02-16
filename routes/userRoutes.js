@@ -48,7 +48,7 @@ userRouter.get('/', (req, res, next) => {
           })
           .then(user => {
             // tracks
-            return user.increment('loginCount', { by: 1 });
+            // return user.increment('loginCount', { by: 1 });
           })
           .catch(err => console.log(err));
         res.redirect('/profile');

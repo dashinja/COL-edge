@@ -1,49 +1,50 @@
-  <nav class="navbar navbar-transparent">
-          <span class="navbar-brand mb-0 h1"><a href="/"><img src="assets/images/basic_home.png" height="32" width="32" alt="home"></a></span>
-        </nav>
-    <div class="theWholecontainer">
-      
-      <br />
+<nav class="navbar navbar-transparent">
+  <span class="navbar-brand mb-0 h1"><a href="/"><img
+        src="assets/images/basic_home.png" height="32" width="32"
+        alt="home"></a></span>
+  <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+</nav>
+<div class="theWholecontainer">
 
-      <div class="profile-container">
-        <img src="https:/via.placeholder.com/200x200" alt="User" />
-        <br /><br />
+  <br />
 
-        <h2>Name:</h2>
-        <br /><br />
-        <h2>Major:</h2>
-        <br /><br />
-        <h2>Living Place:</h2>
+  <div class="profile-container">
+    <img src="{{user.picture}}" alt="User" />
+    <br /><br />
 
-        <br /><br />
-        <h2>Notes/Testimonial:</h2>
-        <textarea
-          class="form-control"
-          rows="5"
-          id="testimonal-box"
-          placeholder="User Testimonal"
-        ></textarea>
+    <!-- FIXME: NEED TO ADD HANDLEBARS VALUES REPRESENTING THE MODELS FROM THE DB FOR EACH OF THESE FIELDS-->
+    <h2>Name: {{user.username}}</h2>
+    <br /><br />
+    <h2>Major: {{user.major}}</h2>
+    <br /><br />
+    <h2>Living Place:</h2>
 
-        <br />
+    <br /><br />
+    <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
+    <h2>Notes/Testimonial:</h2>
+    <textarea class="form-control" rows="5" id="testimonal-box"
+      placeholder="User Testimonal"></textarea>
 
-        <a href="#" class="btn-text submit-btn" id="submitBTN">Submit &rarr;</a>
-      </div>
-    </div>
+    <br />
 
-    <!-- Footer -->
-    <footer class="footer fixed-bottom text-right">
-      <div class="transparent">
-        <a href="https://github.com/dashinja">Miller</a>
-        <a href="https://github.com/smentzer">Mentzer</a>
-        <a href="https://github.com/mspenski">Spenski</a>
-        <a href="https://github.com/Jamesis1">Uttro</a>
-        <span class="copytext"> &copy; </span>
-      </div>
-    </footer>
+    <a href="#" class="btn-text submit-btn" id="submitBTN">Submit &rarr;</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer fixed-bottom text-right">
+  <div class="transparent">
+    <a href="https://github.com/dashinja">Miller</a>
+    <a href="https://github.com/smentzer">Mentzer</a>
+    <a href="https://github.com/mspenski">Spenski</a>
+    <a href="https://github.com/Jamesis1">Uttro</a>
+    <span class="copytext"> &copy; </span>
+  </div>
+</footer>
 
 
 
 <script>
 
 
-  </script>
+</script>
