@@ -2,26 +2,13 @@ var db = require('../models');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
-    // db.Example.findAll({}).then(function(dbExamples) {
     res.render('index');
-    // , {
-    //   msg: 'Welcome!',
-    //   examples: dbExamples
-    // });
-    // });
   });
 
   // FIXME: THIS NEEDS TO GO AWAY OR BE USED AS THE ONLY CONTROLLER ON /questions
   // second page reder
   app.get('/questions', function(req, res) {
-    // db.Example.findOne({ where: { id: req.params.id } }).then(function(
-    //   dbExample
-    // ) {
     res.render('questions');
-    // {
-    //     example: dbExample
-    //   });
-    // });
   });
 
   // Proper Profile Page Rendering with View Engine
@@ -29,9 +16,8 @@ module.exports = function(app) {
     if (!req.user) {
       res.redirect('/');
     } else {
-      /*MAKE QUERIES TO GET FULL DATA DISPLAY OBJECTS FROM DATABASE BASED ON INFO HELD ON USER OBJECT */
-      console.log('req.user on profile page load');
-      console.log(req.user);
+      // console.log('req.user on profile page load');
+      // console.log(req.user);
       let userData = {
         user: req.user,
         major: '',
@@ -58,16 +44,16 @@ module.exports = function(app) {
               }
             })
             .then(fullCostRow => {
-              console.log("\nI'm fullCostRow");
-              console.log(fullCostRow.dataValues);
+              // console.log("\nI'm fullCostRow");
+              // console.log(fullCostRow.dataValues);
               // cli_including_rent to USD
               fullCostRow.dataValues.cli_plus_rent = (
                 (parseInt(fullCostRow.dataValues.cli_plus_rent) / 100) *
                 57173
               ).toFixed();
 
-              console.log("\nI'm calculated fullCostRow for cli_plus_rent");
-              console.log(fullCostRow.dataValues);
+              // console.log("\nI'm calculated fullCostRow for cli_plus_rent");
+              // console.log(fullCostRow.dataValues);
 
               // cli to USD
               fullCostRow.dataValues.cli = (
@@ -75,12 +61,12 @@ module.exports = function(app) {
                 57173
               ).toFixed();
 
-              console.log("\nI'm calculated fullCostRow for cli");
-              console.log(fullCostRow.dataValues);
+              // console.log("\nI'm calculated fullCostRow for cli");
+              // console.log(fullCostRow.dataValues);
 
               userData.cost = fullCostRow.dataValues;
-              console.log("\n I'm userData with .cost updated");
-              console.log(userData);
+              // console.log("\n I'm userData with .cost updated");
+              // console.log(userData);
               // res.render('profile', userData);
             })
             .then(() => {

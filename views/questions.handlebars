@@ -20,8 +20,8 @@
                 </select>
               </div> -->
       <div class="form-group">
-        <label name="major" for="exampleFormControlSelect1">City
-          Choice</label>
+        <label name="major" for="exampleFormControlSelect1">Choose you major
+        </label>
         <select class="form-control" id="a2">
           {{#each major}}
             <option value={{id}}>{{major}}</option>
@@ -30,11 +30,10 @@
       </div>
 
       <div class="form-group">
-        <label name="cost" for="exampleFormControlSelect1">Post College living
-          Choice</label>
+        <label name="cost" for="exampleFormControlSelect1">Where to live after college?</label>
         <select class="form-control" id="a3">
           {{#each cost}}
-            <option value="{{this.id}}">{{this.city}}</option>
+            <option value="{{this.id}}">{{this.city}}, {{this.state}}</option>
           {{/each}}
         </select>
       </div>
