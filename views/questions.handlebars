@@ -14,8 +14,14 @@
 
 
 <div class="questionsPage">
-
-  <div class="form-container">
+  <header class="text-center">
+    <h1 class="display-4 text-center pt-5 mb-0">Welcome {{user.username}}</h1>
+    <h2 class="">It pays:</h2>
+    <h4 class="">- To consider the cost of climbing a mountain -</h4>
+    <h4 class="">- The Price of Mounting the Summit -</h4>
+    <h4 class="">- What to do from the Summit -</h4>
+  </header>
+  <div class="form-container mt-0">
     <div class="questions">
       <p>Questions</p>
 
@@ -27,7 +33,8 @@
                 </select>
               </div> -->
       <div class="form-group">
-        <label name="major" for="exampleFormControlSelect1">Choose you major
+        <label name="major" for="exampleFormControlSelect1">Choose Field of
+          Study
         </label>
         <select class="form-control" id="a2">
           {{#each answers.major}}
@@ -37,7 +44,8 @@
       </div>
 
       <div class="form-group">
-        <label name="cost" for="exampleFormControlSelect1">Where to live after
+        <label name="cost" for="exampleFormControlSelect1">Where you'll live
+          after
           college?</label>
         <select class="form-control" id="a3">
           {{#each answers.cost}}

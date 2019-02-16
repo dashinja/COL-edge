@@ -13,7 +13,7 @@ authRouter.route('/google').get(
 );
 authRouter.route('/google/callback').get(
   passport.authenticate('google', {
-    successRedirect: '/profile',
+    successRedirect: '/questions',
     failureRedirect: '/error'
   })
 );

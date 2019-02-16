@@ -8,7 +8,13 @@ module.exports = function(app) {
   // FIXME: THIS NEEDS TO GO AWAY OR BE USED AS THE ONLY CONTROLLER ON /questions
   // second page reder
   app.get('/questions', function(req, res) {
-    res.render('questions');
+    if (!req.user) {
+      console.log("No user exists on questions so I'm going to redirect");
+      res.redirect('/');
+    } else {
+      console.log("seems I'm logged in... so go to questions");
+      res.render('questions');
+    }
   });
 
   // Proper Profile Page Rendering with View Engine

@@ -3,49 +3,56 @@ var db = require('../models');
 module.exports = function(app) {
   //Populates all the questions
   app.get('/questions', (req, res) => {
-    let allQuestions = {
-      major: '',
-      cost: ''
-    };
-    db.major
-      .findAll({ attributes: ['major'] })
-      .then(results => {
-        // res.json(results);
-        allQuestions.major = results;
+    if (!req.user) {
+      res.redirect('/');
+    } else {
+      let allQuestions = {
+        major: '',
+        cost: ''
+      };
+      db.major
+        .findAll({ attributes: ['major'] })
+        .then(results => {
+          // res.json(results);
+          allQuestions.major = results;
 
-        db.cost
-          .findAll({
-            where: {
-              country: 'United States'
-            },
-            attributes: ['city', 'state']
-          })
-          .then(results => {
-            // cli_including_rent to USD
-            // results.forEach(item => console.table(item));
+          db.cost
+            .findAll({
+              where: {
+                country: 'United States'
+              },
+              attributes: ['city', 'state']
+            })
+            .then(results => {
+              // cli_including_rent to USD
+              // results.forEach(item => console.table(item));
 
-            let arryCliRentModify = results.map(entry => {
-              entry.cli_plus_rent = (
-                (parseInt(entry.cli_plus_rent) / 100) *
-                57173
-              ).toFixed();
-            });
+              let arryCliRentModify = results.map(entry => {
+                entry.cli_plus_rent = (
+                  (parseInt(entry.cli_plus_rent) / 100) *
+                  57173
+                ).toFixed();
+              });
 
-            // cli to USD
-            let arryCliModify = results.map(entry => {
-              entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
-            });
-            console.log(results.dataValues);
-            allQuestions.cost = results;
-            res.render('questions', { user: req.user, answers: allQuestions});
-            // res.json(results);
-          })
-          .catch(err => console.log(err));
-        // .catch(err => console.log(err))
+              // cli to USD
+              let arryCliModify = results.map(entry => {
+                entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
+              });
+              console.log(results.dataValues);
+              allQuestions.cost = results;
+              res.render('questions', {
+                user: req.user,
+                answers: allQuestions
+              });
+              // res.json(results);
+            })
+            .catch(err => console.log(err));
+          // .catch(err => console.log(err))
 
-        // res.render("questions", {})
-      })
-      .catch(err => console.log(err));
+          // res.render("questions", {})
+        })
+        .catch(err => console.log(err));
+    }
   });
 
   // Route to display All from livng places
