@@ -19,20 +19,22 @@
     <p>Starting Salary: ${{userData.major.starting_salary}}</p>
     <p>Mid-Career Salary: ${{userData.major.mid_career_salary}}</p>
     <br /><br />
-    <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2
-    <p>Cost of Living: ${{userData.cost.cli}}</p>
+    <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost
+    of Living: ${{userData.cost.cli}}</p>
     <p>Cost of Living w/rent: ${{userData.cost.cli_plus_rent}}</p>
 
 
-    <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take
+    <a href="/questions" class="btn-text questionnaire-btn"
+      id="questionnaireBTN">Re-Take
       Questionnaire &rarr;</a>
 
-    {{!-- <a href="#" class="btn-text submit-btn" id="submitBTN">Submit &rarr;</a> --}}
+    <a href="/profile" class="btn-text submit-btn" id="submitBTN">Submit
+      &rarr;</a>
     <br /><br />
     <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
-    {{!-- <h2>Notes/Testimonial:</h2>
+    <h2>Notes/Testimonial:</h2>
     <textarea class="form-control" rows="5" id="testimonal-box"
-      placeholder="User Testimonal"></textarea> --}}
+      placeholder="User Testimonal"></textarea>
     <br /><br />
 
     <br />
@@ -54,5 +56,15 @@
 
 
 <script>
+  $(function () {
+    $("#submitBTN").on("click", function (event) {
+      event.preventDefault();
 
+      console.log("I've beeen CLIIIIICCCKKKEDD!")
+      let testimonial = $("#testimonal-box").val()
+      console.log("Testimonial Text:")
+      console.log(testimonial)
+
+    })
+  })
 </script>
