@@ -35,56 +35,69 @@ module.exports = function(app) {
       if (!req.user.majorChoice) {
         res.render('profile', { user: req.user });
       } else {
-        // MAGIC
-        db.major
+        db.user
           .findOne({
             where: {
-              major: req.user.majorChoice
+              username: req.user.username
             }
           })
-          .then(majorRes => {
-            //dataValues to truncate only what you need?
-            userData.major = majorRes.dataValues;
+          .then(foundUser => {
+            // MAGIC
+            db.major
+              .findOne({
+                where: {
+                  major: foundUser.majorChoice
+                }
+              })
+              .then(majorRes => {
+                //dataValues to truncate only what you need?
+                userData.major = majorRes.dataValues;
 
-            if (!req.user.cityChoice) {
-              null;
-            } else {
-              db.cost
-                .findOne({
-                  where: {
-                    city: req.user.cityChoice
-                  }
-                })
-                .then(cityRes => {
-                  const cityResults = cityRes.dataValues;
-                  cityResults.cli_plus_rent = (
-                    (parseInt(cityRes.dataValues.cli_plus_rent) / 100) *
-                    57173
-                  ).toFixed();
+                if (!foundUser.cityChoice) {
+                  null;
+                } else {
+                  db.cost
+                    .findOne({
+                      where: {
+                        city: foundUser.cityChoice
+                      }
+                    })
+                    .then(cityRes => {
+                      const cityResults = cityRes.dataValues;
+                      cityResults.cli_plus_rent = (
+                        (parseInt(cityRes.dataValues.cli_plus_rent) / 100) *
+                        57173
+                      ).toFixed();
 
-                  cityResults.cli = (
-                    (parseInt(cityRes.dataValues.cli) / 100) *
-                    57173
-                  ).toFixed();
-                  userData.cost = cityResults;
+                      cityResults.cli = (
+                        (parseInt(cityRes.dataValues.cli) / 100) *
+                        57173
+                      ).toFixed();
+                      userData.cost = cityResults;
 
-                  db.note.findAll({
-                    where: {
-                      username: req.user.username
-                    }
-                  }).then(allNotes => {
-                    if (allNotes) {
-                      res.render('profile', {
-                        user: req.user,
-                        userData,
-                        notes: allNotes
-                      });
-                    } else {
-                      res.render('profile', { user: req.user, userData });
-                    }
-                  });
-                });
-            }
+                      db.note
+                        .findAll({
+                          where: {
+                            username: foundUser.username
+                          }
+                        })
+                        .then(allNotes => {
+                          if (allNotes) {
+                            res.render('profile', {
+                              user: foundUser,
+                              userData,
+                              notes: allNotes
+                            });
+                          } else {
+                            res.render('profile', {
+                              user: foundUser,
+                              userData
+                            });
+                          }
+                        });
+                    });
+                }
+              });
           });
       }
 
