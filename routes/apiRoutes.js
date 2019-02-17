@@ -142,6 +142,145 @@ module.exports = function(app) {
       // .then(() => res.render("profile"))
       .catch(err => console.log(err));
 
+    let testimonialHolder = [];
+    // User Testimonial
+    app.post('/api/user/testimony', (req, res) => {
+      console.log("I'm req.body:");
+      console.log(req.body);
+      // console.log("I'm req");
+      // console.log(req);
+
+      if (!req.user) {
+        return;
+      } else {
+        let userTestimonial = req.body;
+
+        // userTestimonial = userTestimonial.keys()
+        console.log("I'm keys userTestimonial");
+        console.log(Object.keys(userTestimonial));
+        let newUserTestimonial = Object.keys(userTestimonial);
+        console.log("I'm newUserTestimonial[0]");
+        console.log(newUserTestimonial[0]);
+
+        userTestimonial = newUserTestimonial[0];
+        console.log("I'm newUserTestimonial");
+        console.log(userTestimonial);
+
+        let updateObject = {
+          notes: userTestimonial
+        };
+        console.log("I'm updateObject before push");
+        console.log(updateObject);
+        testimonialHolder.push(updateObject.notes);
+        console.log("I'm testimonialHolder");
+        console.log(testimonialHolder);
+        db.user
+          .findOne({
+            where: {
+              username: req.user.username
+            }
+          })
+          .then(user => {
+            if (user) {
+              db.user
+                .update(
+                  { notes: userTestimonial },
+                  {
+                    where: {
+                      username: req.user.username
+                    }
+                  }
+                )
+                .then(() => {
+                  // console.log("I'm updateObject");
+                  // console.log(updateObject);
+                  res.json(testimonialHolder);
+                  // res.render("index", {testimony: testimonialHolder})
+                  // console.log(
+                  //   'Tell me, what of userTestimonials?:',
+                  //   userTestimonial
+                  // );
+                  // res.render('index', {
+                  //   user: updateObject,
+                  //   notes: userTestimonial
+                  // });
+                })
+                .catch(err => console.log(err));
+            }
+          })
+          .catch(err => console.log(err));
+      }
+    });
+
+    // Create a note
+    app.post('/api/user/note', (req, res) => {
+      console.log(req.body);
+
+      let noteInfo = {
+        username: req.user.username,
+        note: req.body.note
+      };
+
+      if (!req.user) {
+        return;
+      } else {
+        db.user
+          .findOne({
+            where: {
+              username: req.user.username
+            }
+          })
+          .then(user => {
+            if (user) {
+              db.note
+                .create(noteInfo)
+                .then(newNote => {
+                  console.log('newNote is:');
+                  console.log(newNote);
+                  // res.status(201);
+                })
+                .catch(err => console.log(err));
+            }
+          })
+          .catch(err => console.log(err));
+      }
+    });
+
+    // Updates a note
+    app.post('/api/user/note', (req, res) => {
+      console.log(req.body);
+
+      let noteInfo = {
+        username: req.user.username,
+        note: req.body
+      };
+
+      if (!req.user) {
+        return;
+      } else {
+        db.user
+          .findOne({
+            where: {
+              username: req.user.username
+            }
+          })
+          .then(user => {
+            if (user) {
+              db.note
+                .update(noteInfo, {
+                  where: {
+                    username: req.user.username
+                  }
+                })
+                .then(() => {
+                  res.status(201);
+                })
+                .catch(err => console.log(err));
+            }
+          });
+      }
+    });
+
     //needs to know which user?
     // or simplify, since no perfect auth focus:
     // last...

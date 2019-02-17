@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: true
       },
-      Notes: {
+      notes: {
         type: DataTypes.TEXT,
         allowNull: true
       }

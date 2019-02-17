@@ -53,7 +53,7 @@
 </header>
 
 <main>
-  {{!-- <section class="testimonialSection">
+  <section class="testimonialSection">
     <div class="row">
       <div class="col-md-12">
         <h2 class="heading-secondary">Testimonials</h2>
@@ -66,7 +66,12 @@
       <div class="col-md-2"></div>
       <!-- populate these with testimonials -->
       <div class="col-md-5 testimonialText1" id="test1">
-        <p>test test test test test test test test test test test test</p>
+        <p>{{notes.userTestimonial}}</p>
+        <p>{{testimonials}}</p>
+        <p>{{testimony}}</p>
+        {{#each testimony}}
+          <p>{{testimonialHolder}}</p>
+        {{/each}}
       </div>
       <div class="col-md-5 testimonialText2" id="test2">
         <p>test test test test test test test test test test test test</p>
@@ -81,7 +86,7 @@
       </div>
     </div>
 
-  </section> --}}
+  </section>
 
   <!-- Footer -->
   <footer class="footer fixed-bottom text-right">

@@ -4,7 +4,8 @@
         alt="home"></a></span>
   <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
 </nav>
-<div class="theWholecontainer">
+<!-- FIXME: -->
+<div <!--class="theWholecontainer" -->>
 
   <br />
 
@@ -28,17 +29,25 @@
       id="questionnaireBTN">Re-Take
       Questionnaire &rarr;</a>
 
+    <a href="/profile" class="btn-text save-btn" id="saveBTN">Save
+      &rarr;</a>
     <a href="/profile" class="btn-text submit-btn" id="submitBTN">Submit
       &rarr;</a>
     <br /><br />
+    <h2>Notes:</h2>
+    <textarea class="form-control" rows="5" id="notes-box"
+      placeholder="User Notes"></textarea>
     <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
-    <h2>Notes/Testimonial:</h2>
+    <h2>Testimonial:</h2>
     <textarea class="form-control" rows="5" id="testimonal-box"
       placeholder="User Testimonal"></textarea>
     <br /><br />
 
     <br />
 
+{{#each notes}}
+<h4>{{this.note}}</h4>
+{{/each}}
   </div>
 </div>
 
@@ -54,8 +63,8 @@
 </footer>
 
 
-
 <script>
+
   $(function () {
     $("#submitBTN").on("click", function (event) {
       event.preventDefault();
@@ -65,6 +74,42 @@
       console.log("Testimonial Text:")
       console.log(testimonial)
 
+      let clientTestimonyHolder = []
+      $.ajax({
+        type: "POST",
+        url: '/api/user/testimony',
+        data: testimonial,
+        success: (response) => {
+          console.log("Successful Testimonial POST")
+          console.log("I'm 'response': ", response)
+          {
+            {
+              clientTestimonyHolder = clientTestimonyHolder.push(response)
+              console.log("Im the updated clientTestimonyHolder:")
+              console.log(clientTestimonyHolder)--
+            }
+          }
+        }
+      })
+    })
+
+    $("#saveBTN").on("click", event => {
+      event.preventDefault();
+
+      const note = $("textarea#notes-box").val();
+      console.log("I'm 'note' saved into a variable 💩:")
+      console.log(note)
+      const toSend = {
+        note: note
+      }
+      $.ajax({
+        type: "POST",
+        url: '/api/user/note',
+        data: toSend,
+        success: response => {
+          console.log('saved a note')
+        }
+      })
     })
   })
 </script>

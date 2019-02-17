@@ -2,20 +2,24 @@ var db = require('../models');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
+    // app.get('/api/user/testimony', (req, res) => {
+    //   console.log("I'm req.body");
+    //   console.log(req.body);
+    // });
     res.render('index', { user: req.user });
   });
 
   // FIXME: THIS NEEDS TO GO AWAY OR BE USED AS THE ONLY CONTROLLER ON /questions
   // second page reder
-  app.get('/questions', function(req, res) {
-    if (!req.user) {
-      console.log("No user exists on questions so I'm going to redirect");
-      res.redirect('/');
-    } else {
-      console.log("seems I'm logged in... so go to questions");
-      res.render('questions');
-    }
-  });
+  // app.get('/questions', function(req, res) {
+  //   if (!req.user) {
+  //     console.log("No user exists on questions so I'm going to redirect");
+  //     res.redirect('/');
+  //   } else {
+  //     console.log("seems I'm logged in... so go to questions");
+  //     res.render('questions');
+  //   }
+  // });
 
   // Proper Profile Page Rendering with View Engine
   app.get('/profile', function(req, res) {
@@ -63,7 +67,22 @@ module.exports = function(app) {
                     57173
                   ).toFixed();
                   userData.cost = cityResults;
-                  res.render('profile', { user: req.user, userData });
+
+                  db.note.findAll({
+                    where: {
+                      username: req.user.username
+                    }
+                  }).then(allNotes => {
+                    if (allNotes) {
+                      res.render('profile', {
+                        user: req.user,
+                        userData,
+                        notes: allNotes
+                      });
+                    } else {
+                      res.render('profile', { user: req.user, userData });
+                    }
+                  });
                 });
             }
           });
