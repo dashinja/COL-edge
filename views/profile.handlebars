@@ -14,7 +14,10 @@
     <br /><br />
 
 
-    <h2>Name: {{user.username}}</h2>
+    <h2>Name:
+      {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
+    </h2>
+
     <br /><br />
     <h2>Major: {{user.majorChoice}}</h2>
     <p>Starting Salary: ${{userData.major.starting_salary}}</p>
@@ -45,9 +48,9 @@
 
     <br />
 
-{{#each notes}}
-<h4>{{this.note}}</h4>
-{{/each}}
+    {{#each notes}}
+      <h4>{{this.note}}</h4>
+    {{/each}}
   </div>
 </div>
 

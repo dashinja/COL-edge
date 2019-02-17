@@ -2,13 +2,18 @@ var db = require('../models');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
-    // app.get('/api/user/testimony', (req, res) => {
-    //   console.log("I'm req.body");
-    //   console.log(req.body);
-    // });
     res.render('index', { user: req.user });
   });
 
+  app.get('/signUp', (req, res) => {
+    res.render('signUp');
+  });
+  app.get('/signIn', (req, res) => {
+    res.render('signIn');
+  });
+  app.get('/error', (req, res) => {
+    res.render('error', { message: req.flash('loginMessage')[0] });
+  });
   // FIXME: THIS NEEDS TO GO AWAY OR BE USED AS THE ONLY CONTROLLER ON /questions
   // second page reder
   // app.get('/questions', function(req, res) {
@@ -32,13 +37,16 @@ module.exports = function(app) {
         cost: {}
       };
 
+      const key = req.user.username ? 'username' : 'localUsername';
+      const value = req.user.username || req.user.localUsername;
+
       if (!req.user.majorChoice) {
         res.render('profile', { user: req.user });
       } else {
         db.user
           .findOne({
             where: {
-              username: req.user.username
+              [key]: value
             }
           })
           .then(foundUser => {

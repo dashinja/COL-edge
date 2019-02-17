@@ -6,6 +6,8 @@ const session = require('express-session');
 const authRouter = require('./routes/authRoutes');
 const userRouter = require('./routes/userRoutes');
 const path = require('path');
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 
 var db = require('./models');
 
@@ -19,6 +21,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({ secret: 'Bootcamp-fa-life', resave: true, saveUninitialized: true })
 );
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(flash());
 
 require('./config/passport')(app);
 

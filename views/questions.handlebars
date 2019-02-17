@@ -15,7 +15,9 @@
 
 <div class="questionsPage">
   <header class="text-center">
-    <h1 class="display-4 text-center pt-5 mb-0">Welcome {{user.username}}</h1>
+    <h1 class="display-4 text-center pt-5 mb-0">Welcome
+      {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
+    </h1>
     <h2 class="">It pays:</h2>
     <h4 class="">- To consider the cost of climbing a mountain -</h4>
     <h4 class="">- The Price of Mounting the Summit -</h4>

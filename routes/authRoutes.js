@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const authRouter = express.Router();
+const db = require('../models');
 
 authRouter.route('/google').get(
   passport.authenticate('google', {
@@ -17,6 +18,46 @@ authRouter.route('/google/callback').get(
     failureRedirect: '/error'
   })
 );
+
+authRouter.route('/local').get(passport.authenticate('local'));
+
+authRouter.route('/local/signup').post((req, res) => {
+  const { localUsername, localPassword } = req.body;
+  db.user
+    .findOne({
+      where: {
+        localUsername
+      }
+    })
+    .then(user => {
+      if (user) {
+        res.send('Username already in use.');
+      } else {
+        const newUser = {
+          localUsername,
+          localPassword
+        };
+        db.user.create(newUser).then(userRes => {
+          req.login(req.body, () => {
+            res.redirect('/questions');
+          });
+        });
+      }
+    });
+});
+
+authRouter
+  .route('/local/signIn')
+  .get((req, res) => {
+    res.render('signIn');
+  })
+  .post(
+    passport.authenticate('local', {
+      successRedirect: '/questions',
+      failureRedirect: '/error',
+      failureFlash: true
+    })
+  );
 
 authRouter.route('/logout').get((req, res) => {
   req.logout();

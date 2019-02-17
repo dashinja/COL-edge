@@ -123,17 +123,20 @@ module.exports = function(app) {
     };
     console.log('req.user.username: ');
     console.log(req.user.username);
+    const key = req.user.username ? 'username' : 'localUsername';
+    const value = req.user.username || req.user.localUsername;
+
     db.user
       .findOne({
         where: {
-          username: req.user.username
+          [key]: value
         }
       })
       .then(user => {
         if (user) {
           db.user.update(addUserChoice, {
             where: {
-              username: req.user.username
+              [key]: value
             }
           });
           res.json('/profile');
