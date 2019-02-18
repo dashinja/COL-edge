@@ -29,4 +29,12 @@ apiRouter.route('/user/answers').post((req, res, next) => {
     .catch(err => console.log(err));
 });
 
+apiRouter.route('/chat').post((req, res) => {
+  console.log('new message');
+  console.log(req.body);
+  db.chat.create(req.body).then(newMessage => {
+    res.send(newMessage);
+  });
+});
+
 module.exports = apiRouter;

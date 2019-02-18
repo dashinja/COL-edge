@@ -1,16 +1,16 @@
 require('dotenv').config();
 var express = require('express');
 var exphbs = require('express-handlebars');
-const passport = require('passport');
 const session = require('express-session');
+const path = require('path');
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
+// controllers
 const authRouter = require('./routes/authRoutes');
 const profileRouter = require('./routes/profileRoutes');
 const userRouter = require('./routes/userRoutes');
 const apiRouter = require('./routes/apiRoutes');
 const htmlRouter = require('./routes/htmlRoutes');
-const path = require('path');
-const bodyParser = require('body-parser');
-const flash = require('connect-flash');
 
 var db = require('./models');
 
@@ -29,6 +29,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(flash());
 
 require('./config/passport')(app);
+
+// working on sockets
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+io.on('connection', socket => {
+  console.log('user connected');
+  socket.on('disconnect', () => console.log('user disconnected'));
+  socket.on('newMessage', data => {
+    console.log('got a new message');
+    console.dir(data);
+    io.emit('newMessage', data);
+  });
+});
 
 // Handlebars
 app.engine(
@@ -55,7 +69,7 @@ if (process.env.NODE_ENV === 'test') {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+  server.listen(PORT, () => {
     console.log(
       '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
       PORT,

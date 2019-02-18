@@ -62,7 +62,18 @@ profileRouter.route('/').get((req, res) => {
                           57173
                         ).toFixed();
                         userData.cost = cityResults;
-                        res.render('profile', { user: foundUser, userData });
+                        db.chat.findAll({}).then(chats => {
+                          const fullChat = {
+                            comments: []
+                          };
+                          chats.forEach(c => fullChat.comments.push(c));
+
+                          res.render('profile', {
+                            user: foundUser,
+                            userData,
+                            fullChat
+                          });
+                        });
                       });
                   }
                 });
