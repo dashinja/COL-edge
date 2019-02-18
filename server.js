@@ -8,7 +8,6 @@ const flash = require('connect-flash');
 // controllers
 const authRouter = require('./routes/authRoutes');
 const profileRouter = require('./routes/profileRoutes');
-const userRouter = require('./routes/userRoutes');
 const apiRouter = require('./routes/apiRoutes');
 const htmlRouter = require('./routes/htmlRoutes');
 const adminRouter = require('./routes/adminRoutes');
@@ -22,7 +21,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'Bootcamp-fa-life', resave: true, saveUninitialized: true }));
+app.use(
+  session({ secret: 'Bootcamp-fa-life', resave: true, saveUninitialized: true })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(flash());
@@ -33,7 +34,7 @@ require('./config/socket.io')(server);
 app.engine(
   'handlebars',
   exphbs({
-    defaultLayout: 'main',
+    defaultLayout: 'main'
   })
 );
 app.set('view engine', 'handlebars');
@@ -42,7 +43,6 @@ app.set('view engine', 'handlebars');
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/profile', profileRouter);
-app.use('/users', userRouter);
 app.use('/api', apiRouter);
 app.use('/', htmlRouter);
 

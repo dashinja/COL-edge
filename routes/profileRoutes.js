@@ -136,7 +136,9 @@ profileRouter.route('/:username/stats').get((req, res) => {
             })
             .then(cityRes => {
               const cityResults = cityRes.dataValues;
-              res.render('stats', { user, cityResults });
+              db.costOfLiving.findAll({}).then(cities => {
+                res.render('stats', { user, cityResults, cities });
+              });
             });
         }
       });

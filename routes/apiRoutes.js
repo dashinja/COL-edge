@@ -17,6 +17,12 @@ apiRouter.route('/user').get((req, res) => {
     });
 });
 
+apiRouter.route('/cities').get((req, res) => {
+  db.costOfLiving.findAll({}).then(cities => {
+    res.send({ cities: cities.map(c => c.city) });
+  });
+});
+
 apiRouter.route('/city/:cityname').get((req, res) => {
   db.costOfLiving
     .findOne({
