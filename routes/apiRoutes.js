@@ -30,8 +30,6 @@ apiRouter.route('/user/answers').post((req, res, next) => {
 });
 
 apiRouter.route('/chat').post((req, res) => {
-  console.log('new message');
-  console.log(req.body);
   db.chat.create(req.body).then(newMessage => {
     res.send(newMessage);
   });

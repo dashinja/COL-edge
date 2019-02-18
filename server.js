@@ -13,8 +13,8 @@ const apiRouter = require('./routes/apiRoutes');
 const htmlRouter = require('./routes/htmlRoutes');
 
 var db = require('./models');
-
 var app = express();
+const server = require('http').Server(app);
 var PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -29,20 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(flash());
 
 require('./config/passport')(app);
-
-// working on sockets
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-
-io.on('connection', socket => {
-  console.log('user connected');
-  socket.on('disconnect', () => console.log('user disconnected'));
-  socket.on('newMessage', data => {
-    console.log('got a new message');
-    console.dir(data);
-    io.emit('newMessage', data);
-  });
-});
+require('./config/socket.io')(server);
 
 // Handlebars
 app.engine(
