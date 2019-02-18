@@ -22,9 +22,14 @@ htmlRouter.route('/error').get((req, res) => {
 
 // Populates all the questions
 htmlRouter.route('/questions').get((req, res) => {
+  const regex = /(https?)(:\/\/)(.*)\//g;
+  let theResult;
+  if (req.headers.referer) {
+    theResult = req.headers.referer.replace(regex, '');
+  }
   if (!req.user) {
     res.redirect('/');
-  } else if (req.user.majorChoice) {
+  } else if (req.user.majorChoice && theResult !== 'profile') {
     res.redirect('/profile');
   } else {
     let allQuestions = {

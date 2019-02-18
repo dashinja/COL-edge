@@ -9,15 +9,33 @@
 <div>
   <h2>TESTIMONIALS:</h2>
   <br />
-  {{#each testimonials}}
-    <img src="
-    {{this.image}}" />
-    <h3>{{this.username}}</h3>
-    <br />
-    <h4>"{{this.testimonial}}"</h4>
-    <a href="#" class="btn-text submit-btn" id="chooseTestimony"
-      data-username="{{this.username}}" data-testimonial="{{this.testimonial}}"
-      data-image="{{this.image}}">Display {{this.username}}'s testimonial on
-      Home Page &rarr;</a>
-  {{/each}}
+  <table style="width: 1000px;">
+    <tr>
+      <th>User Image</th>
+      <th>User Name</th>
+      <th>User Testimonial</th>
+      <th>Add testimial to Index</th>
+    </tr>
+    {{#each testimonials}}
+      <tr>
+        <td>
+          <img src="{{this.image}}" />
+        </td>
+        <td>
+          {{this.username}}
+        </td>
+        <td>
+          "{{this.testimonial}}"
+        </td>
+        <td>
+          <a href="#" id="chooseTestimony" data-username="{{this.username}}"
+            data-testimonial="{{this.testimonial}}"
+            data-image="{{this.image}}">Display {{this.username}}'s
+            testimonial on
+            Home Page &rarr;</a>
+        </td>
+      </tr>
+    {{/each}}
+
+  </table>
 </div>

@@ -71,9 +71,21 @@ apiRouter.route('/testimony/:dest').post((req, res) => {
   };
   req.user.picture ? (testimony.image = req.user.picture) : null;
   if (req.params.dest === 'index') {
-    db.indexTestimonial.create(req.body).then(newIndexTestimony => {
-      res.send(newIndexTestimony);
-    });
+    db.indexTestimonial
+      .findOne({
+        where: {
+          username: req.body.username
+        }
+      })
+      .then(testimony => {
+        if (testimony) {
+          return;
+        } else {
+          db.indexTestimonial.create(req.body).then(newIndexTestimony => {
+            res.send(newIndexTestimony);
+          });
+        }
+      });
   } else if (req.params.dest === 'user') {
     db.testimonial.create(testimony).then(newTestimony => {
       res.send(newTestimony);
