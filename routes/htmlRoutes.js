@@ -2,7 +2,15 @@ var db = require('../models');
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
-    res.render('index', { user: req.user });
+    db.indexPage
+      .findOne({
+        where: {
+          id: 1
+        }
+      })
+      .then(testimonial => {
+        res.render('index', { user: req.user, testimonial });
+      });
   });
 
   app.get('/signUp', (req, res) => {
