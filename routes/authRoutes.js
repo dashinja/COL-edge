@@ -8,26 +8,26 @@ authRouter.route('/google').get(
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email',
-      ''
-    ]
+      '',
+    ],
   })
 );
 authRouter.route('/google/callback').get(
   passport.authenticate('google', {
     successRedirect: '/questions',
-    failureRedirect: '/error'
+    failureRedirect: '/error',
   })
 );
 
 authRouter.route('/local').get(passport.authenticate('local'));
 
-authRouter.route('/local/signup').post((req, res) => {
+authRouter.route('/local/signUp').post((req, res) => {
   const { localUsername, localPassword } = req.body;
   db.user
     .findOne({
       where: {
-        localUsername
-      }
+        localUsername,
+      },
     })
     .then(user => {
       if (user) {
@@ -35,7 +35,7 @@ authRouter.route('/local/signup').post((req, res) => {
       } else {
         const newUser = {
           localUsername,
-          localPassword
+          localPassword,
         };
         db.user.create(newUser).then(userRes => {
           req.login(req.body, () => {
@@ -49,13 +49,13 @@ authRouter.route('/local/signup').post((req, res) => {
 authRouter
   .route('/local/signIn')
   .get((req, res) => {
-    res.render('signIn');
+    res.render('siginIn');
   })
   .post(
     passport.authenticate('local', {
       successRedirect: '/questions',
       failureRedirect: '/error',
-      failureFlash: true
+      failureFlash: true,
     })
   );
 

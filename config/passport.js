@@ -1,4 +1,4 @@
-const passport = require('passport');
+const passport = require("passport");
 
 module.exports = app => {
   app.use(passport.initialize());
@@ -9,6 +9,6 @@ module.exports = app => {
   passport.deserializeUser((user, done) => {
     done(null, user);
   });
-  require('./strategies/google.strategy')();
+  require("./strategies/google.strategy")();
   require('./strategies/local.strategy')();
 };

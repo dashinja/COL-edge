@@ -2,14 +2,13 @@
 <script src="./js/index.js"></script>
 <span>
   {{#if user}}
-    <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+  <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
   {{else}}
-    <a href="auth/google" class="btn-text login">Login &rarr;</a>
+  <a href="auth/google" class="btn-text login">Login &rarr;</a>
   {{/if}}
 </span>
 <header class="header">
-  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin"
-    id="spinning" />
+  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin" id="spinning" />
   <div class="header__text-box">
     <h1 class="heading-primary">
       <div class="row">
@@ -51,6 +50,7 @@
 
 
 
+
   </div>
 </header>
 
@@ -68,12 +68,13 @@
       <div class="col-md-2"></div>
       <!-- populate these with testimonials -->
       {{#each testimonials}}
-        <div class="col-md-5 testimonialText2" id="{{this.username}}">
-          <img src="{{this.image}}" />
-          <h5>{{this.testimonial}}</h5>
-          <h6>{{this.username}}</h6>
-        </div>
+      <div class="col-md-5 testimonialText2" id="{{this.username}}">
+        <img src="{{this.image}}" />
+        <h5>{{this.testimonial}}</h5>
+        <h6>-{{this.username}}</h6>
+      </div>
       {{/each}}
+
     </div>
     <br>
     <div class="row">

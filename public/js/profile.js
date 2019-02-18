@@ -10,12 +10,12 @@ $(function() {
       const message = {
         text: $('#chatBox')
           .val()
-          .trim()
+          .trim(),
       };
       $.ajax({
         type: 'POST',
         url: '/api/chat',
-        data: message
+        data: message,
       });
       socket.emit('newMessage', message);
       $('#chatBox').val('');
@@ -32,32 +32,32 @@ $(function() {
     e.preventDefault();
     const testimony = $('textarea#testimonialBox').val();
     const toSend = {
-      testimony: testimony
+      testimony: testimony,
     };
     $.ajax({
       type: 'POST',
       url: '/api/testimony/user',
-      data: toSend
+      data: toSend,
     });
     socket.emit('newTestimony', toSend);
     $('#testimonialBox').val('');
   });
 
   socket.on('newTestimony', testimony => {
-    const newTestimony = $(`<h5>${testimony.testimony}</h5>`);
-    $('#currentTestimony').html(newTestimony);
-  });
+    const newTestimony = $(`<h5>${testimony.testimony}</h5>`)
+    $('#currentTestimony').html(newTestimony)
+  })
 
   $('#saveBTN').on('click', e => {
     e.preventDefault();
     const note = $('textarea#notes-box').val();
     const toSend = {
-      note: note
+      note: note,
     };
     $.ajax({
       type: 'POST',
       url: '/api/note',
-      data: toSend
+      data: toSend,
     });
     socket.emit('newNote', toSend);
     $('#notes-box').val('');

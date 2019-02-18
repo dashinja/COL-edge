@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1]
-      }
-    }
+        len: [1],
+      },
+    },
   });
   return chat;
 };

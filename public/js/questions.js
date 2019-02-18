@@ -7,7 +7,7 @@ $(function() {
 
     let answers = {
       major: majorChoice,
-      cost: cityChoice.split(',')[0]
+      cost: cityChoice.split(',')[0],
     };
 
     $.ajax({
@@ -16,7 +16,7 @@ $(function() {
       data: answers,
       success: response => {
         return window.location.replace(response);
-      }
+      },
     });
   });
 });

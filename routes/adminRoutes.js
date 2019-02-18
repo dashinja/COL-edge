@@ -12,8 +12,8 @@ adminRouter.route('/').get((req, res) => {
     db.user
       .findOne({
         where: {
-          [key]: value
-        }
+          [key]: value,
+        },
       })
       .then(found => {
         db.testimonial.findAll({}).then(testimonials => {
@@ -21,7 +21,7 @@ adminRouter.route('/').get((req, res) => {
             res.render('admin', {
               user: found.dataValues,
               testimonials: testimonials,
-              indexTestimonials: indexTestimonials
+              indexTestimonials: indexTestimonials,
             });
           });
         });

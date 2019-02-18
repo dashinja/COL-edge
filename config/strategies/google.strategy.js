@@ -10,19 +10,16 @@ module.exports = () => {
         clientID: CONSTANTS.clientID,
         clientSecret: CONSTANTS.clientSecret,
         callbackURL: CONSTANTS.redirectURI,
-        passReqToCallback: true
+        passReqToCallback: true,
       },
       (req, accessToken, refreshToken, profile, done) => {
         if (req.user && !req.user.username) {
-          const newInfo = {
-            username: profile.displayName,
-            picture: profile._json.image.url
-          };
+          const newInfo = { username: profile.displayName, picture: profile._json.image.url };
           db.user
             .update(newInfo, {
               where: {
-                localUsername: req.user.localUsername
-              }
+                localUsername: req.user.localUsername,
+              },
             })
             .then(users => {
               done(null, users[0]);
@@ -31,8 +28,8 @@ module.exports = () => {
           db.user
             .findOne({
               where: {
-                username: profile.displayName
-              }
+                username: profile.displayName,
+              },
             })
             .then(user => {
               if (user) {
@@ -41,9 +38,8 @@ module.exports = () => {
                 db.user
                   .create({
                     username: profile.displayName,
-                    picture: profile._json.image.url
+                    picture: profile._json.image.url,
                   })
-
                   .then(newUser => {
                     done(null, newUser.dataValues);
                   })
@@ -51,7 +47,7 @@ module.exports = () => {
               }
             });
         }
-      }
+     }
     )
   );
 };

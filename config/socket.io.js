@@ -14,9 +14,9 @@ module.exports = server => {
     });
     socket.on('testimonyToIndex', data => {
       io.emit('testimonyToIndex', data);
-    });
+    })
     socket.on('indexTestimonyRemove', data => {
       io.emit('indexTestimonyRemove', data);
-    });
+    })
   });
 };
