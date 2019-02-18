@@ -2,13 +2,13 @@ const fs = require('fs');
 const db = require('../../models');
 
 fs.readFile('./cost-of-living-2016.csv', 'utf8', (err, data) => {
-  let createModels = [];
+  let createdModels = [];
   data
     .split('\n')
-    .map(record => record.split(','))
-    .filter(record => record[1].length === 2)
+    .map(r => r.split(','))
+    .filter(r => r[1].length === 2)
     .forEach(row => {
-      createModels.push(
+      createdModels.push(
         db.costOfLiving.create({
           city: row[0],
           state: row[1],
@@ -30,7 +30,7 @@ fs.readFile('./cost-of-living-2016.csv', 'utf8', (err, data) => {
           localOneWayTicket: row[17],
           basicUtilitiesForApartment: row[18],
           cinemaTicket: row[19],
-          apples: row[20]
+          apples: row[20],
         })
       );
     });

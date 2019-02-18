@@ -1,95 +1,95 @@
 module.exports = function(sequelize, DataTypes) {
-  const costOfLiving = sequelize.define(
+  var costOfLiving = sequelize.define(
     'costOfLiving',
     {
       city: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       state: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       costOfLivingIndex: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       rentIndex: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       costOfLivingPlusRent: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       groceriesIndex: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       restaurantPriceIndex: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       localPurchasingPowerIndex: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       milk: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       monthlyPass: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       oneBedApartmentInCityCentre: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       tenMbpsInternet: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       cappuccino: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       smallBottleOfWater: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       dozenEggs: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       bigBottleOfWater: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       domesticBeer: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       localOneWayTicket: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       basicUtilitiesForApartment: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       cinemaTicket: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       apples: {
         type: DataTypes.DECIMAL,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       freezeTableName: true,
-      timestamps: false
+      timestamps: false,
     }
   );
   return costOfLiving;

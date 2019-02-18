@@ -9,8 +9,8 @@ apiRouter.route('/user').get((req, res) => {
   db.user
     .findOne({
       where: {
-        [key]: value
-      }
+        [key]: value,
+      },
     })
     .then(user => {
       res.send(user);
@@ -27,8 +27,8 @@ apiRouter.route('/city/:cityname').get((req, res) => {
   db.costOfLiving
     .findOne({
       where: {
-        city: req.params.cityname
-      }
+        city: req.params.cityname,
+      },
     })
     .then(city => {
       res.send(city);
@@ -38,7 +38,7 @@ apiRouter.route('/city/:cityname').get((req, res) => {
 apiRouter.route('/user/answers').post((req, res, next) => {
   let addUserChoice = {
     majorChoice: req.body.major,
-    cityChoice: req.body.cost
+    cityChoice: req.body.cost,
   };
   const key = req.user.username ? 'username' : 'localUsername';
   const value = req.user.username || req.user.localUsername;
@@ -46,15 +46,15 @@ apiRouter.route('/user/answers').post((req, res, next) => {
   db.user
     .findOne({
       where: {
-        [key]: value
-      }
+        [key]: value,
+      },
     })
     .then(user => {
       if (user) {
         db.user.update(addUserChoice, {
           where: {
-            [key]: value
-          }
+            [key]: value,
+          },
         });
         res.json('/profile');
       }
@@ -68,7 +68,7 @@ apiRouter.route('/note').post((req, res) => {
 
   const noteInfo = {
     [key]: value,
-    note: req.body.note
+    note: req.body.note,
   };
   if (!req.user) {
     return;
@@ -76,8 +76,8 @@ apiRouter.route('/note').post((req, res) => {
     db.user
       .findOne({
         where: {
-          [key]: value
-        }
+          [key]: value,
+        },
       })
       .then(user => {
         if (user) {
@@ -102,15 +102,15 @@ apiRouter
     const username = req.user.username || req.user.localUsername;
     const testimony = {
       username,
-      testimonial: req.body.testimony
+      testimonial: req.body.testimony,
     };
     req.user.picture ? (testimony.image = req.user.picture) : null;
     if (req.params.dest === 'index') {
       db.indexTestimonial
         .findOne({
           where: {
-            username: req.body.username
-          }
+            username: req.body.username,
+          },
         })
         .then(testimony => {
           if (testimony) {
@@ -118,13 +118,13 @@ apiRouter
           } else {
             db.indexTestimonial.create(req.body).then(newIndexTestimony => {
               const newInfo = {
-                onIndexPage: true
+                onIndexPage: true,
               };
               db.testimonial
                 .update(newInfo, {
                   where: {
-                    username: req.body.username
-                  }
+                    username: req.body.username,
+                  },
                 })
                 .then(testimonial => {
                   res.send(newInfo);
@@ -143,8 +143,8 @@ apiRouter
       db.indexTestimonial
         .destroy({
           where: {
-            username: req.body.username
-          }
+            username: req.body.username,
+          },
         })
         .then(removed => {
           res.send('¡Lo hicimos!');
@@ -154,13 +154,13 @@ apiRouter
   .patch((req, res) => {
     if (req.params.dest === 'user') {
       const newInfo = {
-        onIndexPage: req.body.onIndexPage
+        onIndexPage: req.body.onIndexPage,
       };
       db.testimonial
         .update(newInfo, {
           where: {
-            username: req.body.username
-          }
+            username: req.body.username,
+          },
         })
         .then(updated => {
           res.send(updated);

@@ -9,7 +9,7 @@ profileRouter.route('/').get((req, res) => {
     let userData = {
       user: req.user,
       major: {},
-      cost: {}
+      cost: {},
     };
     const key = req.user.username ? 'username' : 'localUsername';
     const value = req.user.username || req.user.localUsername;
@@ -17,8 +17,8 @@ profileRouter.route('/').get((req, res) => {
     db.user
       .findOne({
         where: {
-          [key]: value
-        }
+          [key]: value,
+        },
       })
       .then(found => {
         userData.user = found.dataValues;
@@ -28,15 +28,15 @@ profileRouter.route('/').get((req, res) => {
           db.user
             .findOne({
               where: {
-                [key]: value
-              }
+                [key]: value,
+              },
             })
             .then(foundUser => {
               db.majorSalaries
                 .findOne({
                   where: {
-                    major: foundUser.majorChoice
-                  }
+                    major: foundUser.majorChoice,
+                  },
                 })
                 .then(majorRes => {
                   userData.major = majorRes.dataValues;
@@ -47,41 +47,39 @@ profileRouter.route('/').get((req, res) => {
                     db.costOfLiving
                       .findOne({
                         where: {
-                          city: foundUser.cityChoice
-                        }
+                          city: foundUser.cityChoice,
+                        },
                       })
                       .then(cityRes => {
                         const cityResults = cityRes.dataValues;
                         cityResults.costOfLivingPlusRent = (
-                          (parseInt(cityRes.dataValues.costOfLivingPlusRent) /
-                            100) *
+                          (parseInt(cityRes.dataValues.costOfLivingPlusRent) / 100) *
                           57173
                         ).toFixed();
 
                         cityResults.costOfLivingIndex = (
-                          (parseInt(cityRes.dataValues.costOfLivingIndex) /
-                            100) *
+                          (parseInt(cityRes.dataValues.costOfLivingIndex) / 100) *
                           57173
                         ).toFixed();
                         userData.cost = cityResults;
                         db.chat.findAll({}).then(chats => {
                           const fullChat = {
-                            comments: []
+                            comments: [],
                           };
                           chats.forEach(c => fullChat.comments.push(c));
 
                           db.testimonial
                             .findOne({
                               where: {
-                                username: value
-                              }
+                                username: value,
+                              },
                             })
                             .then(testimonial => {
                               db.note
                                 .findAll({
                                   where: {
-                                    [key]: value
-                                  }
+                                    [key]: value,
+                                  },
                                 })
                                 .then(allNotes => {
                                   if (allNotes) {
@@ -90,14 +88,14 @@ profileRouter.route('/').get((req, res) => {
                                       userData,
                                       fullChat,
                                       testimonial,
-                                      notes: allNotes
+                                      notes: allNotes,
                                     });
                                   } else {
                                     res.render('profile', {
                                       user: foundUser,
                                       userData,
                                       fullChat,
-                                      testimonial
+                                      testimonial,
                                     });
                                   }
                                 });
@@ -121,8 +119,8 @@ profileRouter.route('/:username/stats').get((req, res) => {
     db.user
       .findOne({
         where: {
-          [key]: req.params.username
-        }
+          [key]: req.params.username,
+        },
       })
       .then(user => {
         if (!user.majorChoice) {
@@ -131,8 +129,8 @@ profileRouter.route('/:username/stats').get((req, res) => {
           db.costOfLiving
             .findOne({
               where: {
-                city: user.cityChoice
-              }
+                city: user.cityChoice,
+              },
             })
             .then(cityRes => {
               const cityResults = cityRes.dataValues;

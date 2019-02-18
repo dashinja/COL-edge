@@ -4,20 +4,20 @@ module.exports = function(sequelize, DataTypes) {
     {
       major: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       startingSalary: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       midCareerSalary: {
         type: DataTypes.DECIMAL,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       freezeTableName: true,
-      timestamps: false
+      timestamps: false,
     }
   );
   return majorSalaries;

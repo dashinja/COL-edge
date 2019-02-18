@@ -21,9 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-  session({ secret: 'Bootcamp-fa-life', resave: true, saveUninitialized: true })
-);
+app.use(session({ secret: 'Bootcamp-fa-life', resave: true, saveUninitialized: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(flash());
@@ -34,7 +32,7 @@ require('./config/socket.io')(server);
 app.engine(
   'handlebars',
   exphbs({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
   })
 );
 app.set('view engine', 'handlebars');

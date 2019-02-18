@@ -2,29 +2,25 @@
 <script src="./js/profile.js"></script>
 
 <nav class="navbar navbar-transparent">
-  <span class="navbar-brand mb-0 h1"><a href="/"><img
-        src="assets/images/basic_home.png" height="32" width="32"
+  <span class="navbar-brand mb-0 h1"><a href="/"><img src="assets/images/basic_home.png" height="32" width="32"
         alt="home"></a></span>
   {{#if user.admin}}<a href="admin" class="btn-text login">Admin</a>{{/if}}
   <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
 </nav>
-<div {{!-- FIXME: class="theWholecontainer" --}}</div>> <br /> <br />
+<div {{!-- FIXME: class="theWholecontainer" --}}</div>> <br />
 
 <div {{!-- FIXME:class="profile-container" --}}>
   <img src="{{user.picture}}" alt="User" />
   <br /><br />
 
 
-  <h2>Name:
-    {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
-  </h2>
+  <h2>Name: {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}</h2>
   <br /><br />
   <h2>Major: {{user.majorChoice}}</h2>
   <p>Starting Salary: ${{userData.major.startingSalary}}</p>
   <p>Mid-Career Salary: ${{userData.major.midCareerSalary}}</p>
   <br /><br />
-  <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost of
-  Living:
+  <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost of Living:
   ${{userData.cost.costOfLivingIndex}}</p>
   <p>Cost of Living w/rent: ${{userData.cost.costOfLivingPlusRent}}</p>
   <a href="/profile/{{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}/stats"
@@ -37,36 +33,33 @@
   <br /><br />
   <h2>Testimonial:</h2>
   <div id="currentTestimony">{{testimonial.testimonial}}</div>
-  <textarea class="form-control" rows="5" id="testimonialBox"
-    placeholder="User Testimonal"></textarea>
-  <a href="#" class="btn-text submit-btn" id="submitTestimonial">Submit
-    Testimonial &rarr;</a>
+  <textarea class="form-control" rows="5" id="testimonialBox" placeholder="User Testimonal"></textarea>
+  <a href="#" class="btn-text submit-btn" id="submitTestimonial">Submit Testimonial &rarr;</a>
   <br /><br />
   <h2>Notes:</h2>
-  <textarea class="form-control" rows="5" id="notes-box"
-    placeholder="User Notes"></textarea>
+  <textarea class="form-control" rows="5" id="notes-box" placeholder="User Notes"></textarea>
   <a href="#" class="btn-text submit-btn" id="saveBTN">Save Note &rarr;</a>
   <div id="allNotes">
     {{#each notes}}
-      <h4>{{this.note}}</h4>
+    <h4>{{this.note}}</h4>
     {{/each}}
   </div>
 
   <br />
-  <div id="fullChat"
-    style="height: 140px; overflow: scroll; background-color: white;">
+  <div id="fullChat" style="height: 140px; overflow: scroll; background-color: white;">
     {{#each fullChat.comments}}
-      <h5>{{this.text}}</h5>
+    <h5>{{this.text}}</h5>
     {{/each}}
   </div>
   <div>
     <textarea type="text" id="chatBox" rows="1">
-</textarea>
+
+      </textarea>
     <label>Type your message...</label>
   </div>
-</div>
-</div>
 
+</div>
+</div>
 
 <!-- Footer -->
 <footer class="footer fixed-bottom text-right">
