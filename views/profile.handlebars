@@ -2,72 +2,37 @@
 <script src="./js/profile.js"></script>
 
 <nav class="navbar navbar-transparent">
-<<<<<<< HEAD
-  <span class="navbar-brand mb-0 h1"><a href="/"><img
-        src="assets/images/basic_home.png" height="32" width="32"
-        alt="home"></a>
-          <a href="auth/logout" class="btn-text logout2">Logout&rarr;</a>
-        </span>
-
-</nav>
-<div class="theWholecontainer">
-
-=======
   <span class="navbar-brand mb-0 h1"><a href="/"><img src="assets/images/basic_home.png" height="32" width="32"
         alt="home"></a></span>
         {{#if user.admin}}<a href="admin" class="btn-text login">Admin</a>{{/if}}
   <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
 </nav>
-<div {{!-- FIXME: class="theWholecontainer" --}}</div>>
->>>>>>> c2250bb01c6d81d489fba961858f4be35e280fed
+<div class="theWholecontainer">        
 
 
-  <div {{!-- FIXME:class="profile-container" --}}>
+  <div class="profile-container"> 
     <img src="{{user.picture}}" alt="User" />
     <br /><br />
 
 
-<<<<<<< HEAD
-    <h2><strong> Name: </strong>
-      {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
-    </h2>
-
-=======
     <h2>Name: {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}</h2>
->>>>>>> c2250bb01c6d81d489fba961858f4be35e280fed
     <br /><br />
     <h2><strong>Major:</strong> {{user.majorChoice}}</h2>
     <p><strong>Starting Salary:</strong> ${{userData.major.starting_salary}}</p>
     <p><strong>Mid-Career Salary:</strong> ${{userData.major.mid_career_salary}}</p>
     <br /><br />
-<<<<<<< HEAD
-    <h2><strong>Living Place:</strong> {{user.cityChoice}}, {{userData.cost.state}}</h2> <p><strong>Cost
-    of Living:</strong> ${{userData.cost.cli}}</p>
-    <p><strong>Cost of Living w/rent:</strong> ${{userData.cost.cli_plus_rent}}</p>
-=======
     <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost of Living: ${{userData.cost.cli}}</p>
     <p>Cost of Living w/rent: ${{userData.cost.cli_plus_rent}}</p>
->>>>>>> c2250bb01c6d81d489fba961858f4be35e280fed
 
 
     <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take
       Questionnaire &rarr;</a>
 
     <br /><br />
-<<<<<<< HEAD
-    <h2><strong>Notes:</strong></h2>
-    <textarea class="form-control" rows="5" id="notes-box"
-      placeholder="User Notes"></textarea>
-    <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
-    <h2><strong>Testimonial:</strong></h2>
-    <textarea class="form-control" rows="5" id="testimonal-box"
-      placeholder="User Testimonal"></textarea>
-=======
     <h2>Testimonial:</h2>
     <div id="currentTestimony">{{testimonial.testimonial}}</div>
     <textarea class="form-control" rows="5" id="testimonialBox" placeholder="User Testimonal"></textarea>
     <a href="#" class="btn-text submit-btn" id="submitTestimonial">Submit Testimonial &rarr;</a>
->>>>>>> c2250bb01c6d81d489fba961858f4be35e280fed
     <br /><br />
     <h2>Notes:</h2>
     <textarea class="form-control" rows="5" id="notes-box" placeholder="User Notes"></textarea>
@@ -91,73 +56,18 @@
       <label>Type your message...</label>
     </div>
 
+ 
   </div>
 
 
 <!-- Footer -->
-<footer class="footer fixed-bottom text-right">
-  <div class="transparent">
-    <a href="https://github.com/dashinja">Miller</a>
-    <a href="https://github.com/smentzer">Mentzer</a>
-    <a href="https://github.com/mspenski">Spenski</a>
-    <a href="https://github.com/Jamesis1">Uttro</a>
-    <span class="copytext"> &copy; </span>
-  </div>
-<<<<<<< HEAD
-</footer>
-</div>
-
-
-<script>
-
-  $(function () {
-    $("#submitBTN").on("click", function (event) {
-      event.preventDefault();
-
-      console.log("I've beeen CLIIIIICCCKKKEDD!")
-      let testimonial = $("#testimonal-box").val()
-      console.log("Testimonial Text:")
-      console.log(testimonial)
-
-      let clientTestimonyHolder = []
-      $.ajax({
-        type: "POST",
-        url: '/api/user/testimony',
-        data: testimonial,
-        success: (response) => {
-          console.log("Successful Testimonial POST")
-          console.log("I'm 'response': ", response)
-          {
-            {
-              clientTestimonyHolder = clientTestimonyHolder.push(response)
-              console.log("Im the updated clientTestimonyHolder:")
-              console.log(clientTestimonyHolder)--
-            }
-          }
-        }
-      })
-    })
-
-    $("#saveBTN").on("click", event => {
-      event.preventDefault();
-
-      const note = $("textarea#notes-box").val();
-      console.log("I'm 'note' saved into a variable 💩:")
-      console.log(note)
-      const toSend = {
-        note: note
-      }
-      $.ajax({
-        type: "POST",
-        url: '/api/user/note',
-        data: toSend,
-        success: response => {
-          console.log('saved a note')
-        }
-      })
-    })
-  })
-</script>
-=======
-</footer>
->>>>>>> c2250bb01c6d81d489fba961858f4be35e280fed
+    <footer class="footer fixed-bottom text-right">
+       <div class="transparent">
+       <a href="https://github.com/dashinja">Miller</a>
+       <a href="https://github.com/smentzer">Mentzer</a>
+        <a href="https://github.com/mspenski">Spenski</a>
+        <a href="https://github.com/Jamesis1">Uttro</a>
+       <span class="copytext"> &copy; </span>
+     </div>
+    </footer>
+ </div>
