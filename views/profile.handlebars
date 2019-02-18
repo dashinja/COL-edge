@@ -1,42 +1,118 @@
-  <nav class="navbar navbar-transparent">
-          <span class="navbar-brand mb-0 h1"><a href="/"><img src="assets/images/basic_home.png" height="32" width="32" alt="home"></a></span>
-        </nav>
-    <div class="theWholecontainer">
-      
-      <br />
+<nav class="navbar navbar-transparent">
+  <span class="navbar-brand mb-0 h1"><a href="/"><img
+        src="assets/images/basic_home.png" height="32" width="32"
+        alt="home"></a></span>
+  <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+</nav>
+<!-- FIXME: -->
+<div <!--class="theWholecontainer" -->>
 
-      <div class="profile-container">
-        <img src="https:/via.placeholder.com/200x200" alt="User" />
-        <br /><br />
+  <br />
 
-        <h2>Name:</h2>
-        <br /><br />
-        <h2>Major:</h2>
-        <br /><br />
-        <h2>Living Place:</h2>
+  <div class="profile-container">
+    <img src="{{user.picture}}" alt="User" />
+    <br /><br />
 
-        <br /><br />
-        <h2>Notes/Testimonial:</h2>
-        <textarea
-          class="form-control"
-          rows="5"
-          id="testimonal-box"
-          placeholder="User Testimonal"
-        ></textarea>
 
-        <br />
+    <h2>Name:
+      {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
+    </h2>
 
-        <a href="#" class="btn-text submit-btn" id="submitBTN">Submit &rarr;</a>
-      </div>
-    </div>
+    <br /><br />
+    <h2>Major: {{user.majorChoice}}</h2>
+    <p>Starting Salary: ${{userData.major.starting_salary}}</p>
+    <p>Mid-Career Salary: ${{userData.major.mid_career_salary}}</p>
+    <br /><br />
+    <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost
+    of Living: ${{userData.cost.cli}}</p>
+    <p>Cost of Living w/rent: ${{userData.cost.cli_plus_rent}}</p>
 
-    <!-- Footer -->
-    <footer class="footer fixed-bottom text-right">
-      <div class="transparent">
-        <a href="https://github.com/dashinja">Miller</a>
-        <a href="https://github.com/smentzer">Mentzer</a>
-        <a href="https://github.com/mspenski">Spenski</a>
-        <a href="https://github.com/Jamesis1">Uttro</a>
-        <span class="copytext"> &copy; </span>
-      </div>
-    </footer>
+
+    <a href="/questions" class="btn-text questionnaire-btn"
+      id="questionnaireBTN">Re-Take
+      Questionnaire &rarr;</a>
+
+    <a href="/profile" class="btn-text save-btn" id="saveBTN">Save
+      &rarr;</a>
+    <a href="/profile" class="btn-text submit-btn" id="submitBTN">Submit
+      &rarr;</a>
+    <br /><br />
+    <h2>Notes:</h2>
+    <textarea class="form-control" rows="5" id="notes-box"
+      placeholder="User Notes"></textarea>
+    <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
+    <h2>Testimonial:</h2>
+    <textarea class="form-control" rows="5" id="testimonal-box"
+      placeholder="User Testimonal"></textarea>
+    <br /><br />
+
+    <br />
+
+    {{#each notes}}
+      <h4>{{this.note}}</h4>
+    {{/each}}
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer fixed-bottom text-right">
+  <div class="transparent">
+    <a href="https://github.com/dashinja">Miller</a>
+    <a href="https://github.com/smentzer">Mentzer</a>
+    <a href="https://github.com/mspenski">Spenski</a>
+    <a href="https://github.com/Jamesis1">Uttro</a>
+    <span class="copytext"> &copy; </span>
+  </div>
+</footer>
+
+
+<script>
+
+  $(function () {
+    $("#submitBTN").on("click", function (event) {
+      event.preventDefault();
+
+      console.log("I've beeen CLIIIIICCCKKKEDD!")
+      let testimonial = $("#testimonal-box").val()
+      console.log("Testimonial Text:")
+      console.log(testimonial)
+
+      let clientTestimonyHolder = []
+      $.ajax({
+        type: "POST",
+        url: '/api/user/testimony',
+        data: testimonial,
+        success: (response) => {
+          console.log("Successful Testimonial POST")
+          console.log("I'm 'response': ", response)
+          {
+            {
+              clientTestimonyHolder = clientTestimonyHolder.push(response)
+              console.log("Im the updated clientTestimonyHolder:")
+              console.log(clientTestimonyHolder)--
+            }
+          }
+        }
+      })
+    })
+
+    $("#saveBTN").on("click", event => {
+      event.preventDefault();
+
+      const note = $("textarea#notes-box").val();
+      console.log("I'm 'note' saved into a variable 💩:")
+      console.log(note)
+      const toSend = {
+        note: note
+      }
+      $.ajax({
+        type: "POST",
+        url: '/api/user/note',
+        data: toSend,
+        success: response => {
+          console.log('saved a note')
+        }
+      })
+    })
+  })
+</script>

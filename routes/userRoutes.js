@@ -10,11 +10,6 @@ userRouter.use('/', (req, res, next) => {
 });
 
 userRouter.get('/', (req, res, next) => {
-  // console.log("I'm req.user:", req.user);
-  // console.log('DisplayName: ', req.user.displayName);
-  // email optional, probably not to be used
-  // console.log("I'm email: ", req.user.emails[0].value);
-
   db.user
     .findOne({
       where: {
@@ -22,8 +17,15 @@ userRouter.get('/', (req, res, next) => {
       }
     })
     .then(duplicateFound => {
-      // console.log(duplicateFound);
       if (duplicateFound) {
+        db.user
+          .findOne({
+            where: {
+              username: duplicateFound
+            }
+          })
+          .then(user => {})
+          .catch(err => console.log(err));
         res.redirect('/profile');
       } else {
         db.user
@@ -36,39 +38,12 @@ userRouter.get('/', (req, res, next) => {
               console.log('Error creating user!');
             } else {
               console.log("I'm new user: ", newUser.dataValues);
-              console.log('Hi instead');
             }
           });
-        // res.render('users', {
-        //   user: {
-        //     name: req.user.displayName,
-        //     image: req.user._json.image.url
-        //     // email: req.user.emails[0].value
-        //   }
-        // });
-        res.redirect('/profile');
+        res.redirect('/questions');
       }
-    });
-
-  // db.user.create({
-  //   username: req.user.displayName,
-  //   picture: req.user._json.image.url
-  // }).then(newUser => {
-  //   if (!newUser) {
-  //     console.log('Error creating user!');
-  //   } else {
-  //     console.log("I'm new user: ", newUser.dataValues);
-  //     console.log('Hi instead');
-  //   }
-  // });
-  // res.render('users', {
-  //   user: {
-  //     name: req.user.displayName,
-  //     image: req.user._json.image.url
-  //     // email: req.user.emails[0].value
-  //   }
-  // });
-  // console.log(req);
+    })
+    .catch(err => console.log(err));
 });
 
 module.exports = userRouter;

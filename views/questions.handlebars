@@ -1,64 +1,116 @@
- <nav class="navbar navbar-transparent">
-        <span class="navbar-brand mb-0 h1"><a href="/"><img src="assets/images/basic_home.png" height="32" width="32" alt="home"></a></span>
-        <a href="auth/google" class="btn-text 2ndlogin">Login &rarr;</a>
-      </nav>
+<nav class="navbar navbar-transparent">
+  <span class="navbar-brand mb-0 h1"><a href="/"><img
+        src="assets/images/basic_home.png" height="32" width="32"
+        alt="home"></a></span>
+  <!-- FIXME: we need to remove this button once we have updated the flow of the website -->
+  <span>
+    {{#if user}}
+      <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+    {{else}}
+      <a href="auth/google" class="btn-text login">Login &rarr;</a>
+    {{/if}}
+  </span>
+</nav>
 
 
-  <div class="questionsPage">
-
- <div class="form-container">
+<div class="questionsPage">
+  <header class="text-center">
+    <h1 class="display-4 text-center pt-5 mb-0">Welcome
+      {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
+    </h1>
+    <h2 class="">It pays:</h2>
+    <h4 class="">- To consider the cost of climbing a mountain -</h4>
+    <h4 class="">- The Price of Mounting the Summit -</h4>
+    <h4 class="">- What to do from the Summit -</h4>
+  </header>
+  <div class="form-container mt-0">
     <div class="questions">
-        <p>Questions</p>
-        <hr>
-        <!-- <div class="form-group">
+      <p>Questions</p>
+
+      <hr>
+      <!-- <div class="form-group">
                 <label for="exampleFormControlSelect1">College Choice</label>
                 <select class="form-control" id="a1">
                   <option></option>
                 </select>
               </div> -->
-    
-              <div class="form-group">
-                  <label for="exampleFormControlSelect1">Major Choice</label>
-                  <select class="form-control" id="a2">
-                  </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Post College living Choice</label>
-                    <select class="form-control" id="a3">
-                      <option></option>
-                    </select>
-                  </div>
+      <div class="form-group">
+        <label name="major" for="exampleFormControlSelect1">Choose Field of
+          Study
+        </label>
+        <select class="form-control" id="a2">
+          {{#each answers.major}}
+            <option value={{this.id}}>{{this.major}}</option>
+          {{/each}}
+        </select>
+      </div>
 
-     <br />
-  
+      <div class="form-group">
+        <label name="cost" for="exampleFormControlSelect1">Where you'll live
+          after
+          college?</label>
+        <select class="form-control" id="a3">
+          {{#each answers.cost}}
+            <option value="{{this.id}}">{{this.city}}, {{this.state}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <br />
+
     </div>
-     <a href="/profile" class="btn-text submit-btn" id="submitBTN"
-     >Submit &rarr;</a>
-        
+    <a href='/api/user/answers' class="btn-text submit-btn"
+      id="submitBTN">Submit
+      &rarr;</a>
 
 
 
-
-  </div>
 
 
   </div>
-  <!-- Footer -->
-       <footer class="footer fixed-bottom text-right">
-        <div class="transparent">
-          <a href="https://github.com/dashinja">Miller</a>
-          <a href="https://github.com/smentzer">Mentzer</a>
-          <a href="https://github.com/mspenski">Spenski</a>
-          <a href="https://github.com/Jamesis1">Uttro</a>
-          <span class="copytext"> &copy; </span>
-        </div>
-      </footer>
- 
- 
-
-<script type="text/javascript">
-  
 
 
+</div>
+<!-- Footer -->
+<footer class="footer fixed-bottom text-right">
+  <div class="transparent">
+    <a href="https://github.com/dashinja">Miller</a>
+    <a href="https://github.com/smentzer">Mentzer</a>
+    <a href="https://github.com/mspenski">Spenski</a>
+    <a href="https://github.com/Jamesis1">Uttro</a>
+    <span class="copytext"> &copy; </span>
+  </div>
+</footer>
+
+
+<script>
+  $(function () {
+    $("#submitBTN").on("click", function (event) {
+      // Make sure to preventDefault on a submit event.
+      event.preventDefault();
+
+      let majorChoice = $("#a2 option:selected").text()
+      let cityChoice = $("#a3 option:selected").text()
+
+      console.log("I'm major Choice:", majorChoice)
+      console.log("I'm city Choice:", cityChoice)
+
+      let answers = {
+        major: majorChoice,
+        cost: cityChoice.split(',')[0]
+      }
+
+      // POST to '/api/user/answers'
+      $.ajax({
+        type: "POST",
+        url: '/api/user/answers',
+        data: answers,
+        success: response => {
+          return window.location.replace(response);
+        }
+      })
+
+
+    });
+  })
 </script>
-      
