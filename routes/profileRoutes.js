@@ -112,4 +112,35 @@ profileRouter.route('/').get((req, res) => {
   }
 });
 
+profileRouter.route('/:username/stats').get((req, res) => {
+  if (!req.user) {
+    res.redirect('/');
+  } else {
+    const key = req.user.username ? 'username' : 'localUsername';
+
+    db.user
+      .findOne({
+        where: {
+          [key]: req.params.username
+        }
+      })
+      .then(user => {
+        if (!user.majorChoice) {
+          res.redirect('/profile');
+        } else {
+          db.costOfLiving
+            .findOne({
+              where: {
+                city: user.cityChoice
+              }
+            })
+            .then(cityRes => {
+              const cityResults = cityRes.dataValues;
+              res.render('stats', { user, cityResults });
+            });
+        }
+      });
+  }
+});
+
 module.exports = profileRouter;

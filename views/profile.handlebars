@@ -8,7 +8,7 @@
   {{#if user.admin}}<a href="admin" class="btn-text login">Admin</a>{{/if}}
   <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
 </nav>
-<div {{!-- FIXME: class="theWholecontainer" --}}</div>> <br />
+<div {{!-- FIXME: class="theWholecontainer" --}}</div>> <br /> <br />
 
 <div {{!-- FIXME:class="profile-container" --}}>
   <img src="{{user.picture}}" alt="User" />
@@ -24,8 +24,11 @@
   <p>Mid-Career Salary: ${{userData.major.midCareerSalary}}</p>
   <br /><br />
   <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost of
-  Living: ${{userData.cost.costOfLivingIndex}}</p>
+  Living:
+  ${{userData.cost.costOfLivingIndex}}</p>
   <p>Cost of Living w/rent: ${{userData.cost.costOfLivingPlusRent}}</p>
+  <a href="/profile/{{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}/stats"
+    class="btn-text submit-btn" id="goToData">See my data &rarr;</a>
 
 
   <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take
@@ -58,13 +61,12 @@
   </div>
   <div>
     <textarea type="text" id="chatBox" rows="1">
-
-      </textarea>
+</textarea>
     <label>Type your message...</label>
   </div>
+</div>
+</div>
 
-</div>
-</div>
 
 <!-- Footer -->
 <footer class="footer fixed-bottom text-right">
