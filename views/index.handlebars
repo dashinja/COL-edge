@@ -67,24 +67,11 @@
       <!-- dont use this one -->
       <div class="col-md-2"></div>
       <!-- populate these with testimonials -->
-<<<<<<< HEAD
-      <div class="col-md-5 testimonialText1" id="test1">
-        <p>{{notes.userTestimonial}}</p>
-        <p>{{testimonials}}</p>
-        <p>{{testimony}}</p>
-        {{#each testimony}}
-          <p>{{testimonialHolder}}</p>
-        {{/each}}
-      </div>
-      <div class="col-md-5 testimonialText2" id="test2">
-        <p></p>
-=======
       {{#each testimonials}}
       <div class="col-md-5 testimonialText2" id="{{this.username}}">
         <img src="{{this.image}}" />
         <h5>{{this.testimonial}}</h5>
         <h6>-{{this.username}}</h6>
->>>>>>> c2250bb01c6d81d489fba961858f4be35e280fed
       </div>
       {{/each}}
 
