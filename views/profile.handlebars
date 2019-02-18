@@ -15,34 +15,34 @@
     <br /><br />
 
 
-    <h2>Name:
+    <h2><strong> Name: </strong>
       {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
     </h2>
 
     <br /><br />
-    <h2>Major: {{user.majorChoice}}</h2>
-    <p>Starting Salary: ${{userData.major.starting_salary}}</p>
-    <p>Mid-Career Salary: ${{userData.major.mid_career_salary}}</p>
+    <h2><strong>Major:</strong> {{user.majorChoice}}</h2>
+    <p><strong>Starting Salary:</strong> ${{userData.major.starting_salary}}</p>
+    <p><strong>Mid-Career Salary:</strong> ${{userData.major.mid_career_salary}}</p>
     <br /><br />
-    <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost
-    of Living: ${{userData.cost.cli}}</p>
-    <p>Cost of Living w/rent: ${{userData.cost.cli_plus_rent}}</p>
+    <h2><strong>Living Place:</strong> {{user.cityChoice}}, {{userData.cost.state}}</h2> <p><strong>Cost
+    of Living:</strong> ${{userData.cost.cli}}</p>
+    <p><strong>Cost of Living w/rent:</strong> ${{userData.cost.cli_plus_rent}}</p>
 
 
     <a href="/questions" class="btn-text questionnaire-btn"
-      id="questionnaireBTN">Re-Take
-      Questionnaire &rarr;</a>
+      id="questionnaireBTN"><strong>Re-Take
+      Questionnaire</strong> &rarr;</a>
 
     <a href="/profile" class="btn-text save-btn" id="saveBTN">Save
       &rarr;</a>
     <a href="/profile" class="btn-text submit-btn" id="submitBTN">Submit
       &rarr;</a>
     <br /><br />
-    <h2>Notes:</h2>
+    <h2><strong>Notes:</strong></h2>
     <textarea class="form-control" rows="5" id="notes-box"
       placeholder="User Notes"></textarea>
     <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
-    <h2>Testimonial:</h2>
+    <h2><strong>Testimonial:</strong></h2>
     <textarea class="form-control" rows="5" id="testimonal-box"
       placeholder="User Testimonal"></textarea>
     <br /><br />
