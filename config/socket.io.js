@@ -6,5 +6,8 @@ module.exports = server => {
     socket.on('newMessage', data => {
       io.emit('newMessage', data);
     });
+    socket.on('newNote', data => {
+      io.emit('newNote', data);
+    });
   });
 };

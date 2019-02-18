@@ -68,11 +68,28 @@ profileRouter.route('/').get((req, res) => {
                           };
                           chats.forEach(c => fullChat.comments.push(c));
 
-                          res.render('profile', {
-                            user: foundUser,
-                            userData,
-                            fullChat
-                          });
+                          db.note
+                            .findAll({
+                              where: {
+                                [key]: value
+                              }
+                            })
+                            .then(allNotes => {
+                              if (allNotes) {
+                                res.render('profile', {
+                                  user: foundUser,
+                                  userData,
+                                  fullChat,
+                                  notes: allNotes
+                                });
+                              } else {
+                                res.render('profile', {
+                                  user: foundUser,
+                                  userData,
+                                  fullChat
+                                });
+                              }
+                            });
                         });
                       });
                   }

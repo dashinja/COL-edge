@@ -43,90 +43,88 @@
     <textarea class="form-control" rows="5" id="testimonal-box"
       placeholder="User Testimonal"></textarea>
     <br /><br />
-
     <h2>Notes:</h2>
     <textarea class="form-control" rows="5" id="notes-box"
       placeholder="User Notes"></textarea>
+    <a href="#" class="btn-text submit-btn" id="saveBTN">Save Note &rarr;</a>
+    <div id="allNotes">
+      {{#each notes}}
+        <h4>{{this.note}}</h4>
+      {{/each}}
+    </div>
+  </div>
 
-    <br />
-
-    {{#each notes}}
-      <h4>{{this.note}}</h4>
+  <div id="fullChat"
+    style="height: 140px; overflow: scroll; background-color: white;">
+    {{#each fullChat.comments}}
+      <h5>{{this.text}}</h5>
     {{/each}}
   </div>
-</div>
 
-<div id="fullChat"
-  style="height: 140px; overflow: scroll; background-color: white;">
-  {{#each fullChat.comments}}
-    <h5>{{this.text}}</h5>
-  {{/each}}
-</div>
-
-<div>
-  <textarea type="text" id="chatBox" rows="1"></textarea>
-  <label>Type your message...</label>
-</div>
-
-<!-- Footer -->
-<footer class="footer fixed-bottom text-right">
-  <div class="transparent">
-    <a href="https://github.com/dashinja">Miller</a>
-    <a href="https://github.com/smentzer">Mentzer</a>
-    <a href="https://github.com/mspenski">Spenski</a>
-    <a href="https://github.com/Jamesis1">Uttro</a>
-    <span class="copytext"> &copy; </span>
+  <div>
+    <textarea type="text" id="chatBox" rows="1"></textarea>
+    <label>Type your message...</label>
   </div>
-</footer>
+
+  <!-- Footer -->
+  <footer class="footer fixed-bottom text-right">
+    <div class="transparent">
+      <a href="https://github.com/dashinja">Miller</a>
+      <a href="https://github.com/smentzer">Mentzer</a>
+      <a href="https://github.com/mspenski">Spenski</a>
+      <a href="https://github.com/Jamesis1">Uttro</a>
+      <span class="copytext"> &copy; </span>
+    </div>
+  </footer>
 
 
-<script>
+  <script>
 
-  $(function () {
-    $("#submitBTN").on("click", function (event) {
-      event.preventDefault();
+    $(function () {
+      $("#submitBTN").on("click", function (event) {
+        event.preventDefault();
 
-      console.log("I've beeen CLIIIIICCCKKKEDD!")
-      let testimonial = $("#testimonal-box").val()
-      console.log("Testimonial Text:")
-      console.log(testimonial)
+        console.log("I've beeen CLIIIIICCCKKKEDD!")
+        let testimonial = $("#testimonal-box").val()
+        console.log("Testimonial Text:")
+        console.log(testimonial)
 
-      let clientTestimonyHolder = []
-      $.ajax({
-        type: "POST",
-        url: '/api/user/testimony',
-        data: testimonial,
-        success: (response) => {
-          console.log("Successful Testimonial POST")
-          console.log("I'm 'response': ", response)
-          {
+        let clientTestimonyHolder = []
+        $.ajax({
+          type: "POST",
+          url: '/api/user/testimony',
+          data: testimonial,
+          success: (response) => {
+            console.log("Successful Testimonial POST")
+            console.log("I'm 'response': ", response)
             {
-              clientTestimonyHolder = clientTestimonyHolder.push(response)
-              console.log("Im the updated clientTestimonyHolder:")
-              console.log(clientTestimonyHolder)--
+              {
+                clientTestimonyHolder = clientTestimonyHolder.push(response)
+                console.log("Im the updated clientTestimonyHolder:")
+                console.log(clientTestimonyHolder)--
+              }
             }
           }
+        })
+      })
+
+      $("#saveBTN").on("click", event => {
+        event.preventDefault();
+
+        const note = $("textarea#notes-box").val();
+        console.log("I'm 'note' saved into a variable 💩:")
+        console.log(note)
+        const toSend = {
+          note: note
         }
+        $.ajax({
+          type: "POST",
+          url: '/api/user/note',
+          data: toSend,
+          success: response => {
+            console.log('saved a note')
+          }
+        })
       })
     })
-
-    $("#saveBTN").on("click", event => {
-      event.preventDefault();
-
-      const note = $("textarea#notes-box").val();
-      console.log("I'm 'note' saved into a variable 💩:")
-      console.log(note)
-      const toSend = {
-        note: note
-      }
-      $.ajax({
-        type: "POST",
-        url: '/api/user/note',
-        data: toSend,
-        success: response => {
-          console.log('saved a note')
-        }
-      })
-    })
-  })
-</script>
+  </script>

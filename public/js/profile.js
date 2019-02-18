@@ -27,4 +27,24 @@ $(function() {
     $('#fullChat').append(newMessage);
     chatDiv.scrollTop = chatDiv.scrollHeight;
   });
+
+  $('#saveBTN').on('click', e => {
+    e.preventDefault();
+    const note = $('textarea#notes-box').val();
+    const toSend = {
+      note: note
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/api/note',
+      data: toSend
+    });
+    socket.emit('newNote', toSend);
+    $('#notes-box').val('');
+  });
+
+  socket.on('newNote', note => {
+    const newNote = $(`<h4>${note.note}</h4>`);
+    $('#allNotes').append(newNote);
+  });
 });
