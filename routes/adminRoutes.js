@@ -16,7 +16,12 @@ adminRouter.route('/').get((req, res) => {
         }
       })
       .then(found => {
-        res.render('admin', { user: found.dataValues });
+        db.testimonial.findAll({}).then(testimonials => {
+          res.render('admin', {
+            user: found.dataValues,
+            testimonials: testimonials
+          });
+        });
       });
   }
 });

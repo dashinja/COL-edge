@@ -1,3 +1,23 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/admin.js"></script>
 <div>
   <h1>ADMIN PANEL</h1>
+</div>
+<br />
+<br />
+<br />
+<div>
+  <h2>TESTIMONIALS:</h2>
+  <br />
+  {{#each testimonials}}
+    <img src="
+    {{this.image}}" />
+    <h3>{{this.username}}</h3>
+    <br />
+    <h4>"{{this.testimonial}}"</h4>
+    <a href="#" class="btn-text submit-btn" id="chooseTestimony"
+      data-username="{{this.username}}" data-testimonial="{{this.testimonial}}"
+      data-image="{{this.image}}">Display {{this.username}}'s testimonial on
+      Home Page &rarr;</a>
+  {{/each}}
 </div>
