@@ -36,7 +36,7 @@ $(function() {
     };
     $.ajax({
       type: 'POST',
-      url: '/api/testimony',
+      url: '/api/testimony/user',
       data: toSend
     });
     socket.emit('newTestimony', toSend);
