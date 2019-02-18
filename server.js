@@ -4,7 +4,10 @@ var exphbs = require('express-handlebars');
 const passport = require('passport');
 const session = require('express-session');
 const authRouter = require('./routes/authRoutes');
+const profileRouter = require('./routes/profileRoutes');
 const userRouter = require('./routes/userRoutes');
+const apiRouter = require('./routes/apiRoutes');
+const htmlRouter = require('./routes/htmlRoutes');
 const path = require('path');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
@@ -39,8 +42,8 @@ app.set('view engine', 'handlebars');
 // Routes
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+app.use('/api', apiRouter);
+app.use('/', htmlRouter);
 
 var syncOptions = { force: false };
 
