@@ -81,36 +81,3 @@
     <span class="copytext"> &copy; </span>
   </div>
 </footer>
-
-
-<script>
-  $(function () {
-    $("#submitBTN").on("click", function (event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-
-      let majorChoice = $("#a2 option:selected").text()
-      let cityChoice = $("#a3 option:selected").text()
-
-      console.log("I'm major Choice:", majorChoice)
-      console.log("I'm city Choice:", cityChoice)
-
-      let answers = {
-        major: majorChoice,
-        cost: cityChoice.split(',')[0]
-      }
-
-      // POST to '/api/user/answers'
-      $.ajax({
-        type: "POST",
-        url: '/api/user/answers',
-        data: answers,
-        success: response => {
-          return window.location.replace(response);
-        }
-      })
-
-
-    });
-  })
-</script>
