@@ -63,4 +63,16 @@ apiRouter.route('/chat').post((req, res) => {
   });
 });
 
+apiRouter.route('/testimony').post((req, res) => {
+  const username = req.user.username || res.user.localUsername;
+  const testimony = {
+    username,
+    testimonial: req.body.testimony
+  };
+  req.user.picture ? (testimony.image = req.user.picture) : null;
+  db.testimonial.create(testimony).then(newTestimony => {
+    res.send(newTestimony);
+  });
+});
+
 module.exports = apiRouter;

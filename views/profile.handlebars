@@ -38,14 +38,17 @@
 
     <a href="/profile" class="btn-text save-btn" id="saveBTN">Save
       &rarr;</a>
-    <a href="/profile" class="btn-text submit-btn" id="submitBTN">Submit
-      &rarr;</a>
     <br /><br />
     <!-- FIXME: NEED TO HAVE A FORM WITH A POST ACTION TO THE CORRECT ROUTE WHICH UPDATES THE USER IN THE DB WITH THIS TESTIMONIAL FIELD -->
     <h2>Testimonial:</h2>
-    <textarea class="form-control" rows="5" id="testimonal-box"
+    <div id="currentTestimony">{{testimonial.testimonial}}</div>
+    <textarea class="form-control" rows="5" id="testimonalBox"
       placeholder="User Testimonal"></textarea>
+    <a href="#" class="btn-text submit-btn" id="submitTestimonial">Submit
+      Testimonial &rarr;</a>
+
     <br /><br />
+
     <h2>Notes:</h2>
     <textarea class="form-control" rows="5" id="notes-box"
       placeholder="User Notes"></textarea>

@@ -9,5 +9,8 @@ module.exports = server => {
     socket.on('newNote', data => {
       io.emit('newNote', data);
     });
+    socket.on('newTestimony', data => {
+      io.emit('newTestimony', data);
+    });
   });
 };

@@ -68,27 +68,37 @@ profileRouter.route('/').get((req, res) => {
                           };
                           chats.forEach(c => fullChat.comments.push(c));
 
-                          db.note
-                            .findAll({
+                          db.testimonial
+                            .findOne({
                               where: {
-                                [key]: value
+                                username: value
                               }
                             })
-                            .then(allNotes => {
-                              if (allNotes) {
-                                res.render('profile', {
-                                  user: foundUser,
-                                  userData,
-                                  fullChat,
-                                  notes: allNotes
+                            .then(testimonial => {
+                              db.note
+                                .findAll({
+                                  where: {
+                                    [key]: value
+                                  }
+                                })
+                                .then(allNotes => {
+                                  if (allNotes) {
+                                    res.render('profile', {
+                                      user: foundUser,
+                                      userData,
+                                      fullChat,
+                                      testimonial,
+                                      notes: allNotes
+                                    });
+                                  } else {
+                                    res.render('profile', {
+                                      user: foundUser,
+                                      userData,
+                                      fullChat,
+                                      testimonial
+                                    });
+                                  }
                                 });
-                              } else {
-                                res.render('profile', {
-                                  user: foundUser,
-                                  userData,
-                                  fullChat
-                                });
-                              }
                             });
                         });
                       });

@@ -3,15 +3,9 @@ const htmlRouter = express.Router();
 var db = require('../models');
 
 htmlRouter.route('/').get((req, res) => {
-  db.indexPage
-    .findOne({
-      where: {
-        id: 1
-      }
-    })
-    .then(testimonial => {
-      res.render('index', { user: req.user, testimonial });
-    });
+  db.indexTestimonial.findAll({}).then(testimonials => {
+    res.render('index', { user: req.user, testimonials: testimonials });
+  });
 });
 
 htmlRouter.route('/signUp').get((req, res) => {

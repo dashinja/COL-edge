@@ -28,6 +28,26 @@ $(function() {
     chatDiv.scrollTop = chatDiv.scrollHeight;
   });
 
+  $('#submitTestimonial').on('click', e => {
+    e.preventDefault();
+    const testimony = $('textarea#testimonialBox').val();
+    const toSend = {
+      testimony: testimony
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/api/testimony',
+      data: toSend
+    });
+    socket.emit('newTestimony', toSend);
+    $('#testimonialBox').val('');
+  });
+
+  socket.on('newTestimony', testimony => {
+    const newTestimony = $(`<h5>${testimony.testimony}</h5>`);
+    $('#currentTestimony').html(newTestimony);
+  });
+
   $('#saveBTN').on('click', e => {
     e.preventDefault();
     const note = $('textarea#notes-box').val();
