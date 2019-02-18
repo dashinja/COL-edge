@@ -1,13 +1,14 @@
 <nav class="navbar navbar-transparent">
   <span class="navbar-brand mb-0 h1"><a href="/"><img
         src="assets/images/basic_home.png" height="32" width="32"
-        alt="home"></a></span>
-  <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
-</nav>
-<!-- FIXME: -->
-<div <!--class="theWholecontainer" -->>
+        alt="home"></a>
+          <a href="auth/logout" class="btn-text logout2">Logout&rarr;</a>
+        </span>
 
-  <br />
+</nav>
+<div class="theWholecontainer">
+
+
 
   <div class="profile-container">
     <img src="{{user.picture}}" alt="User" />
@@ -52,7 +53,7 @@
       <h4>{{this.note}}</h4>
     {{/each}}
   </div>
-</div>
+
 
 <!-- Footer -->
 <footer class="footer fixed-bottom text-right">
@@ -64,6 +65,7 @@
     <span class="copytext"> &copy; </span>
   </div>
 </footer>
+</div>
 
 
 <script>

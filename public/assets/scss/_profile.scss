@@ -1,9 +1,8 @@
 // ------------- third page ---------------
 
 .theWholecontainer{
-    height: 95vh;
+    height: 100%;
     background: $mainBackground;
-    clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
     background-size: cover;
     background-position: top;
     position: relative;
@@ -15,4 +14,8 @@
         margin-left: 20rem;
         margin-right: 20rem;
    
+}
+.logout2 {
+    position: relative;
+    margin-right: 0;
 }
