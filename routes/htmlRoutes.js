@@ -24,9 +24,10 @@ htmlRouter.route('/error').get((req, res) => {
 htmlRouter.route('/questions').get((req, res) => {
   const regex = /(https?)(:\/\/)(.*)\//g;
   let theResult;
-  if (req.headers.referer) {
-    theResult = req.headers.referer.replace(regex, '');
-  }
+  req.headers.referer
+    ? (theResult = req.headers.referer.replace(regex, ''))
+    : null;
+
   if (!req.user) {
     res.redirect('/');
   } else if (req.user.majorChoice && theResult !== 'profile') {
