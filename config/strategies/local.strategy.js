@@ -6,30 +6,26 @@ module.exports = () => {
   passport.use(
     new Strategy(
       {
-        usernameField: 'username',
-        passwordField: 'password',
-        passReqToCallback: true
+        usernameField: 'localUsername',
+        passwordField: 'localPassword',
+        passReqToCallback: true,
       },
-      (req, localUsername, localPassword, done) => {
+      (req, username, password, done) => {
         db.user
           .findOne({
             where: {
-              localUsername: username
-            }
+              localUsername: username,
+            },
           })
           .then(user => {
             if (user) {
               if (user.localPassword === password) {
                 done(null, user);
               } else {
-                done(
-                  null,
-                  false,
-                  req.flash('loginMessage', 'Passwords do not match.')
-                );
+                done(null, false, req.flash('loginMessage', 'Passwords do not match.'));
               }
             } else {
-              done(null, false, req.flash('loginMessage', 'User not found'));
+              done(null, false, req.flash('loginMessage', 'User not found.'));
             }
           });
       }

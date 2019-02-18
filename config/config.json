@@ -4,6 +4,7 @@
     "password": "root",
     "database": "cost_db",
     "host": "localhost",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {

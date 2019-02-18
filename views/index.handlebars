@@ -1,13 +1,14 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/index.js"></script>
 <span>
   {{#if user}}
-    <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+  <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
   {{else}}
-    <a href="auth/google" class="btn-text login">Login &rarr;</a>
+  <a href="auth/google" class="btn-text login">Login &rarr;</a>
   {{/if}}
 </span>
 <header class="header">
-  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin"
-    id="spinning" />
+  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin" id="spinning" />
   <div class="header__text-box">
     <h1 class="heading-primary">
       <div class="row">
@@ -61,22 +62,19 @@
 
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="testimonialRow">
       <!-- placeholders for testimonials -->
       <!-- dont use this one -->
       <div class="col-md-2"></div>
       <!-- populate these with testimonials -->
-      <div class="col-md-5 testimonialText1" id="test1">
-        <p>{{notes.userTestimonial}}</p>
-        <p>{{testimonials}}</p>
-        <p>{{testimony}}</p>
-        {{#each testimony}}
-          <p>{{testimonialHolder}}</p>
-        {{/each}}
+      {{#each testimonials}}
+      <div class="col-md-5 testimonialText2" id="{{this.username}}">
+        <img src="{{this.image}}" />
+        <h5>{{this.testimonial}}</h5>
+        <h6>-{{this.username}}</h6>
       </div>
-      <div class="col-md-5 testimonialText2" id="test2">
-        <p>test test test test test test test test test test test test</p>
-      </div>
+      {{/each}}
+
     </div>
     <br>
     <div class="row">
@@ -100,6 +98,3 @@
     </div>
   </footer>
 </main>
-<script>
-
-</script>
