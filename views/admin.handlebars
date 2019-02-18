@@ -1,15 +1,15 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/admin.js"></script>
 <div>
-  <h1>ADMIN PANEL</h1>
+  <h1>Admin Panel</h1>
 </div>
 <br />
 <br />
 <br />
 <div>
-  <h2>TESTIMONIALS:</h2>
+  <h2>User Testimonials</h2>
   <br />
-  <table style="width: 1000px;">
+  <table id="testimonialTable" style="width: 800px;">
     <tr>
       <th>User Image</th>
       <th>User Name</th>
@@ -17,9 +17,48 @@
       <th>Add testimial to Index</th>
     </tr>
     {{#each testimonials}}
-      <tr>
+      {{#unless this.onIndexPage}}
+        <tr id="{{this.username}}">
+          <td>
+            <img src="{{this.image}}" style="max-height: 80px;" />
+          </td>
+          <td>
+            {{this.username}}
+          </td>
+          <td>
+            "{{this.testimonial}}"
+          </td>
+          <td>
+            <a href="#" id="chooseTestimony" data-username="{{this.username}}"
+              data-testimonial="{{this.testimonial}}"
+              data-image="{{this.image}}">Display {{this.username}}'s
+              testimonial on
+              Home Page &rarr;</a>
+          </td>
+        </tr>
+      {{/unless}}
+    {{/each}}
+
+  </table>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div>
+  <h2>Testimonials on Index Page:</h2>
+  <br />
+  <table id="indexTestimonialTable" style="width: 800px;">
+    <tr>
+      <th>User Image</th>
+      <th>User Name</th>
+      <th>User Testimonial</th>
+      <th>Add testimial to Index</th>
+    </tr>
+    {{#each indexTestimonials}}
+      <tr id="{{this.username}}">
         <td>
-          <img src="{{this.image}}" />
+          <img src="{{this.image}}" style="max-height: 80px;" />
         </td>
         <td>
           {{this.username}}
@@ -28,14 +67,13 @@
           "{{this.testimonial}}"
         </td>
         <td>
-          <a href="#" id="chooseTestimony" data-username="{{this.username}}"
+          <a href="#" id="removeTestimony" data-username="{{this.username}}"
             data-testimonial="{{this.testimonial}}"
-            data-image="{{this.image}}">Display {{this.username}}'s
-            testimonial on
+            data-image="{{this.image}}">Remove {{this.username}}'s
+            testimonial from
             Home Page &rarr;</a>
         </td>
       </tr>
     {{/each}}
-
   </table>
 </div>

@@ -12,5 +12,11 @@ module.exports = server => {
     socket.on('newTestimony', data => {
       io.emit('newTestimony', data);
     });
+    socket.on('testimonyToIndex', data => {
+      io.emit('testimonyToIndex', data);
+    });
+    socket.on('indexTestimonyRemove', data => {
+      io.emit('indexTestimonyRemove', data);
+    });
   });
 };
