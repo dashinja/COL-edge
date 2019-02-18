@@ -11,6 +11,7 @@ const profileRouter = require('./routes/profileRoutes');
 const userRouter = require('./routes/userRoutes');
 const apiRouter = require('./routes/apiRoutes');
 const htmlRouter = require('./routes/htmlRoutes');
+const adminRouter = require('./routes/adminRoutes');
 
 var db = require('./models');
 var app = express();
@@ -41,6 +42,7 @@ app.engine(
 app.set('view engine', 'handlebars');
 
 // Routes
+app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/api', apiRouter);

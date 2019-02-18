@@ -25,10 +25,13 @@ htmlRouter.route('/signIn').get((req, res) => {
 htmlRouter.route('/error').get((req, res) => {
   res.render('error', { message: req.flash('loginMessage')[0] });
 });
+
 // Populates all the questions
 htmlRouter.route('/questions').get((req, res) => {
   if (!req.user) {
     res.redirect('/');
+  } else if (req.user.majorChoice) {
+    res.redirect('/profile');
   } else {
     let allQuestions = {
       major: '',
