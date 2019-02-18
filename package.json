@@ -9,7 +9,8 @@
     "sass": "node-sass -w public/assets/scss/ -o public/assets/css/",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
-    "import:csv": "node majorTd.js"
+    "import:csv": "node majorTd.js",
+    "seed": "cd config/db && node seedMajorSalaries.js && node seedCostOfLiving.js"
   },
   "license": "ISC",
   "dependencies": {

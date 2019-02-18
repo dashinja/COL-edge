@@ -1,16 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
-  var major = sequelize.define(
-    "major",
+  var majorSalaries = sequelize.define(
+    'majorSalaries',
     {
       major: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      starting_salary: {
+      startingSalary: {
         type: DataTypes.DECIMAL,
         allowNull: false
       },
-      mid_career_salary: {
+      midCareerSalary: {
         type: DataTypes.DECIMAL,
         allowNull: false
       }
@@ -20,5 +20,5 @@ module.exports = function(sequelize, DataTypes) {
       timestamps: false
     }
   );
-  return major;
+  return majorSalaries;
 };

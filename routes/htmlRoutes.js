@@ -24,7 +24,9 @@ htmlRouter.route('/error').get((req, res) => {
 htmlRouter.route('/questions').get((req, res) => {
   const regex = /(https?)(:\/\/)(.*)\//g;
   let leResult;
-  req.headers.referer ? (leResult = req.headers.referer.replace(regex, '')) : null;
+  req.headers.referer
+    ? (leResult = req.headers.referer.replace(regex, ''))
+    : null;
   if (!req.user) {
     res.redirect('/');
   } else if (req.user.majorChoice && leResult !== 'profile') {
@@ -32,23 +34,26 @@ htmlRouter.route('/questions').get((req, res) => {
   } else {
     let allQuestions = {
       major: '',
-      cost: '',
+      cost: ''
     };
-    db.major
+    db.majorSalaries
       .findAll({ attributes: ['major'] })
       .then(results => {
         allQuestions.major = results;
 
-        db.cost
+        db.costOfLiving
           .findAll({
             where: {
-              country: 'United States',
+              country: 'United States'
             },
-            attributes: ['city', 'state'],
+            attributes: ['city', 'state']
           })
           .then(results => {
             let arryCliRentModify = results.map(entry => {
-              entry.cli_plus_rent = ((parseInt(entry.cli_plus_rent) / 100) * 57173).toFixed();
+              entry.cli_plus_rent = (
+                (parseInt(entry.cli_plus_rent) / 100) *
+                57173
+              ).toFixed();
             });
 
             let arryCliModify = results.map(entry => {
@@ -57,7 +62,7 @@ htmlRouter.route('/questions').get((req, res) => {
             allQuestions.cost = results;
             res.render('questions', {
               user: req.user,
-              answers: allQuestions,
+              answers: allQuestions
             });
           })
           .catch(err => console.log(err));
