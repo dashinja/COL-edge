@@ -1,0 +1,38 @@
+.signIncontainer {
+    height: 80vh;
+    background: $mainBackground;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    background-size: cover; 
+    background-position: top;
+    
+}
+.sign-in-txt {
+    font-size: 4rem;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center !important;
+}
+
+.username {
+    padding: 1rem;
+}
+
+.signSubmit {
+    background-color: $colorLightBlue;
+    padding: 1rem;
+    border-radius: 10%;
+    margin-top: 2rem;
+
+    &:hover {
+        background-color: $colorDarkblue;
+        box-shadow: 0 1rem 2rem rgba($colorDarkest, 0.15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($colorDarkest, 0.15);
+        transform: translateY(0);
+    }  
+}

@@ -1,10 +1,13 @@
-<div>
-    <h1>
-        Sign In!
-    </h1>
-    <form name="signInForm" action="/auth/local/signIn" method="post">
-        Username: <input name="localUsername" id="localUsername" /><br />
-        Password: <input name="localPassword" id="localPassword" /><br />
-        <input type="submit" value="Sign In" />
-    </form>
+
+<div class="signIncontainer">
+<div class="sign-in-txt">
+  <span class="sign-in-header">
+    Sign In!
+  </span>
+  <form name="signInForm" action="/auth/local/signIn" method="post">
+    <span class="username">Username: <input name="localUsername" id="localUsername" /></span><br/>
+    Password: <input name="localPassword" id="localPassword" /><br/>
+    <input class="signSubmit" type="submit" value="Sign In" />
+  </form>
 </div>
+

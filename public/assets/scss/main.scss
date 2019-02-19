@@ -1,9 +1,10 @@
 @import "variables";
 @import "animations";
 @import "mediaQueries";
-@import "secondPage";
+@import "questions";
 @import "mediaQueries";
-@import "thirdpage";
+@import "profile";
+@import "signin";
 
 *,
 *::after,
@@ -64,10 +65,12 @@ body {
   position: relative;
   margin-left: 80%;
   margin-bottom: 2rem;
+  text-align: right;
 }
 .heading-btn {
   position: relative;
-  margin-left: 75%;
+  margin-left: 30%;
+  margin-bottom: .5rem;
 }
 
 .heading-primary--main {
