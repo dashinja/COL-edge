@@ -1,6 +1,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/admin.js"></script>
 <div>
+    <a href="profile" class="btn-text login">To Profile&rarr;</a>
     <h1>Admin Panel</h1>
 </div>
 <br />
@@ -17,25 +18,28 @@
             <th>Add testimial to Index</th>
         </tr>
         {{#each testimonials}}
-        {{#unless this.onIndexPage}}
-        <tr id="{{this.username}}">
-            <td>
-                <img src="{{this.image}}" style="max-height: 80px;" />
-            </td>
-            <td>
-                {{this.username}}
-            </td>
-            <td>
-                "{{this.testimonial}}"
-            </td>
-            <td>
-                <a href="#" id="chooseTestimony" data-username="{{this.username}}"
-                    data-testimonial="{{this.testimonial}}" data-image="{{this.image}}">Display {{this.username}}'s
-                    testimonial on
-                    Home Page &rarr;</a>
-            </td>
-        </tr>
-        {{/unless}}
+            {{#unless this.onIndexPage}}
+                <tr id="{{this.username}}">
+                    <td>
+                        <img src="{{this.image}}" style="max-height: 80px;" />
+                    </td>
+                    <td>
+                        {{this.username}}
+                    </td>
+                    <td>
+                        "{{this.testimonial}}"
+                    </td>
+                    <td>
+                        <a href="#" id="chooseTestimony"
+                            data-username="{{this.username}}"
+                            data-testimonial="{{this.testimonial}}"
+                            data-image="{{this.image}}">Display
+                            {{this.username}}'s
+                            testimonial on
+                            Home Page &rarr;</a>
+                    </td>
+                </tr>
+            {{/unless}}
         {{/each}}
 
     </table>
@@ -55,23 +59,25 @@
             <th>Add testimial to Index</th>
         </tr>
         {{#each indexTestimonials}}
-        <tr id="{{this.username}}">
-            <td>
-                <img src="{{this.image}}" style="max-height: 80px;" />
-            </td>
-            <td>
-                {{this.username}}
-            </td>
-            <td>
-                "{{this.testimonial}}"
-            </td>
-            <td>
-                <a href="#" id="removeTestimony" data-username="{{this.username}}"
-                    data-testimonial="{{this.testimonial}}" data-image="{{this.image}}">Remove {{this.username}}'s
-                    testimonial from
-                    Home Page &rarr;</a>
-            </td>
-        </tr>
+            <tr id="{{this.username}}">
+                <td>
+                    <img src="{{this.image}}" style="max-height: 80px;" />
+                </td>
+                <td>
+                    {{this.username}}
+                </td>
+                <td>
+                    "{{this.testimonial}}"
+                </td>
+                <td>
+                    <a href="#" id="removeTestimony"
+                        data-username="{{this.username}}"
+                        data-testimonial="{{this.testimonial}}"
+                        data-image="{{this.image}}">Remove {{this.username}}'s
+                        testimonial from
+                        Home Page &rarr;</a>
+                </td>
+            </tr>
         {{/each}}
 
     </table>

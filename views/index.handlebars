@@ -2,13 +2,20 @@
 <script src="./js/index.js"></script>
 <span>
   {{#if user}}
-  <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+    <a href="profile" class="btn-text login">Profile&rarr;</a>
   {{else}}
-  <a href="auth/google" class="btn-text login">Login &rarr;</a>
+  {{/if}}
+</span>
+<span>
+  {{#if user}}
+    <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
+  {{else}}
+    <a href="auth/google" class="btn-text login">Login &rarr;</a>
   {{/if}}
 </span>
 <header class="header">
-  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin" id="spinning" />
+  <img src="assets/images/cityPano.jpg" alt="city pano" class="spin"
+    id="spinning" />
   <div class="header__text-box">
     <h1 class="heading-primary">
       <div class="row">
@@ -26,8 +33,10 @@
     <div class="row">
       <div class="col-md-6"></div>
       <div class="col-md-6 company-statement">
-        <h3>This website was created to help college students, both current and prospective, be able to choose a major
-          and a city, and then look at how their salary will stack up against the cost of living in that city.
+        <h3>This website was created to help college students, both current and
+          prospective, be able to choose a major
+          and a city, and then look at how their salary will stack up against
+          the cost of living in that city.
 
         </h3>
 
@@ -68,11 +77,11 @@
       <div class="col-md-2"></div>
       <!-- populate these with testimonials -->
       {{#each testimonials}}
-      <div class="col-md-10 testimonialText2" id="{{this.username}}">
-        <img src="{{this.image}}" />
-        <h5>{{this.testimonial}}</h5>
-        <h6>-{{this.username}}</h6>
-      </div>
+        <div class="col-md-10 testimonialText2" id="{{this.username}}">
+          <img src="{{this.image}}" />
+          <h5>{{this.testimonial}}</h5>
+          <h6>-{{this.username}}</h6>
+        </div>
       {{/each}}
 
 
