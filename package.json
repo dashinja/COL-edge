@@ -4,7 +4,7 @@
   "description": "Project 2 Starter",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "lint": "eslint **/*.js --quiet",
     "sass": "node-sass -w public/assets/scss/ -o public/assets/css/",
     "fix": "eslint --fix .",
