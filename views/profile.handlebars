@@ -7,35 +7,35 @@
         {{#if user.admin}}<a href="admin" class="btn-text login">Admin</a>{{/if}}
   <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
 </nav>
-<div {{!-- FIXME: class="theWholecontainer" --}}</div>>
+<div class="theWholecontainer">        
 
-  <br />
 
-  <div {{!-- FIXME:class="profile-container" --}}>
+  <div class="profile-container"> 
     <img src="{{user.picture}}" alt="User" />
     <br /><br />
 
 
-    <h2>Name: {{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}</h2>
+    <h2><strong>Name: </strong>{{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}</h2>
     <br /><br />
-    <h2>Major: {{user.majorChoice}}</h2>
-    <p>Starting Salary: ${{userData.major.starting_salary}}</p>
-    <p>Mid-Career Salary: ${{userData.major.mid_career_salary}}</p>
+    <h2><strong>Major:</strong> {{user.majorChoice}}</h2>
+    <p><strong>Starting Salary:</strong> ${{userData.major.starting_salary}}</p>
+    <p><strong>Mid-Career Salary:</strong> ${{userData.major.mid_career_salary}}</p>
     <br /><br />
-    <h2>Living Place: {{user.cityChoice}}, {{userData.cost.state}}</h2 <p>Cost of Living: ${{userData.cost.cli}}</p>
-    <p>Cost of Living w/rent: ${{userData.cost.cli_plus_rent}}</p>
+    <h2><strong>Living Place: </strong>  {{user.cityChoice}}, {{userData.cost.state}}</h2>
+    <p><strong> Cost of Living:</strong> ${{userData.cost.cli}}</p>
+    <p><strong>Cost of Living w/rent:</strong> ${{userData.cost.cli_plus_rent}}</p>
 
 
     <a href="/questions" class="btn-text submit-btn" id="submitBTN">Re-Take
       Questionnaire &rarr;</a>
 
     <br /><br />
-    <h2>Testimonial:</h2>
+    <h2><strong>Testimonial:</strong></h2>
     <div id="currentTestimony">{{testimonial.testimonial}}</div>
     <textarea class="form-control" rows="5" id="testimonialBox" placeholder="User Testimonal"></textarea>
     <a href="#" class="btn-text submit-btn" id="submitTestimonial">Submit Testimonial &rarr;</a>
     <br /><br />
-    <h2>Notes:</h2>
+    <h2><strong>Notes:</strong></h2>
     <textarea class="form-control" rows="5" id="notes-box" placeholder="User Notes"></textarea>
     <a href="#" class="btn-text submit-btn" id="saveBTN">Save Note &rarr;</a>
     <div id="allNotes">
@@ -57,16 +57,18 @@
       <label>Type your message...</label>
     </div>
 
+ 
   </div>
-</div>
+
 
 <!-- Footer -->
-<footer class="footer fixed-bottom text-right">
-  <div class="transparent">
-    <a href="https://github.com/dashinja">Miller</a>
-    <a href="https://github.com/smentzer">Mentzer</a>
-    <a href="https://github.com/mspenski">Spenski</a>
-    <a href="https://github.com/Jamesis1">Uttro</a>
-    <span class="copytext"> &copy; </span>
-  </div>
-</footer>
+    <footer class="footer fixed-bottom text-right">
+       <div class="transparent">
+       <a href="https://github.com/dashinja">Miller</a>
+       <a href="https://github.com/smentzer">Mentzer</a>
+        <a href="https://github.com/mspenski">Spenski</a>
+        <a href="https://github.com/Jamesis1">Uttro</a>
+       <span class="copytext"> &copy; </span>
+     </div>
+    </footer>
+ </div>
