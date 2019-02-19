@@ -8,7 +8,6 @@ const flash = require('connect-flash');
 // controllers
 const authRouter = require('./routes/authRoutes');
 const profileRouter = require('./routes/profileRoutes');
-const userRouter = require('./routes/userRoutes');
 const apiRouter = require('./routes/apiRoutes');
 const htmlRouter = require('./routes/htmlRoutes');
 const adminRouter = require('./routes/adminRoutes');
@@ -42,7 +41,6 @@ app.set('view engine', 'handlebars');
 app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/profile', profileRouter);
-app.use('/users', userRouter);
 app.use('/api', apiRouter);
 app.use('/', htmlRouter);
 

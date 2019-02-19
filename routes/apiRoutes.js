@@ -2,6 +2,39 @@ const express = require('express');
 const apiRouter = express.Router();
 const db = require('../models');
 
+apiRouter.route('/user').get((req, res) => {
+  const key = req.user.username ? 'username' : 'localUsername';
+  const value = req.user.username || req.user.localUsername;
+
+  db.user
+    .findOne({
+      where: {
+        [key]: value,
+      },
+    })
+    .then(user => {
+      res.send(user);
+    });
+});
+
+apiRouter.route('/cities').get((req, res) => {
+  db.costOfLiving.findAll({}).then(cities => {
+    res.send({ cities: cities.map(c => c.city) });
+  });
+});
+
+apiRouter.route('/city/:cityname').get((req, res) => {
+  db.costOfLiving
+    .findOne({
+      where: {
+        city: req.params.cityname,
+      },
+    })
+    .then(city => {
+      res.send(city);
+    });
+});
+
 apiRouter.route('/user/answers').post((req, res, next) => {
   let addUserChoice = {
     majorChoice: req.body.major,
@@ -114,7 +147,7 @@ apiRouter
           },
         })
         .then(removed => {
-          res.send("¡Lo hicimos!");
+          res.send('¡Lo hicimos!');
         });
     }
   })

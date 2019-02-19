@@ -9,11 +9,13 @@
     "sass": "node-sass -w public/assets/scss/ -o public/assets/css/",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
-    "import:csv": "node majorTd.js"
+    "import:csv": "node majorTd.js",
+    "seed": "cd config/DB && node seedMajorSalaries.js && node seedCostOfLiving.js"
   },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chart.js": "^2.7.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^6.2.0",
     "express": "^4.16.3",

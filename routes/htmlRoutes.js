@@ -34,26 +34,16 @@ htmlRouter.route('/questions').get((req, res) => {
       major: '',
       cost: '',
     };
-    db.major
+    db.majorSalaries
       .findAll({ attributes: ['major'] })
       .then(results => {
         allQuestions.major = results;
 
-        db.cost
+        db.costOfLiving
           .findAll({
-            where: {
-              country: 'United States',
-            },
             attributes: ['city', 'state'],
           })
           .then(results => {
-            let arryCliRentModify = results.map(entry => {
-              entry.cli_plus_rent = ((parseInt(entry.cli_plus_rent) / 100) * 57173).toFixed();
-            });
-
-            let arryCliModify = results.map(entry => {
-              entry.cli = ((parseInt(entry.cli) / 100) * 57173).toFixed();
-            });
             allQuestions.cost = results;
             res.render('questions', {
               user: req.user,

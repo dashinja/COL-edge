@@ -32,7 +32,7 @@ profileRouter.route('/').get((req, res) => {
               },
             })
             .then(foundUser => {
-              db.major
+              db.majorSalaries
                 .findOne({
                   where: {
                     major: foundUser.majorChoice,
@@ -44,7 +44,7 @@ profileRouter.route('/').get((req, res) => {
                   if (!foundUser.cityChoice) {
                     null;
                   } else {
-                    db.cost
+                    db.costOfLiving
                       .findOne({
                         where: {
                           city: foundUser.cityChoice,
@@ -52,13 +52,13 @@ profileRouter.route('/').get((req, res) => {
                       })
                       .then(cityRes => {
                         const cityResults = cityRes.dataValues;
-                        cityResults.cli_plus_rent = (
-                          (parseInt(cityRes.dataValues.cli_plus_rent) / 100) *
+                        cityResults.costOfLivingPlusRent = (
+                          (parseInt(cityRes.dataValues.costOfLivingPlusRent) / 100) *
                           57173
                         ).toFixed();
 
-                        cityResults.cli = (
-                          (parseInt(cityRes.dataValues.cli) / 100) *
+                        cityResults.costOfLivingIndex = (
+                          (parseInt(cityRes.dataValues.costOfLivingIndex) / 100) *
                           57173
                         ).toFixed();
                         userData.cost = cityResults;
@@ -104,6 +104,39 @@ profileRouter.route('/').get((req, res) => {
                       });
                   }
                 });
+            });
+        }
+      });
+  }
+});
+
+profileRouter.route('/:username/stats').get((req, res) => {
+  if (!req.user) {
+    res.redirect('/');
+  } else {
+    const key = req.user.username ? 'username' : 'localUsername';
+
+    db.user
+      .findOne({
+        where: {
+          [key]: req.params.username,
+        },
+      })
+      .then(user => {
+        if (!user.majorChoice) {
+          res.redirect('/profile');
+        } else {
+          db.costOfLiving
+            .findOne({
+              where: {
+                city: user.cityChoice,
+              },
+            })
+            .then(cityRes => {
+              const cityResults = cityRes.dataValues;
+              db.costOfLiving.findAll({}).then(cities => {
+                res.render('stats', { user, cityResults, cities });
+              });
             });
         }
       });
