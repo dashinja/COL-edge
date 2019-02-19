@@ -10,7 +10,7 @@
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
     "import:csv": "node majorTd.js",
-    "seed": "cd config/db && node seedMajorSalaries.js && node seedCostOfLiving.js"
+    "seed": "cd config/DB && node seedMajorSalaries.js && node seedCostOfLiving.js"
   },
   "license": "ISC",
   "dependencies": {
@@ -23,7 +23,6 @@
     "express-session": "^1.15.6",
     "handlebars": "^4.1.0",
     "mysql2": "^1.6.4",
-    "nodemon": "^1.18.10",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
