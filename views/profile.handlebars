@@ -1,11 +1,12 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/profile.js"></script>
-<a href="/" class="btn-text login">Home&rarr;</a>
+
 <nav class="navbar navbar-transparent">
   <span class="navbar-brand mb-0 h1"><a href="/"><img
         src="assets/images/basic_home.png" height="32" width="32"
         alt="home"></a></span>
-  {{#if user.admin}}<a href="admin" class="btn-text login">Admin</a>{{/if}}
+  {{#if user.admin}}<a href="admin"
+      class="btn-text login">Admin&rarr;</a>{{/if}}
   <a href="auth/logout" class="btn-text login">Logout&rarr;</a>
 </nav>
 <div class="theWholecontainer">

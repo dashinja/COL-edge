@@ -23,22 +23,24 @@
           <span class="heading-primary--main">COL-lege</span>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-start">
         <!-- Placeholder -->
         <div class="col-md-9"></div>
-        <div class="col-md-3 mission--heading">
+        <div class="col-md-5 mission--heading" style="font-size: 5rem;">
           Our Mission
         </div>
     </h1>
-    <div class="row">
+    <div class="row justify-content-start">
       <div class="col-md-6"></div>
-      <div class="col-md-6 company-statement">
-        <h3>This website was created to help college students, both current and
-          prospective, be able to choose a major
-          and a city, and then look at how their salary will stack up against
-          the cost of living in that city.
+      <div class="col-md-8 company-statement" style="font-size: 2.5rem;">
+        <h3>
+          <p>
+            To help college students, current and prospective, make firm
+            decisions about uncertain futures
+            <p>
 
         </h3>
+        <h3></h3>
 
         <div class="row">
           <div class="col-md-12">
@@ -74,25 +76,32 @@
     <div class="row" id="testimonialRow">
       <!-- placeholders for testimonials -->
       <!-- dont use this one -->
-      <div class="col-md-2"></div>
+      <div class="col-md-1"></div>
       <!-- populate these with testimonials -->
       {{#each testimonials}}
-        <div class="col-md-10 testimonialText2" id="{{this.username}}">
-          <img src="{{this.image}}" />
-          <h5>{{this.testimonial}}</h5>
-          <h6>-{{this.username}}</h6>
+        <div
+          class="col-md-3 testimonialText2 mx-auto text-center shadow-lg pt-4"
+          id="{{this.username}}">
+          <img src="{{this.image}}" style="min-height: 170px; max-heigh: 200px;"
+            class="rounded" />
+          <h5 style="font-size: 2.3rem;">{{this.testimonial}}</h5>
+          <h6 style="font-size: 2.5rem;">-{{this.username}}</h6>
         </div>
       {{/each}}
+      <div class="col-md-1"></div>
 
 
     </div>
     <br>
-    <div class="row">
-      <div class="col md 12">
-        <a href="/auth/google" class="btn-text heading-btn">Get Started
-          &rarr;</a>
+    <div class="row text-center mt-5">
+      <div class="col-md-1"></div>
+      <div class="col-10">
+        <a href="/auth/google" class="btn-text heading-btn m-0"
+          style="font-size: 4rem">Get Started
+          →</a>
 
       </div>
+      <div class="col-md-1"></div>
     </div>
 
   </section>

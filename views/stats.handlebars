@@ -1,27 +1,35 @@
 <script src="/js/Chart.js"></script>
 <script src="/js/stats.js"></script>
-<a href="profile" class="btn-text login">To Profile&rarr;</a>
-<div>
-    <h1>{{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
-    </h1>
-</div>
-<h1>Chosen City: {{cityResults.city}}</h1>
-<div class="row">
-    <div class="col-6">
-        <canvas id="myChart" width="400px" height="400px"></canvas>
+<span>
+    <a href="/profile" class="btn-text login">To
+        Profile&rarr;</a>
+</span>
+<div class="theWholecontainer">
+
+    <div>
+        <h1>{{#if user.username}}{{user.username}}{{else}}{{user.localUsername}}{{/if}}
+        </h1>
     </div>
-    <div class="col-3">
-        <div class="form-group">
-            <label name="cities" for="exampleFormControlSelect1">Choose another
-                city for comparison...</label>
-            <select class="form-control" id="cityName">
-                {{#each cities}}
-                    <option value="{{this.id}}">{{this.city}}, {{this.state}}
-                    </option>
-                {{/each}}
-            </select>
+    <h1>Chosen City: {{cityResults.city}}</h1>
+    <div class="row">
+        <div class="col-6">
+            <canvas id="myChart" width="400px" height="400px"></canvas>
         </div>
-        <a href='#' class="btn-text submit-btn" id="addCity">Add City Data
-            &rarr;</a>
+        <div class="col-3">
+            <div class="form-group">
+                <label name="cities" for="exampleFormControlSelect1">Choose
+                    another
+                    city for comparison...</label>
+                <select class="form-control" id="cityName">
+                    {{#each cities}}
+                        <option value="{{this.id}}">{{this.city}},
+                            {{this.state}}
+                        </option>
+                    {{/each}}
+                </select>
+            </div>
+            <a href='#' class="btn-text submit-btn" id="addCity">Add City Data
+                &rarr;</a>
+        </div>
     </div>
 </div>
