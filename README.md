@@ -38,4 +38,4 @@ COL-edge will keep you from the woes of unpreparedness.
 * College Choice and Price Point
 * Empower users with social media connections to share college decisions
 * Fully Responsive Design
-
+* Custom user profile pictures
