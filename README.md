@@ -17,3 +17,25 @@ We're not saying don't trust your passion, nor live where you can smell the flow
 just be informed while you do it.
 
 COL-edge will keep you from the woes of unpreparedness.
+
+## Stack Overview
+### Front End Technologies:
+* SASS
+* Handlebars
+* CSS animation
+* Clip paths
+* Bootstrap
+
+### Back End Technologies:
+* Passport/Google Auth
+* NodeJS/Express
+* MySQL
+* Sequelize
+* Socket I/O
+* Chart.js
+
+## Future Development
+* College Choice and Price Point
+* Empower users with social media connections to share college decisions
+* Fully Responsive Design
+
