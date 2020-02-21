@@ -21,29 +21,30 @@ authRouter.route('/google/callback').get(
 
 authRouter.route('/local').get(passport.authenticate('local'));
 
-authRouter.route('/local/signUp').post((req, res) => {
+authRouter.route('/local/signUp').post(async (req, res) => {
   const { localUsername, localPassword } = req.body;
-  db.user
+  const user = await db.user
     .findOne({
       where: {
         localUsername,
       },
     })
-    .then(user => {
-      if (user) {
-        res.send('Username already in use.');
-      } else {
-        const newUser = {
-          localUsername,
-          localPassword,
-        };
-        db.user.create(newUser).then(userRes => {
-          req.login(req.body, () => {
-            res.redirect('/questions');
-          });
-        });
-      }
+
+  if (user) {
+    res.send('Username already in use.');
+  } else {
+    const newUser = {
+      localUsername,
+      localPassword,
+    };
+    const userRes = await db.user.create(newUser)
+
+    req.login(req.body, () => {
+      res.redirect('/questions');
     });
+
+  }
+
 });
 
 authRouter
