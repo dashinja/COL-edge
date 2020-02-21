@@ -2,7 +2,7 @@ const express = require('express');
 const profileRouter = express.Router();
 const db = require('../models');
 
-profileRouter.route('/').get((req, res) => {
+profileRouter.route('/').get(async (req, res) => {
   if (!req.user) {
     res.redirect('/');
   } else {
@@ -11,135 +11,136 @@ profileRouter.route('/').get((req, res) => {
       major: {},
       cost: {},
     };
+
     const key = req.user.username ? 'username' : 'localUsername';
     const value = req.user.username || req.user.localUsername;
 
-    db.user
+    const found = await db.user
       .findOne({
         where: {
           [key]: value,
         },
       })
-      .then(found => {
-        userData.user = found.dataValues;
-        if (!userData.user.majorChoice) {
-          res.render('profile', { user: userData.user });
-        } else {
-          db.user
-            .findOne({
-              where: {
-                [key]: value,
-              },
-            })
-            .then(foundUser => {
-              db.majorSalaries
-                .findOne({
-                  where: {
-                    major: foundUser.majorChoice,
-                  },
-                })
-                .then(majorRes => {
-                  userData.major = majorRes.dataValues;
 
-                  if (!foundUser.cityChoice) {
-                    null;
-                  } else {
-                    db.costOfLiving
-                      .findOne({
-                        where: {
-                          city: foundUser.cityChoice,
-                        },
-                      })
-                      .then(cityRes => {
-                        const cityResults = cityRes.dataValues;
-                        cityResults.costOfLivingPlusRent = (
-                          (parseInt(cityRes.dataValues.costOfLivingPlusRent) / 100) *
-                          57173
-                        ).toFixed();
+    userData.user = found.dataValues;
 
-                        cityResults.costOfLivingIndex = (
-                          (parseInt(cityRes.dataValues.costOfLivingIndex) / 100) *
-                          57173
-                        ).toFixed();
-                        userData.cost = cityResults;
-                        db.chat.findAll({}).then(chats => {
-                          const fullChat = {
-                            comments: [],
-                          };
-                          chats.forEach(c => fullChat.comments.push(c));
+    if (!userData.user.majorChoice) {
+      res.render('profile', { user: userData.user });
+    }
+    else {
+      const foundUser = await db.user
+        .findOne({
+          where: {
+            [key]: value,
+          },
+        })
 
-                          db.testimonial
-                            .findOne({
-                              where: {
-                                username: value,
-                              },
-                            })
-                            .then(testimonial => {
-                              db.note
-                                .findAll({
-                                  where: {
-                                    [key]: value,
-                                  },
-                                })
-                                .then(allNotes => {
-                                  if (allNotes) {
-                                    res.render('profile', {
-                                      user: foundUser,
-                                      userData,
-                                      fullChat,
-                                      testimonial,
-                                      notes: allNotes,
-                                    });
-                                  } else {
-                                    res.render('profile', {
-                                      user: foundUser,
-                                      userData,
-                                      fullChat,
-                                      testimonial,
-                                    });
-                                  }
-                                });
-                            });
-                        });
-                      });
-                  }
-                });
-            });
+      const majorRes = await db.majorSalaries
+        .findOne({
+          where: {
+            major: foundUser.majorChoice,
+          },
+        })
+
+      userData.major = majorRes.dataValues;
+
+      if (!foundUser.cityChoice) {
+        null;
+      } else {
+        const cityRes = await db.costOfLiving
+          .findOne({
+            where: {
+              city: foundUser.cityChoice,
+            },
+          })
+
+        const cityResults = cityRes.dataValues;
+
+        cityResults.costOfLivingPlusRent = (
+          (parseInt(cityRes.dataValues.costOfLivingPlusRent) / 100) *
+          57173
+        ).toFixed();
+
+        cityResults.costOfLivingIndex = (
+          (parseInt(cityRes.dataValues.costOfLivingIndex) / 100) *
+          57173
+        ).toFixed();
+
+        userData.cost = cityResults;
+
+        const chats = await db.chat.findAll({})
+
+        const fullChat = {
+          comments: [],
+        };
+
+        chats.forEach(c => fullChat.comments.push(c));
+
+        const testimonial = await db.testimonial
+          .findOne({
+            where: {
+              username: value,
+            },
+          })
+
+        const allNotes = await db.note
+          .findAll({
+            where: {
+              [key]: value,
+            },
+          })
+
+        if (allNotes) {
+          res.render('profile', {
+            user: foundUser,
+            userData,
+            fullChat,
+            testimonial,
+            notes: allNotes,
+          });
         }
-      });
+        else {
+          res.render('profile', {
+            user: foundUser,
+            userData,
+            fullChat,
+            testimonial,
+          });
+        }
+      }
+    }
   }
 });
 
-profileRouter.route('/:username/stats').get((req, res) => {
+profileRouter.route('/:username/stats').get(async (req, res) => {
   if (!req.user) {
     res.redirect('/');
   } else {
     const key = req.user.username ? 'username' : 'localUsername';
 
-    db.user
+    const user = await db.user
       .findOne({
         where: {
           [key]: req.params.username,
         },
       })
-      .then(user => {
-        if (!user.majorChoice) {
-          res.redirect('/profile');
-        } else {
-          db.costOfLiving
-            .findOne({
-              where: {
-                city: user.cityChoice,
-              },
-            })
-            .then(cityRes => {
-              const cityResults = cityRes.dataValues;
-              db.costOfLiving.findAll({}).then(cities => {
-                res.render('stats', { user, cityResults, cities });
-              });
-            });
-        }
-      });
+
+    if (!user.majorChoice) {
+      res.redirect('/profile');
+    }
+    else {
+      const cityRes = await db.costOfLiving
+        .findOne({
+          where: {
+            city: user.cityChoice,
+          },
+        })
+
+      const cityResults = cityRes.dataValues;
+      const cities = await db.costOfLiving.findAll({})
+      
+      res.render('stats', { user, cityResults, cities });
+    }
   }
 });
 
