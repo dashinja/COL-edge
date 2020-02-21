@@ -9,14 +9,14 @@ adminRouter.route('/').get(async (req, res) => {
     const key = req.user.username ? 'username' : 'localUsername'
     const value = req.user.username || req.user.localUsername
 
-    const user = db.user.findOne({
+    const user = await db.user.findOne({
       where: {
         [key]: value,
       },
     })
 
-    const testimonials = db.testimonial.findAll({})
-    const indexTestimonials = db.indexTestimonial.findAll({})
+    const testimonials = await db.testimonial.findAll({})
+    const indexTestimonials = await db.indexTestimonial.findAll({})
 
     res.render('admin', {
       user: user.dataValues,
